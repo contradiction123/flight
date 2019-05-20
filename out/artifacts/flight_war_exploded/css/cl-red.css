@@ -1,0 +1,21 @@
+/*
+	Framework - Little
+	Theme - Red
+	File - cl-red.css
+	Date - Feb 17, 2018
+	Author - Yash Gohel (ygohel18)
+*/
+
+:root
+{
+    --cl-base: #E3342F;
+    --cl-dark: #CC1F1A;
+    --cl-lightest: #FCEBEA;
+    --cl-lighter: #F9ACAA;
+    --cl-light: #EF5753;
+    --cl-darker: #621B18;
+    --cl-darkest: #3B0D0C;
+    --cl-white: #FFF;
+    --cl-black: #000;
+    --cl-body: #EEE;
+}
