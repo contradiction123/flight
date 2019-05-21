@@ -1,0 +1,21 @@
+/*
+	Framework - Little
+	Theme - Blue
+	File - cl-blue.css
+	Date - 5-17, 2019
+	Author - Mars_Sea
+*/
+
+:root
+{
+    --cl-base: rgb(47, 119, 227);
+    --cl-dark: rgb(26, 82, 204);
+    --cl-lightest: rgb(234, 242, 252);
+    --cl-lighter: rgb(170, 204, 249);
+    --cl-light: rgb(83, 164, 239);
+    --cl-darker: rgb(24, 56, 98);
+    --cl-darkest: rgb(12, 17, 59);
+    --cl-white: #FFF;
+    --cl-black: #000;
+    --cl-body: #EEE;
+}

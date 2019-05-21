@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
-  User: s8534
-  Date: 2019/5/13
-  Time: 14:21
+  User: mars-sea
+  Date: 2019-05-13
+  Time: 11:27
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,7 +19,7 @@
     <!-- Main CSS -->
     <link href="css/grid.css" rel="stylesheet">
     <!-- Theme CSS -->
-    <link href="css/cl-red.css" rel="stylesheet">
+    <link href="css/cl-blue.css" rel="stylesheet">
 </head>
 <body>
 <div grid>
@@ -29,15 +30,15 @@
     </div>
     <div card="front">
         <p class="title">Log In</p>
-        <form action="/flight/b7377select" method="post" class="grid xl-1">
-            <input type="text" name="username" placeholder="请输入邮箱地址"/>
+
+        <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
+            <input type="text" name="user_email" placeholder="请输入邮箱地址"/>
             <input type="password" name="password" placeholder="请输入密码"/>
-            <button type="submit" btn="primary">登陆</button>
-            <a href="#"><div btn="trans submit">没有账号？注册</div></a>
+            <a onclick="document:login.submit();" btn="primary">登陆</a>
+            <a href="<c:url value="/register" />"><div btn="trans submit">没有账号？注册</div></a>
         </form>
         <a href="#" class="subtitle">忘记密码?</a>
     </div>
 </div>
 </body>
 </html>
-
