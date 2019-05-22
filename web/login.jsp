@@ -18,7 +18,7 @@
     <title>Login</title>
     <!-- Main CSS -->
     <link href="css/grid.css" rel="stylesheet">
-    <!-- Theme CSS -->
+    <!-- 主题 CSS -->
     <link href="css/cl-blue.css" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +29,7 @@
         <p class="txt-body txt-b">Designed By @Mars_Sea</p>
     </div>
     <div card="front">
-        <p class="title">Log In</p>
+        <p class="title">登录</p>
 
         <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
             <input type="text" name="user_email" placeholder="请输入邮箱地址"/>
