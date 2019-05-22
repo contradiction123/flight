@@ -33,7 +33,8 @@
 
         <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
             <input type="text" name="user_email" placeholder="请输入邮箱地址"/>
-            <input type="password" name="password" placeholder="请输入密码"/>
+            <input type="password" name="password" placeholder="请输入密码"/><br />
+            <p style="color: red;position: absolute;font-size: 12px;right: 40%;"><c:if test="${msg != ''}"><c:out value="${msg}" /></c:if></p>
             <a onclick="document:login.submit();" btn="primary">登陆</a>
             <a href="<c:url value="/register" />"><div btn="trans submit">没有账号？注册</div></a>
         </form>

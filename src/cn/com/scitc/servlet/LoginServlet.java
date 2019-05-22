@@ -18,16 +18,26 @@ public class LoginServlet extends HttpServlet {
         UserDao dao = new UserDao();
         User user = dao.login(user_email);
         if (user_email.equals(user.getUser_email()) && user_psw.equals(user.getUser_psw())){
-            System.out.println("yes!");
+            System.out.println(user.getPermission());
             //判断管理员
             if (user.getPermission().equals(1)){
-                request.getRequestDispatcher("").forward(request,response);
+                System.out.println("yes");
+                //传输用户信息到cooking
+                request.getSession().setAttribute("msg",user);
+                //重定向页面
+                response.sendRedirect("admin");
+                return;
+            }else {
+                //普通用户跳转
+                request.getSession().setAttribute("msg",user);
+                response.sendRedirect("login");
+                return;
             }
-            //普通用户跳转
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
         }else {
             System.out.println("no!");
-            request.getRequestDispatcher("/buy_ticket.jsp").forward(request,response);
+            request.getSession().setAttribute("msg","用户名或密码错误!");
+            response.sendRedirect("login");
+            return;
         }
 
     }

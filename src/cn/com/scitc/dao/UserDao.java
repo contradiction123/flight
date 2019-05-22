@@ -16,6 +16,7 @@ public class UserDao {
                 user.setUser_email(resultSet.getString("user_email"));
                 user.setUser_psw(resultSet.getString("user_psw"));
                 user.setPermission(resultSet.getInt("permission"));
+                user.setUser_name(resultSet.getString("user_name"));
                 System.out.println("查询完毕");
             }
         }catch (Exception e){
