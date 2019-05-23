@@ -40,8 +40,8 @@
         <!-- 左侧栏列表-->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active"><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#"><i class="fa fa-bar-chart-o"></i> 用户信息</a></li>
+                <li class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
                 <li><a href="#"><i class="fa fa-table"></i> 机型售卖情况</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="#"><i class="fa fa-font"></i> 整机迁移</a></li>
@@ -86,12 +86,12 @@
                                 <i class="fa fa-comments fa-5x"></i>
                             </div>
                             <div class="col-xs-6 text-right">
-                                <p class="announcement-heading">456</p>
+                                <p class="announcement-heading"><c:out value="${user_size}" /></p>
                                 <p class="announcement-text">用户数量</p>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="<c:url value="/admin_user" />">
                         <div class="panel-footer announcement-bottom">
                             <div class="row">
                                 <div class="col-xs-6">

@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "adminServlet", urlPatterns = "/admin")
-public class adminServlet extends HttpServlet {
+@WebServlet(name = "AdminUserServlet",urlPatterns = "/admin_user")
+public class AdminUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -21,8 +20,7 @@ public class adminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDao();
         List<User> users = dao.findAllUser();
-        request.setAttribute("user_size",users.size());
-
-        request.getRequestDispatcher("/admin.jsp").forward(request,response);
+        request.setAttribute("users",users);
+        request.getRequestDispatcher("/admin_user.jsp").forward(request,response);
     }
 }
