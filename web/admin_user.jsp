@@ -40,7 +40,13 @@
 </head>
 
 <body>
-
+<!--判断是不是非法进入-->
+<c:if test="${msg.user_name == null}">
+    <script>
+        alert("非法访问");
+        window.history.back(-1);
+    </script>
+</c:if>
 <div id="wrapper">
 
     <!-- 侧边栏 -->
@@ -56,7 +62,7 @@
                 <li class="active"><a href="<a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
                 <li><a href="#"><i class="fa fa-table"></i> 机型售卖情况</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
-                <li><a href="#"><i class="fa fa-font"></i> 整机迁移</a></li>
+                <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 整机迁移</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
