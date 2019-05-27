@@ -297,9 +297,9 @@ public class Dao {
         }
     }
 
-    //这是查询b737-700的那些有人的语句
-    public List<String> b7377select_seat(){
-        String sql="select * from b737_700 where user_id is not null";
+    //这是查询指定航班的那些有人的语句
+    public List<String> flightselect_seat(String flight_number){
+        String sql="select * from "+flight_number+" where user_id is not null";
         List<String> select_seat=new ArrayList<>();
 
         SqlHelper.getConnection();
@@ -308,6 +308,7 @@ public class Dao {
         try {
             while (resultSet.next()){
                 select_seat.add(resultSet.getString("seat_id"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -323,12 +324,10 @@ public class Dao {
     public String satisfaction(String flight_number){
         String seat_satisfaction="";
 
-        String sql="select * from user_flight_seat where flight_number=?";
-        String[] ps=new String[1];
-        ps[0]=flight_number;
+        String sql="select * from user_flight_seat where flight_number='"+flight_number+"'";
 
         SqlHelper.getConnection();
-        ResultSet resultSet=SqlHelper.executeQuery(sql,ps);
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
 
         try {
             while (resultSet.next()){
@@ -338,7 +337,7 @@ public class Dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+//        System.out.println(sql);
         return seat_satisfaction;
     }
 

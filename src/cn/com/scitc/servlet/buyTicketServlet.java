@@ -18,7 +18,7 @@ public class buyTicketServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Dao dao=new Dao();
-        List<String> select_seat=dao.b7377select_seat();
+        List<String> select_seat=dao.flightselect_seat("b737_700");
 
         request.setAttribute("select_seat",select_seat);
 

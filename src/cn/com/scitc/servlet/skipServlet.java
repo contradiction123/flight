@@ -18,12 +18,14 @@ public class skipServlet extends HttpServlet {
         String flight_number=request.getParameter("flight_number");
 
         Dao dao=new Dao();
-        List<String> select_seat=dao.b7377select_seat();
+        List<String> select_seat=dao.flightselect_seat(flight_number);
 
         request.setAttribute("select_seat",select_seat);
 
+        String jsp="/allAllot"+flight_number+".jsp";
 
-        request.getRequestDispatcher("/allAllot.jsp").forward(request,response);
+
+        request.getRequestDispatcher(jsp).forward(request,response);
 
     }
 

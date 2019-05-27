@@ -100,13 +100,15 @@
             <div class="col-lg-8">
                 <input type="file" id="xlf">
                 <pre id="out" style="display: none;"></pre>
-                <select id="flight_number">
-                    <c:forEach items="${flight}" var="flight">
-                        <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
-                    </c:forEach>
-                </select>
-                <button type="button" id="submitbtn">确认导入</button>
+
+
                 <form method="post" action="./skip">
+                    <select id="flight_number" name="flight_number">
+                        <c:forEach items="${flight}" var="flight">
+                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
+                        </c:forEach>
+                    </select>
+                    <button type="button" id="submitbtn">确认导入</button>
                     <table class="table table-striped" >
                         <thead>
                         <tr>
