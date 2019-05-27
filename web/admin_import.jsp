@@ -253,16 +253,19 @@
         var json1=new Array();
         var j={};
 
-        var flight_model = document.getElementById("flight_number");
-        var flight_name = flight_model.options[flight_model.selectedIndex].value;
 
-        j["passenger_flight_number"]=flight_name//航班机型
-        j["passenger_num"]=i;//人数
-        j["passenger_info"]=passenger_info;//个人座位需求信息
-        json1.push(j);
 
 
         $("#submitbtn").click(function () {
+
+            var flight_model = document.getElementById("flight_number");
+            var flight_name = flight_model.options[flight_model.selectedIndex].value;
+
+            j["passenger_flight_number"]=flight_name//航班机型
+            j["passenger_num"]=i;//人数
+            j["passenger_info"]=passenger_info;//个人座位需求信息
+            json1.push(j);
+
             // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
             $.ajax({
                 type:"POST", //请求方式
@@ -288,7 +291,6 @@
                     // }
                 }
             });//ajax——的结束
-
 
         })
     }
