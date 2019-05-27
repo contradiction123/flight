@@ -1,9 +1,6 @@
 package cn.com.scitc.dao;
 
-import cn.com.scitc.model.B737_700;
-import cn.com.scitc.model.FlightAttribute;
-import cn.com.scitc.model.UserAttribute;
-import cn.com.scitc.model.UserFlightSeat;
+import cn.com.scitc.model.*;
 import cn.com.scitc.thread.AllUserFlightSeatUpdate;
 import cn.com.scitc.thread.UserFlightSeatUpdate;
 
@@ -786,4 +783,22 @@ public class Dao {
         return allotseat;
     }
 
+    //查看飞机机型
+    public List<FlightModel> findAllFlightmodel(){
+        List<FlightModel> flightModelList = new ArrayList<FlightModel>();
+        String sql = "select * from flight_model";
+        SqlHelper.getConnection();
+        ResultSet resultSet = SqlHelper.executeQuery(sql,null);
+        try {
+            while (resultSet.next()){
+                FlightModel model = new FlightModel();
+                model.setId(resultSet.getInt("id"));
+                model.setName(resultSet.getString("name"));
+                flightModelList.add(model);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flightModelList;
+    }
 }

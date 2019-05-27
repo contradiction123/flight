@@ -22,7 +22,6 @@
 
     <!-- Add custom CSS here -->
     <link href="<c:url value="css/admin.css" />" rel="stylesheet">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
 </head>
@@ -32,7 +31,7 @@
 <c:if test="${msg.user_name == null}">
     <script>
         alert("非法访问");
-        window.history.back(-1);
+        window.location.href="http://localhost:8080/flight/login";
     </script>
 </c:if>
 <div id="wrapper">
@@ -48,7 +47,7 @@
             <ul class="nav navbar-nav side-nav">
                 <li class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
-                <li><a href="#"><i class="fa fa-table"></i> 机型售卖情况</a></li>
+                <li><a href="#"><i class="fa fa-table"></i> 机票售卖情况</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 整机迁移</a></li>
                 <li class="dropdown">
@@ -118,7 +117,7 @@
                                 <i class="fa fa-check fa-5x"></i>
                             </div>
                             <div class="col-xs-6 text-right">
-                                <p class="announcement-heading">12</p>
+                                <p class="announcement-heading"><c:out value="${flight_size}" /></p>
                                 <p class="announcement-text">客机数量</p>
                             </div>
                         </div>
@@ -127,7 +126,7 @@
                         <div class="panel-footer announcement-bottom">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    Complete Tasks
+                                    <a href="<c:url value="/admin_flight" />">客机管理</a>
                                 </div>
                                 <div class="col-xs-6 text-right">
                                     <i class="fa fa-arrow-circle-right"></i>

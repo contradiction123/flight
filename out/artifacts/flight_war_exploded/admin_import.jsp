@@ -24,7 +24,6 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- Add custom CSS here -->
     <link href="<c:url value="css/admin.css" />" rel="stylesheet">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
     <style>
@@ -46,7 +45,7 @@
 <c:if test="${msg.user_name == null}">
     <script>
         alert("非法访问");
-        window.history.back(-1);
+        window.location.href="http://localhost:8080/flight/login";
     </script>
 </c:if>
 <div id="wrapper">
@@ -61,10 +60,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i>首页</a></li>
-                <li class="active"><a href="<a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
-                <li><a href="#"><i class="fa fa-table"></i> 机型售卖情况</a></li>
+                <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
+                <li><a href="#"><i class="fa fa-table"></i> 机票售卖情况</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
-                <li><a href="<c:url value="/admin_import" /> "><i class="fa fa-font"></i> 整机迁移</a></li>
+                <li class="active"><a href="<c:url value="/admin_import" /> "><i class="fa fa-font"></i> 整机迁移</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -99,6 +98,14 @@
         <!--用户列表-->
         <div class="row">
             <div class="col-lg-8">
+                <input type="file" id="xlf">
+                <pre id="out" style="display: none;"></pre>
+                <select id="flight_number">
+                    <c:forEach items="${flight}" var="flight">
+                        <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
+                    </c:forEach>
+                </select>
+                <button type="button" id="submitbtn">确认导入</button>
                 <form method="post" action="./skip">
                     <table class="table table-striped" >
                         <thead>
@@ -111,10 +118,6 @@
                         </thead>
                         <tbody id="testTab"></tbody>
                     </table>
-                    <input type="file" id="xlf">
-                    <pre id="out" style="display: none;"></pre>
-                    <input type="text" name="flight_number" value="b737_700" class="jsons" >
-                    <button type="button" id="submitbtn">确认导入</button>
                 </form>
             </div>
         </div>
@@ -249,12 +252,15 @@
 
         var json1=new Array();
         var j={};
-        j["passenger_flight_number"]="b737_700";//航班号
+
+        var flight_model = document.getElementById("flight_number");
+        var flight_name = flight_model.options[flight_model.selectedIndex].value;
+
+        j["passenger_flight_number"]=flight_name//航班机型
         j["passenger_num"]=i;//人数
         j["passenger_info"]=passenger_info;//个人座位需求信息
         json1.push(j);
 
-        alert(i);
 
         $("#submitbtn").click(function () {
             // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置

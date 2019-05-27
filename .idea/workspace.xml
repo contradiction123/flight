@@ -6,15 +6,35 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" line="222" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" line="219" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6760bacc-f7a3-48dd-85f7-a52da713542d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/admin_import.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin_flight.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/img/2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/adminServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/adminServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/importServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/importServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/adminServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/adminServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/importServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/importServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin_import.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin_import.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin_user.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/admin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="30" selection-start-line="30" selection-end-line="36" selection-end-column="7" />
+            <state relative-caret-position="312">
+              <caret line="115" column="38" lean-forward="true" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -54,68 +74,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+            <state relative-caret-position="621">
+              <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
+        <entry file="file://$PROJECT_DIR$/web/admin_flight.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+            <state relative-caret-position="180">
+              <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminUserServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="22" column="45" selection-start-line="21" selection-start-column="8" selection-end-line="22" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/LoginServlet.java">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
-              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/UserDao.java">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1404">
-              <caret line="56" column="63" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1674">
+              <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -141,6 +137,7 @@
       <find>Dashboard</find>
       <find>navbar-right</find>
       <find>primary</find>
+      <find>font-</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,14 +167,11 @@
         <option value="$PROJECT_DIR$/web/js/shim.js" />
         <option value="$PROJECT_DIR$/web/WEB-INF/allAllot.jsp" />
         <option value="$PROJECT_DIR$/web/import.jsp" />
-        <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/skipServlet.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/thread/AllUserFlightSeatUpdate.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/SqlHelper.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/model/FlightAttribute.java" />
         <option value="$PROJECT_DIR$/web/allAllot.jsp" />
-        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" />
-        <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" />
         <option value="$PROJECT_DIR$/src/config.properties" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/model/User.java" />
         <option value="$PROJECT_DIR$/web/css/admin.css" />
@@ -186,13 +180,19 @@
         <option value="$PROJECT_DIR$/web/login.jsp" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/LoginServlet.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/UserServlet.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminUserServlet.java" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" />
-        <option value="$PROJECT_DIR$/web/admin.jsp" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" />
         <option value="$PROJECT_DIR$/web/admin_user.jsp" />
         <option value="$PROJECT_DIR$/web/admin_import.jsp" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java" />
+        <option value="$PROJECT_DIR$/web/admin.jsp" />
+        <option value="$PROJECT_DIR$/web/admin_flight.jsp" />
       </list>
     </option>
   </component>
@@ -217,6 +217,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,11 +269,16 @@
               <item name="flight" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="flight" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flight" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,7 +287,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558160158509" />
-    <property name="last_opened_file_path" value="E:/备份/Java-Web/webapp5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -291,8 +297,12 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\code\javaee\flight\web" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fanxi\Documents\flight\web\img" />
+      <recent name="C:\Users\fanxi\Documents\flight\web\js" />
+      <recent name="C:\Users\fanxi\Documents\flight\web\css" />
+      <recent name="C:\Users\fanxi\Documents\flight\web" />
+      <recent name="C:\Users\fanxi\Documents\flight\src\cn\com\scitc\servlet" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.com.scitc.model" />
@@ -300,12 +310,8 @@
       <recent name="cn.com.scitc.thread" />
       <recent name="dao" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\fanxi\Documents\flight\web\js" />
-      <recent name="C:\Users\fanxi\Documents\flight\web\css" />
-      <recent name="C:\Users\fanxi\Documents\flight\web" />
-      <recent name="C:\Users\fanxi\Documents\flight\src\cn\com\scitc\servlet" />
-      <recent name="E:\code\javaee\flight\web\js" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\code\javaee\flight\web" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -434,11 +440,14 @@
       <workItem from="1558512716288" duration="1702000" />
       <workItem from="1558595165374" duration="4836000" />
       <workItem from="1558832263926" duration="2192000" />
+      <workItem from="1558836843728" duration="1595000" />
+      <workItem from="1558925754098" duration="9161000" />
+      <workItem from="1558939206357" duration="1288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202218000" />
+    <option name="totallyTimeSpent" value="214262000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -450,20 +459,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48839906" visible="true" weight="0.19554849" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48661417" visible="true" weight="0.20149253" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.5116009" side_tool="true" weight="0.19395867" />
+      <window_info id="Web" order="7" sideWeight="0.51338583" side_tool="true" weight="0.19936034" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32761312" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917626" weight="0.37909517" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917626" weight="0.31127983" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -491,62 +500,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/a1.jsp" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/new.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/TestJson.java" />
-    <entry file="jar://D:/software/code/jdk/jdk/src.zip!/java/lang/RuntimeException.java" />
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/B737_700.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#177#178#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-            <element signature="e#426#427#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#572#573#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-            <element signature="e#676#677#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#800#801#0" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#864#865#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1078#1079#0" expanded="true" />
-            <element signature="e#1111#1112#0" expanded="true" />
-            <element signature="e#1140#1141#0" expanded="true" />
-            <element signature="e#1184#1185#0" expanded="true" />
-            <element signature="e#1220#1221#0" expanded="true" />
-            <element signature="e#1252#1253#0" expanded="true" />
-            <element signature="e#1280#1281#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#1356#1357#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/UserAttribute.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -650,16 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/SqlHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1341">
-          <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/thread/UserFlightSeatUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
@@ -720,22 +663,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="166" column="9" lean-forward="true" selection-start-line="166" selection-start-column="9" selection-end-line="166" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/RegisterServlet.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="93" column="7" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/morris-0.4.3.min.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -806,49 +735,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4104">
-          <caret line="427" column="27" lean-forward="true" selection-start-line="427" selection-start-column="27" selection-end-line="427" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#b7377select#0;class#Dao#0" />
-            <element signature="method#allot#0;class#Dao#0" />
-            <element signature="method#allotnumberseat#0;class#Dao#0" />
-            <element signature="method#selectFlightColumn#0;class#Dao#0" />
-            <element signature="method#update#0;class#Dao#0" />
-            <element signature="method#b7377select_seat#0;class#Dao#0" />
-            <element signature="method#satisfaction#0;class#Dao#0" />
-            <element signature="method#allAllotuser_team#0;class#Dao#0" />
-            <element signature="method#nullseat#0;class#Dao#0" />
-            <element signature="method#updateAllot#0;class#Dao#0" />
-            <element signature="method#allotnumberseat#1;class#Dao#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/UserServlet.java" />
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminUserServlet.java">
+    <entry file="file://$PROJECT_DIR$/web/import.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="22" column="45" selection-start-line="21" selection-start-column="8" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/LoginServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1040">
+          <caret line="201" column="9" lean-forward="true" selection-start-line="49" selection-end-line="201" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -862,38 +753,150 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin.jsp">
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/LoginServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="30" selection-start-line="30" selection-end-line="36" selection-end-column="7" />
+        <state relative-caret-position="702">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/import.jsp">
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1040">
-          <caret line="201" column="9" lean-forward="true" selection-start-line="49" selection-end-line="201" selection-end-column="9" />
+        <state relative-caret-position="135">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#150#151#0" expanded="true" />
+            <element signature="e#183#184#0" expanded="true" />
+            <element signature="e#211#212#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#309#310#0" expanded="true" />
+            <element signature="e#341#342#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+        <state relative-caret-position="140">
+          <caret line="788" column="43" selection-start-line="788" selection-start-column="43" selection-end-line="788" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#allot#0;class#Dao#0" />
+            <element signature="method#allotnumberseat#0;class#Dao#0" />
+            <element signature="method#selectFlightColumn#0;class#Dao#0" />
+            <element signature="method#update#0;class#Dao#0" />
+            <element signature="method#b7377select_seat#0;class#Dao#0" />
+            <element signature="method#satisfaction#0;class#Dao#0" />
+            <element signature="method#allAllotuser_team#0;class#Dao#0" />
+            <element signature="method#nullseat#0;class#Dao#0" />
+            <element signature="method#updateAllot#0;class#Dao#0" />
+            <element signature="method#allotnumberseat#1;class#Dao#0" />
+            <element signature="e#30286#30299#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/SqlHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="208" column="20" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="155" column="40" selection-start-line="155" selection-start-column="40" selection-end-line="155" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+        <state relative-caret-position="297">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/B737_700.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#177#178#0" expanded="true" />
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#267#268#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminUserServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/img/1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/img/2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1674">
+          <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="115" column="38" lean-forward="true" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/admin_flight.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
         </state>
       </provider>
     </entry>

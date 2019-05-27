@@ -30,9 +30,14 @@
       visibility: hidden;
       margin-top: -1000px;
     }
+    <c:url value="/login" />
   </style>
   <script src="./jquery/jquery.min.js"></script>
   <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  <script language="javascript">
+    <!--修改跳转页面-->
+    window.location.href="http://localhost:8080/flight/login";
+  </script>
 </head>
 
 
