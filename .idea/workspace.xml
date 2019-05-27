@@ -5,36 +5,10 @@
       <artifact name="flight:war exploded" />
     </artifacts-to-build>
   </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" line="219" mnemonic="9" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="6760bacc-f7a3-48dd-85f7-a52da713542d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/admin_flight.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/img/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/adminServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/adminServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/importServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/importServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_user.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/adminServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/adminServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/importServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/importServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin_import.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin_import.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/admin_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin_user.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,7 +40,43 @@
         <entry file="file://$PROJECT_DIR$/web/admin.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="312">
-              <caret line="115" column="38" lean-forward="true" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+              <caret line="114" column="38" selection-start-line="114" selection-start-column="38" selection-end-line="114" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#b7377select#0;class#Dao#0" />
+                <element signature="method#allot#0;class#Dao#0" />
+                <element signature="method#allotEight#0;class#Dao#0" />
+                <element signature="method#allotnumberseat#0;class#Dao#0" />
+                <element signature="method#selectFlightColumn#0;class#Dao#0" />
+                <element signature="method#update#0;class#Dao#0" />
+                <element signature="method#b7377select_seat#0;class#Dao#0" />
+                <element signature="method#satisfaction#0;class#Dao#0" />
+                <element signature="method#allAllotuser_single#0;class#Dao#0" />
+                <element signature="method#allAllotuser_team#0;class#Dao#0" />
+                <element signature="method#nullseat#0;class#Dao#0" />
+                <element signature="method#updateAllot#0;class#Dao#0" />
+                <element signature="method#allotnumberseat#1;class#Dao#0" />
+                <element signature="method#findAllFlightmodel#0;class#Dao#0" />
+                <element signature="e#30582#30595#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
             </state>
           </provider>
         </entry>
@@ -74,17 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
+            <state relative-caret-position="506">
               <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/admin_flight.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -92,7 +93,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
+            <state relative-caret-position="396">
               <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
             </state>
           </provider>
@@ -101,7 +102,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="330">
               <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
             </state>
           </provider>
@@ -110,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1674">
+            <state relative-caret-position="1364">
               <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
             </state>
           </provider>
@@ -185,14 +186,14 @@
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/adminServlet.java" />
-        <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/importServlet.java" />
-        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" />
         <option value="$PROJECT_DIR$/web/admin_user.jsp" />
         <option value="$PROJECT_DIR$/web/admin_import.jsp" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java" />
         <option value="$PROJECT_DIR$/web/admin.jsp" />
         <option value="$PROJECT_DIR$/web/admin_flight.jsp" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" />
       </list>
     </option>
   </component>
@@ -203,10 +204,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="146" />
+    <option name="y" value="20" />
     <option name="width" value="1920" />
-    <option name="height" value="977" />
+    <option name="height" value="978" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -216,8 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -279,6 +279,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,7 +329,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 8.5.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.17" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 8.5.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.38" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER" value="false" />
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
@@ -443,11 +445,12 @@
       <workItem from="1558836843728" duration="1595000" />
       <workItem from="1558925754098" duration="9161000" />
       <workItem from="1558939206357" duration="1288000" />
+      <workItem from="1558941012170" duration="146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214262000" />
+    <option name="totallyTimeSpent" value="214408000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -459,10 +462,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="281" y="16" width="1536" height="782" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48661417" visible="true" weight="0.20149253" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48661417" visible="true" weight="0.20635995" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -763,44 +766,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#125#126#0" expanded="true" />
-            <element signature="e#150#151#0" expanded="true" />
-            <element signature="e#183#184#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#242#243#0" expanded="true" />
-            <element signature="e#269#270#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#341#342#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="788" column="43" selection-start-line="788" selection-start-column="43" selection-end-line="788" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#allot#0;class#Dao#0" />
-            <element signature="method#allotnumberseat#0;class#Dao#0" />
-            <element signature="method#selectFlightColumn#0;class#Dao#0" />
-            <element signature="method#update#0;class#Dao#0" />
-            <element signature="method#b7377select_seat#0;class#Dao#0" />
-            <element signature="method#satisfaction#0;class#Dao#0" />
-            <element signature="method#allAllotuser_team#0;class#Dao#0" />
-            <element signature="method#nullseat#0;class#Dao#0" />
-            <element signature="method#updateAllot#0;class#Dao#0" />
-            <element signature="method#allotnumberseat#1;class#Dao#0" />
-            <element signature="e#30286#30299#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/FlightModel.java" />
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/SqlHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -808,13 +774,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="155" column="40" selection-start-line="155" selection-start-column="40" selection-end-line="155" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -852,51 +811,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/img/1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/img/2.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/web/img/1.png" />
+    <entry file="file://$PROJECT_DIR$/web/img/2.png" />
+    <entry file="file://$PROJECT_DIR$/web/admin_flight.jsp" />
+    <entry file="file://$PROJECT_DIR$/web/admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="114" column="38" selection-start-line="114" selection-start-column="38" selection-end-line="114" selection-end-column="38" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
+        <state relative-caret-position="506">
           <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
+        <state relative-caret-position="396">
           <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1674">
-          <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/AdminFlightServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="330">
           <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin.jsp">
+    <entry file="file://$PROJECT_DIR$/web/admin_import.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="115" column="38" lean-forward="true" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+        <state relative-caret-position="1364">
+          <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin_flight.jsp">
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
+        <state relative-caret-position="225">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#b7377select#0;class#Dao#0" />
+            <element signature="method#allot#0;class#Dao#0" />
+            <element signature="method#allotEight#0;class#Dao#0" />
+            <element signature="method#allotnumberseat#0;class#Dao#0" />
+            <element signature="method#selectFlightColumn#0;class#Dao#0" />
+            <element signature="method#update#0;class#Dao#0" />
+            <element signature="method#b7377select_seat#0;class#Dao#0" />
+            <element signature="method#satisfaction#0;class#Dao#0" />
+            <element signature="method#allAllotuser_single#0;class#Dao#0" />
+            <element signature="method#allAllotuser_team#0;class#Dao#0" />
+            <element signature="method#nullseat#0;class#Dao#0" />
+            <element signature="method#updateAllot#0;class#Dao#0" />
+            <element signature="method#allotnumberseat#1;class#Dao#0" />
+            <element signature="method#findAllFlightmodel#0;class#Dao#0" />
+            <element signature="e#30582#30595#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="169" lean-forward="true" selection-start-line="169" selection-end-line="169" />
         </state>
       </provider>
     </entry>

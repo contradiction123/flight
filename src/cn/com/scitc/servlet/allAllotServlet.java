@@ -18,6 +18,8 @@ import java.util.Map;
 public class allAllotServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        long startTime = System.currentTimeMillis();
+
         response.setContentType("text/html");
 
 
@@ -127,7 +129,7 @@ public class allAllotServlet extends HttpServlet {
                         userAttribute.setId(userNume[j][0]);
                         userAttribute.setType_one(userNume[j][1]);
                         userAttribute.setType_second(userNume[j][2]);
-                        userAttribute.setHeader(userNume[j][3]);
+                        userAttribute.setHeader(userNume[j][3].toString().trim());
 
 
                         //再这里获取单人用户多，还是团队用户多
@@ -153,7 +155,7 @@ public class allAllotServlet extends HttpServlet {
 //            System.out.println("********************");
 //        }
 
-        System.out.println(flight_number);
+
 
 //        循环完毕后所有的用户都在 userAttributeList
 //        单人和团队的数量也弄完了
@@ -162,10 +164,13 @@ public class allAllotServlet extends HttpServlet {
             System.out.println(new Dao().allAllotuser_single(userAttributeList,flight_number));
         }else {
             System.out.println("team");
-            //TODO 这里应该是allAllotuser_team但是还有没有写好
-            System.out.println(new Dao().allAllotuser_single(userAttributeList,flight_number));
+            System.out.println(new Dao().allAllotuser_team(userAttributeList,flight_number));
         }
-        System.out.println("完毕");
+
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println(endTime-startTime+"ms");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

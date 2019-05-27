@@ -6,6 +6,7 @@ import cn.com.scitc.thread.UserFlightSeatUpdate;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.sql.*;
 
@@ -217,11 +218,11 @@ public class Dao {
                             if(Integer.parseInt(flightAttributes.get(i).getWindows())==1){
                                 //判断上面一个座位的是否是靠窗的，如果是靠窗的话，开始分配的座位就是i
                                 //如果不是靠窗的，开始分配的座位就是i+1
-                                 if(Integer.parseInt(flightAttributes.get(i-1).getWindows())==1){
-                                     seatstart=i;
-                                 }else{
-                                     seatstart=i+1;
-                                 }
+                                if(Integer.parseInt(flightAttributes.get(i-1).getWindows())==1){
+                                    seatstart=i;
+                                }else{
+                                    seatstart=i+1;
+                                }
                                 //并且告诉判断条件judge这组数据不成立
                                 judge=false;
                                 //退出这个小循环
@@ -436,9 +437,9 @@ public class Dao {
 
     //这是分配先团队的
     //接收整机分配的，参数有整机所有人
-    //TODO 为写完 或者 重写
-    public Boolean allAllotuser_team(List<UserAttribute> userAttributeList,String flight_number){
 
+    public Boolean allAllotuser_team(List<UserAttribute> userAttributeList,String flight_number){
+        //所有的座位都在flightAttributes中
         List<FlightAttribute> flightAttributes=nullseat(flight_number);
 
         List<UserFlightSeat> userFlightSeats=new ArrayList<>();
@@ -446,163 +447,171 @@ public class Dao {
         //查询指定航班的列数
         Integer flightColumn=selectFlightColumn(flight_number);
 
-//             团队的名字
-            //团队名字出现的次数
-            List<String> teamname=new ArrayList<>();
-            List<Integer> teamtime=new ArrayList<>();
+        //团队的名字
+        //团队名字出现的次数
+        List<String> teamname=new ArrayList<>();
+        List<Integer> teamtime=new ArrayList<>();
 
-            //设置挑选出现团队的名字和次数
-            for(int i=0;i<userAttributeList.size();i++){
-                //当团队名字大于了1，证明有团队，不是单人，才执行下面
-                if(userAttributeList.get(i).getHeader().length()>2){
-                    //judge表示团队的名字我记录没有，默认没有记录
-                    //true代表没有记录，可以记录的意思
-                    //flase代表记录了，不可以记录
-                    Boolean judge=true;
-
-                    //在这里进行循环判断可不可以记录新的团队名
-                    for(int j=0;j<teamname.size();j++){
-                        judge=true;
-                        //如果出现了相同的名字，那么久不能增加，而是在旧的次数上加一
-                        if(userAttributeList.get(i).getHeader()==teamname.get(j)){
-                            //先设置不能增加了
-                            judge=false;
-
-                            //再 在旧的次数上加一
-                            teamtime.add(j,(teamtime.get(j)+1));
-
-                            break;
-                        }
-                    }
-
-                    if(judge){
-                        //true_可以记录,并且在出现次数的list中记录出现次数为一
-                        teamname.add(userAttributeList.get(i).getHeader());
-                        teamtime.add(1);
-                    }
-                }
-            }
-
-            //依次找出出现最多和出现最少的团队，相当于从大到小排序，但是不排序,并且分配
-            for(int i=0;i<teamtime.size();i++){
-                int max=0;
-                //这个循环会找出最大数，是teamtime的第几个
-                for(int j=1;j<teamtime.size();j++){
-                    if(teamtime.get(max)<teamtime.get(j)){
-                        max=j;
-                    }
-                }
-
-                //开始分配这个团队，将是这个团队的人集中在一起
-                System.out.println(teamname.get(max));
-                List<UserAttribute> templist=new ArrayList<>();
-                for(int j=0;j<userAttributeList.size();j++){
-                    if(userAttributeList.get(j).getHeader()==teamname.get(max)){
-                        templist.add(userAttributeList.get(j));
-                        //这里一边集中团队的人一边清理团队的人
-                        userAttributeList.remove(j);
-                        j--;
-                    }
-                }
-
-                //开始分配
-                //存放已经分配的人数
-                Integer allotusernumber=0;
-                //存放已经分派好的座位
-                List<String> allotseatlist=new ArrayList<>();
-                //存放是否满意，我的定义是超过一个人分配在一起就满意
-                List<String> satisfactionlist=new ArrayList<>();
-
-                //这里开始分配座位，分配完毕就结束
-                //TODO 这个分配不是好的分配希望能改善
-
-                while (allotusernumber!=userAttributeList.size()){
-                    Integer numbertemp=0;
-                    //如果要分配的人数大于已知的列数，则分配的人数numbertemp=列数,否则等于总人数
-                    if((userAttributeList.size()-allotusernumber)>flightColumn){
-                        numbertemp=flightColumn;
-                    }else {
-                        numbertemp=userAttributeList.size()-allotusernumber;
-                    }
-                    while (true){
-                        List<String> templist1=allotnumberseat(numbertemp,flightColumn,flightAttributes);
-                        if(templist.get(0).equals("T")){
-                            for(int ii=1;ii<templist1.size();ii++){
-                                allotseatlist.add(templist1.get(ii*2));
-                                flightAttributes.remove(Integer.parseInt(templist1.get(ii*2+1)));
-                                if(numbertemp>1){
-                                    satisfactionlist.add("T");
-                                }else {
-                                    satisfactionlist.add("F");
-                                }
-                            }
-                            allotusernumber+=numbertemp;
-                            break;
-                        }else {
-                            numbertemp--;
-                        }
-                    }
-                }
-
-                //分配结束后，开始吧每一个人座位信息存到userFlightSeatList集合里面
-                //分配好的的座位在allotseatlist
-                //满意度是在satisfactionlist
-                //航班号就在flight_number
-                //当时团队分配时，就没有属性要求，直接分配在一起就行
-
-                for(int ii=0;ii<templist.size();ii++){
-                    UserFlightSeat userFlightSeat=new UserFlightSeat();
-
-                    userFlightSeat.setUser_id(templist.get(ii).getId());
-                    userFlightSeat.setWant_seat_attribute_one(templist.get(ii).getType_one());
-                    userFlightSeat.setWant_seat_attribute_second(templist.get(ii).getType_second());
-                    userFlightSeat.setSeat_id(allotseatlist.get(ii));
-                    userFlightSeat.setSatisfaction(satisfactionlist.get(ii));
-                    userFlightSeat.setFlight_number(flight_number);
-                    userFlightSeat.setTeam(templist.get(0).getId());
-
-                    userFlightSeats.add(userFlightSeat);
-                }
-
-                //分配完毕,清除这个列表
-                templist.clear();
-
-                //分派完毕后要将团队名字和次数在列表中删除
-                teamname.remove(max);
-                teamtime.remove(max);
-
-            }
-
-            //上面分配完团队后会剩下单人，开始分配单人
-            //因为在上面一边分配，一边清理，所以这时候应该只剩下单人了
-            for(int i=0;i<userAttributeList.size();i++){
+        //设置挑选出现团队的名字和次数
+        for(int i=0;i<userAttributeList.size();i++){
+            //当团队名字大于了1，证明有团队，不是单人，才执行下面
+            if(userAttributeList.get(i).getHeader().length()>2){
+                //judge表示团队的名字我记录没有，默认没有记录
+                //true代表没有记录，可以记录的意思
+                //flase代表记录了，不可以记录
                 Boolean judge=true;
 
-                for(int j=0;j<flightAttributes.size();j++){
-                    if(flightAttributes.get(j).get(userAttributeList.get(i).getType_one())==1||
-                            flightAttributes.get(j).get(userAttributeList.get(i).getType_second())==1){
-
-                        UserFlightSeat userFlightSeat=new UserFlightSeat();
-
-                        userFlightSeat.setUser_id(userAttributeList.get(i).getId());
-                        userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
-                        userFlightSeat.setFlight_number(flight_number);
-                        userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
-                        userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
-
-                        userFlightSeat.setSeat_id(flightAttributes.get(j).getSeat_id());
-                        userFlightSeat.setSatisfaction("T");
-
-                        //先把使用的座位属性存放在list集合
-                        userFlightSeats.add(userFlightSeat);
-
+                //在这里进行循环判断可不可以记录新的团队名
+                for(int j=0;j<teamname.size();j++){
+                    judge=true;
+                    //如果出现了相同的名字，那么久不能增加，而是在旧的次数上加一
+                    if(userAttributeList.get(i).getHeader().equals(teamname.get(j))){
+                        //先设置不能增加了
                         judge=false;
-                        flightAttributes.remove(j);
+
+                        //再 在旧的次数上加一
+                        teamtime.add(j,(teamtime.get(j)+1));
+
                         break;
                     }
                 }
 
                 if(judge){
+                    //true_可以记录,并且在出现次数的list中记录出现次数为一
+                    teamname.add(userAttributeList.get(i).getHeader());
+                    teamtime.add(teamname.size()-1,1);
+
+                }
+
+            }
+        }
+
+        //依次找出出现最多和出现最少的团队，相当于从大到小排序，但是不排序,并且分配
+        while(teamname.size()>0){
+            int max=0;
+            //这个循环会找出最大数，是teamtime的第几个
+            for(int j=0;j<teamname.size();j++){
+                if(teamtime.get(max)<teamtime.get(j)){
+                    max=j;
+                }
+            }
+//                    System.out.println("最大团队数"+teamname.get(max)+"+"+teamtime.get(max));
+
+            //开始分配这个团队，将是这个团队的人集中在一起
+            //显示正在分配的团队名字或者是队长名字
+//                System.out.println(teamname.get(max));
+//                System.out.println("所有用户的人数："+userAttributeList.size());
+            List<UserAttribute> templist=new ArrayList<>();
+            for(int j=0;j<userAttributeList.size();j++){
+                if(userAttributeList.get(j).getHeader().equals(teamname.get(max))){
+                    templist.add(userAttributeList.get(j));
+                    //这里一边集中团队的人一边清理团队的人
+                    userAttributeList.remove(j);
+                    j--;
+                }
+            }
+//                System.out.println("现在用户的人数："+userAttributeList.size());
+            //显示挑选出来的人的属性
+//                for(int i=0;i<templist.size();i++){
+//                    System.out.println(templist.get(i).getId()+","+templist.get(i).getHeader());
+//                }
+
+//                System.out.println(templist.get(0).getHeader());
+
+            //开始分配
+            //存放已经分配的人数
+            Integer allotusernumber=0;
+            //存放已经分派好的座位
+            List<String> allotseatlist=new ArrayList<>();
+            //存放是否满意，我的定义是超过一个人分配在一起就满意
+            List<String> satisfactionlist=new ArrayList<>();
+
+            //这里开始分配座位，分配完毕就结束
+            //TODO 这个分配不是好的分配希望能改善
+
+            while (allotusernumber!=templist.size()){
+                Integer numbertemp=0;
+                //如果要分配的人数大于已知的列数，则分配的人数numbertemp=列数,否则等于总人数
+                if((templist.size()-allotusernumber)>flightColumn){
+                    numbertemp=flightColumn;
+                }else {
+                    numbertemp=templist.size()-allotusernumber;
+                }
+                while (true){
+
+                    List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
+//                        System.out.println(templist.get(0).getHeader()+","+numbertemp);
+
+                    if(stringlist.get(0).equals("T")){
+                        for(int ii=0;ii<numbertemp;ii++){
+                            allotseatlist.add(stringlist.get(ii+2));
+
+                            Iterator<FlightAttribute> it = flightAttributes.iterator();
+                            while(it.hasNext()){
+                                FlightAttribute x = it.next();
+                                if(x.getSeat_id().equals(stringlist.get(ii+2))){
+                                    it.remove();
+                                }
+                            }
+
+                            if(numbertemp>1){
+                                satisfactionlist.add("T");
+                            }else {
+                                satisfactionlist.add("F");
+                            }
+                        }
+                        allotusernumber+=numbertemp;
+                        break;
+                    }else {
+                        numbertemp--;
+                    }
+                    stringlist.clear();
+                }
+            }
+
+//                System.out.println(templist.get(0).getId()+"分配其中一个团队结束"+flightAttributes.size());
+
+//                分配结束后，开始吧每一个人座位信息存到userFlightSeatList集合里面
+//                分配好的的座位在allotseatlist
+//                满意度是在satisfactionlist
+//                航班号就在flight_number
+//                当时团队分配时，就没有属性要求，直接分配在一起就行
+
+            for(int ii=0;ii<templist.size();ii++){
+                UserFlightSeat userFlightSeat=new UserFlightSeat();
+
+                userFlightSeat.setUser_id(templist.get(ii).getId());
+                userFlightSeat.setWant_seat_attribute_one(templist.get(ii).getType_one());
+                userFlightSeat.setWant_seat_attribute_second(templist.get(ii).getType_second());
+                userFlightSeat.setSeat_id(allotseatlist.get(ii));
+                userFlightSeat.setSatisfaction(satisfactionlist.get(ii));
+                userFlightSeat.setFlight_number(flight_number);
+                userFlightSeat.setTeam(templist.get(0).getId());
+
+                userFlightSeats.add(userFlightSeat);
+            }
+
+            //分配完毕,清除这个列表
+            templist.clear();
+
+
+
+            teamname.remove(max);
+            teamtime.remove(max);
+
+        }
+
+
+
+        //上面分配完团队后会剩下单人，开始分配单人
+        //因为在上面一边分配，一边清理，所以这时候应该只剩下单人了
+        for(int i=0;i<userAttributeList.size();i++){
+            Boolean judge=true;
+
+            for(int j=0;j<flightAttributes.size();j++){
+                if(flightAttributes.get(j).get(userAttributeList.get(i).getType_one())==1||
+                        flightAttributes.get(j).get(userAttributeList.get(i).getType_second())==1){
+
                     UserFlightSeat userFlightSeat=new UserFlightSeat();
 
                     userFlightSeat.setUser_id(userAttributeList.get(i).getId());
@@ -611,22 +620,43 @@ public class Dao {
                     userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
                     userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
 
-                    userFlightSeat.setSeat_id(flightAttributes.get(0).getSeat_id());
-                    userFlightSeat.setSatisfaction("F");
+                    userFlightSeat.setSeat_id(flightAttributes.get(j).getSeat_id());
+                    userFlightSeat.setSatisfaction("T");
+
+                    //先把使用的座位属性存放在list集合
                     userFlightSeats.add(userFlightSeat);
-                    flightAttributes.remove(0);
+
+                    judge=false;
+                    flightAttributes.remove(j);
+                    break;
                 }
             }
 
-            try {
-                Connection connection=SqlHelper.getConnection();
-                //执行更新多人的update
-                updateAllot(userFlightSeats,connection);
-                connection.close();
-                return true;
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if(judge){
+                UserFlightSeat userFlightSeat=new UserFlightSeat();
+
+                userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
+                userFlightSeat.setFlight_number(flight_number);
+                userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
+                userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
+
+                userFlightSeat.setSeat_id(flightAttributes.get(0).getSeat_id());
+                userFlightSeat.setSatisfaction("F");
+                userFlightSeats.add(userFlightSeat);
+                flightAttributes.remove(0);
             }
+        }
+
+        try {
+            Connection connection=SqlHelper.getConnection();
+            //执行更新多人的update
+            updateAllot(userFlightSeats,connection);
+            connection.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return false;
     }
@@ -716,35 +746,31 @@ public class Dao {
         //失败就只有一个F
         //首先存进一个F
         List<String> allotseat=new ArrayList<>();
-        allotseat.add("F");
+        allotseat.add(0,"F");
 
         //起始的座位，位数，查询出来的位置的第几个，第一条数据就是第一个
         int seatstart=0;
         int count=0;
         List<String> seattemp=new ArrayList<>();
-        List<String> idtemp=new ArrayList<>();
         for(int i=0;i<flightAttributes.size();i++){
             if(i==0){
                 seatstart=i;
                 count=1;
                 seattemp.add(flightAttributes.get(i).getSeat_id());
-                idtemp.add(i+"");
             }else {
-                if(flightAttributes.get(i).getId()-1==flightAttributes.get(i).getId()){
+                if(flightAttributes.get(i).getId()-1==flightAttributes.get(i-1).getId()){
                     count++;
                     seattemp.add(flightAttributes.get(i).getSeat_id());
-                    idtemp.add(i+"");
                 }else {
                     seatstart=i;
                     count=1;
                     seattemp.clear();
-                    idtemp.clear();
                     seattemp.add(flightAttributes.get(i).getSeat_id());
-                    idtemp.add(i+"");
                 }
             }
-            Boolean judeg=false;
+
             if(count==usernumber){
+                Boolean judeg=false;
                 //当数据的座位是连续的时候，就该判断他们的座位是不是在一排中
                 for(int j=seatstart+usernumber-2;j>seatstart;j--){
                     if(Integer.parseInt(flightAttributes.get(j).getWindows())==1){
@@ -761,27 +787,26 @@ public class Dao {
                         break;
                     }
                 }
-            }
 
-            if(judeg){
-                i=seatstart;
-                count=1;
-                seattemp.clear();
-                idtemp.clear();
-                seattemp.add(flightAttributes.get(i).getSeat_id());
-                idtemp.add(i+"");
-            }else {
-                break;
+                if(judeg){
+                    i=seatstart;
+                    count=1;
+                    seattemp.clear();
+                    seattemp.add(flightAttributes.get(i).getSeat_id());
+                }else {
+                    allotseat.add(0,"T");
+                    break;
+                }
             }
         }
 
-        for(int i=0;i<usernumber;i++){
+        for(int i=0;i<seattemp.size();i++){
             allotseat.add(seattemp.get(i));
-            allotseat.add(idtemp.get(i));
         }
 
         return allotseat;
     }
+
 
     //查看飞机机型
     public List<FlightModel> findAllFlightmodel(){
