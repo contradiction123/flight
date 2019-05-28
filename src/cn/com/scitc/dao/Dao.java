@@ -105,6 +105,8 @@ public class Dao {
     public List<String> allotEight(List<UserAttribute> userAttributeList,String flight_number){
         //查询指定航班的列数
         Integer flightColumn=selectFlightColumn(flight_number);
+        //所有的座位都在flightAttributes中
+        List<FlightAttribute> flightAttributes=nullseat(flight_number);
         //存放已经分配的人数
         Integer allotusernumber=0;
         //存放已经分派好的座位
@@ -123,10 +125,20 @@ public class Dao {
                 numbertemp=userAttributeList.size()-allotusernumber;
             }
             while (true){
-                List<String> templist=allotnumberseat(numbertemp,flightColumn,flight_number);
-                if(templist.get(0).equals("T")){
-                    for(int i=1;i<templist.size();i++){
-                        allotseatlist.add(templist.get(i));
+
+                List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
+                if(stringlist.get(0).equals("T")){
+                    for(int ii=0;ii<numbertemp;ii++){
+                        allotseatlist.add(stringlist.get(ii+2));
+
+                        Iterator<FlightAttribute> it = flightAttributes.iterator();
+                        while(it.hasNext()){
+                            FlightAttribute x = it.next();
+                            if(x.getSeat_id().equals(stringlist.get(ii+2))){
+                                it.remove();
+                            }
+                        }
+
                         if(numbertemp>1){
                             satisfactionlist.add("T");
                         }else {
@@ -138,6 +150,7 @@ public class Dao {
                 }else {
                     numbertemp--;
                 }
+                stringlist.clear();
             }
         }
 
@@ -530,7 +543,7 @@ public class Dao {
             List<String> satisfactionlist=new ArrayList<>();
 
             //这里开始分配座位，分配完毕就结束
-            //TODO 这个分配不是好的分配希望能改善
+
 
             while (allotusernumber!=templist.size()){
                 Integer numbertemp=0;

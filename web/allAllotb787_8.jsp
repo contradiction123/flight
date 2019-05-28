@@ -5,7 +5,7 @@
   Time: 10:54
   To change this template use File | Settings | File Templates.
 --%>
-<%--这是jsp是买票分配的jsp--%>
+<%--b787_8--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

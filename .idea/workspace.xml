@@ -7,19 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6760bacc-f7a3-48dd-85f7-a52da713542d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/allAllotk330_300a.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/allAllotk330_300b.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/buyTicketServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/buyTicketServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/skipServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/WEB-INF/classes/cn/com/scitc/servlet/skipServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/flight_war_exploded/admin_import.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/allAllotServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/buyTicketServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/buyTicketServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/skipServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/flight/cn/com/scitc/servlet/skipServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/allAllotb737_700.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/allAllotb737_700.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/allAllotb787_8.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/allAllotb787_8.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/allAllotk330_300a.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/allAllotk330_300a.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/allAllotk330_300b.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/allAllotk330_300b.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,30 +40,25 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/admin.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2508">
-              <caret line="114" column="38" selection-start-line="114" selection-start-column="38" selection-end-line="114" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="810" column="17" lean-forward="true" selection-start-line="810" selection-start-column="17" selection-end-line="810" selection-end-column="17" />
+            <state relative-caret-position="128">
+              <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#b7377select#0;class#Dao#0" />
                 <element signature="method#allot#0;class#Dao#0" />
                 <element signature="method#allotEight#0;class#Dao#0" />
                 <element signature="method#allotnumberseat#0;class#Dao#0" />
+                <element signature="method#selectFlightColumn#0;class#Dao#0" />
                 <element signature="method#update#0;class#Dao#0" />
+                <element signature="method#flightselect_seat#0;class#Dao#0" />
                 <element signature="method#satisfaction#0;class#Dao#0" />
                 <element signature="method#allAllotuser_single#0;class#Dao#0" />
+                <element signature="method#allAllotuser_team#0;class#Dao#0" />
                 <element signature="method#nullseat#0;class#Dao#0" />
                 <element signature="method#updateAllot#0;class#Dao#0" />
+                <element signature="method#allotnumberseat#1;class#Dao#0" />
                 <element signature="method#findAllFlightmodel#0;class#Dao#0" />
               </folding>
             </state>
@@ -81,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
+            <state relative-caret-position="3388">
               <caret line="166" selection-start-line="166" selection-end-line="166" />
             </state>
           </provider>
@@ -99,8 +86,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
+            <state relative-caret-position="242">
+              <caret line="92" column="29" lean-forward="true" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/allAllotb787_8.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/allAllotk330_300a.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/allAllotb737_700.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/allAllotk330_300b.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -200,6 +227,10 @@
         <option value="$PROJECT_DIR$/web/admin_flight.jsp" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java" />
         <option value="$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java" />
+        <option value="$PROJECT_DIR$/web/allAllotb787_8.jsp" />
+        <option value="$PROJECT_DIR$/web/allAllotk330_300b.jsp" />
+        <option value="$PROJECT_DIR$/web/allAllotk330_300a.jsp" />
+        <option value="$PROJECT_DIR$/web/allAllotb737_700.jsp" />
       </list>
     </option>
   </component>
@@ -210,9 +241,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="37" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="6" />
+    <option name="y" value="58" />
     <option name="width" value="1920" />
     <option name="height" value="980" />
   </component>
@@ -224,6 +255,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -259,20 +291,6 @@
             <path>
               <item name="flight" type="b2602c69:ProjectViewProjectNode" />
               <item name="flight" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scitc" type="462c0819:PsiDirectoryNode" />
-              <item name="servlet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flight" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flight" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scitc" type="462c0819:PsiDirectoryNode" />
-              <item name="thread" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flight" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flight" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -286,7 +304,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,7 +311,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559027339560" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559029771619" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/web/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -455,11 +472,12 @@
       <workItem from="1558941012170" duration="146000" />
       <workItem from="1559022803881" duration="466000" />
       <workItem from="1559023744244" duration="3548000" />
+      <workItem from="1559027505271" duration="2017000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218422000" />
+    <option name="totallyTimeSpent" value="220439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,10 +489,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="30" width="1536" height="784" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4893617" visible="true" weight="0.21177267" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4893617" visible="true" weight="0.2124665" />
       <window_info id="Structure" order="1" sideWeight="0.5093333" side_tool="true" weight="0.21177267" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -484,7 +502,7 @@
       <window_info id="Web" order="7" sideWeight="0.51338583" side_tool="true" weight="0.19936034" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32761312" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917626" weight="0.41564417" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917626" weight="0.32719547" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.52607363" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -512,43 +530,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/model/UserAttribute.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#161#162#0" expanded="true" />
-            <element signature="e#197#198#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/buyTicketOperationServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#1200#4609#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/cl-red.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/ga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="610">
@@ -821,17 +802,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3388">
+          <caret line="166" selection-start-line="166" selection-end-line="166" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/admin_user.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -849,30 +830,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/servlet/allAllotServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="166" selection-start-line="166" selection-end-line="166" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/scitc/dao/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="810" column="17" lean-forward="true" selection-start-line="810" selection-start-column="17" selection-end-line="810" selection-end-column="17" />
+        <state relative-caret-position="128">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#b7377select#0;class#Dao#0" />
             <element signature="method#allot#0;class#Dao#0" />
             <element signature="method#allotEight#0;class#Dao#0" />
             <element signature="method#allotnumberseat#0;class#Dao#0" />
+            <element signature="method#selectFlightColumn#0;class#Dao#0" />
             <element signature="method#update#0;class#Dao#0" />
+            <element signature="method#flightselect_seat#0;class#Dao#0" />
             <element signature="method#satisfaction#0;class#Dao#0" />
             <element signature="method#allAllotuser_single#0;class#Dao#0" />
+            <element signature="method#allAllotuser_team#0;class#Dao#0" />
             <element signature="method#nullseat#0;class#Dao#0" />
             <element signature="method#updateAllot#0;class#Dao#0" />
+            <element signature="method#allotnumberseat#1;class#Dao#0" />
             <element signature="method#findAllFlightmodel#0;class#Dao#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="92" column="29" lean-forward="true" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/allAllotb787_8.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="n#nav#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/allAllotk330_300b.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/allAllotk330_300a.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/allAllotb737_700.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
