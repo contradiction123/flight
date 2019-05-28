@@ -103,8 +103,7 @@
 
 
                 <form method="post" action="./skip">
-                    <input type="hidden" name="flight_number" id="flight_number1"value="0"/>
-                    <select  id="flight_number" >
+                    <select id="flight_number" name="flight_number">
                         <c:forEach items="${flight}" var="flight">
                             <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
                         </c:forEach>
@@ -279,8 +278,6 @@
                 },
                 dataType: 'text',   //设置返回值类型
                 success:function(e){
-                    document.getElementById("flight_number1").value=flight_name;
-                    alert(document.getElementById("flight_number1").value);
                     document.getElementsByTagName("form")[0].submit();
 
                     // // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割

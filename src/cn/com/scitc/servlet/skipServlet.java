@@ -1,6 +1,7 @@
 package cn.com.scitc.servlet;
 
 import cn.com.scitc.dao.Dao;
+import cn.com.scitc.model.B737_700;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,14 +17,12 @@ public class skipServlet extends HttpServlet {
 
         String flight_number=request.getParameter("flight_number");
 
-        System.out.println(flight_number+"**");
-
-        List<String> select_seat=new Dao().flightselect_seat(flight_number);
+        Dao dao=new Dao();
+        List<String> select_seat=dao.flightselect_seat(flight_number);
 
         request.setAttribute("select_seat",select_seat);
 
         String jsp="/allAllot"+flight_number+".jsp";
-
 
 
         request.getRequestDispatcher(jsp).forward(request,response);
