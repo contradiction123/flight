@@ -259,14 +259,15 @@ public class Dao {
         ResultSet resultSet=SqlHelper.executeQuery(sql,null);
 
         //用来计数,记录列有多少条？
-        int count=0;
+        Integer count=0;
         //用来记录挨着窗子的第二个座位是那个
         int windowscount=0;
         try {
             while (resultSet.next()){
                 count++;
                 //将第一个和第二个靠在窗子边上的座位记录下来
-                if(Integer.parseInt(resultSet.getString("windows"))==1)windowscount++;
+                int windowsisof=Integer.parseInt(resultSet.getString("windows"));
+                if(windowsisof==1)windowscount++;
 
                 //当得到第二个靠窗的时候，就得到了一列有多少个座位，所以就可以结束循环了
                 if(windowscount==2)break;
@@ -438,6 +439,9 @@ public class Dao {
     //接收整机分配的，参数有整机所有人
 
     public Boolean allAllotuser_team(List<UserAttribute> userAttributeList,String flight_number){
+
+//        System.out.println("进入正题分配");
+
         //所有的座位都在flightAttributes中
         List<FlightAttribute> flightAttributes=nullseat(flight_number);
 
@@ -536,11 +540,12 @@ public class Dao {
                 }else {
                     numbertemp=templist.size()-allotusernumber;
                 }
+//                System.out.println(templist.size()+","+numbertemp);
                 while (true){
 
                     List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
 //                        System.out.println(templist.get(0).getHeader()+","+numbertemp);
-
+//                    System.out.println("断点");
                     if(stringlist.get(0).equals("T")){
                         for(int ii=0;ii<numbertemp;ii++){
                             allotseatlist.add(stringlist.get(ii+2));
@@ -771,20 +776,38 @@ public class Dao {
             if(count==usernumber){
                 Boolean judeg=false;
                 //当数据的座位是连续的时候，就该判断他们的座位是不是在一排中
-                for(int j=seatstart+usernumber-2;j>seatstart;j--){
-                    if(Integer.parseInt(flightAttributes.get(j).getWindows())==1){
-                        //判断上面一个座位的是否是靠窗的，如果是靠窗的话，开始分配的座位就是i
-                        //如果不是靠窗的，开始分配的座位就是i+1
-                        if(Integer.parseInt(flightAttributes.get(j-1).getWindows())==1){
-                            seatstart=j;
-                        }else{
-                            seatstart=j+1;
+                //当数据的座位是连续的时候，就该判断他们的座位是不是在一排中
+                //numnumber这个变量是一直与其他座位进行比较的
+                int numnumber=0;
+                for(int j=seatstart+usernumber-1;j>seatstart;j--){
+                    //获取每一个座位的排数
+                    int number=0;
+                    //获取数字，31A 中获取31
+                    for(int ii=0;ii<flightAttributes.get(j).getSeat_id().length();ii++) {
+                        if((int)(flightAttributes.get(j).getSeat_id().charAt(ii))<58) {
+                            number++;
+                        }else {
+                            break;
                         }
-                        //并且告诉判断条件judge这组数据不成立
-                        judeg=true;
-                        //退出这个小循环
-                        break;
                     }
+//                    System.out.println(number);
+                    //判断是否是第一次获取座位数,是的话讲第一个存进numnumber
+                    //不是第一个的话，将第一个numnumber与每一个number进行比较
+                    //相同则这证明是同一排
+                    //不相同则证明不是同一排
+                    if(j==(seatstart+usernumber-1)){
+                        numnumber=number;
+                        continue;
+                    }else {
+                        if(numnumber==number){
+                            continue;
+                        }else {
+                            seatstart=j+1;
+                            judeg=true;
+                            break;
+                        }
+                    }
+
                 }
 
                 if(judeg){
