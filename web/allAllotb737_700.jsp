@@ -535,27 +535,26 @@
         </div>
     </div>
 
-    <div id="displaycourse">123<br>465</div>
+    <div id="displaycourse"></div>
 </body>
 
 <script>
     var seat=document.getElementsByClassName("seatId");
     var display=document.getElementById("displaycourse");
+    //住在这里设置航班号
+    var flight_number="b737_700";
     //首次进入这个页面时 接收后台传送过来的数据 已经选择的座位信息
     <c:forEach items="${select_seat}" var="seat">
     //设置已近选择的座位，为蓝色
     document.getElementsByClassName("${seat}")[0].style.fill="blue";
     </c:forEach>
 
-
     //点击查看满意度的代码
     var satisfaction=document.getElementById("satisfactionBtn");
     satisfaction.onclick=function () {
         if(satisfaction.innerHTML=="查看满意度"){
-            satisfaction.innerHTML="看座位"
+            satisfaction.innerHTML="看座位
 
-            //住在这里设置航班号
-            var flight_number="b737_700";
             $.ajax({
                 type:"POST", //请求方式
                 url:"./satisfaction", //请求路径
@@ -614,8 +613,6 @@
 
         display.innerHTML="";
 
-        //住在这里设置航班号
-        var flight_number="b737_700";
         $.ajax({
             type:"POST", //请求方式
             url:"./allotcourse", //请求路径
@@ -635,18 +632,13 @@
 
                 var asetinterval=setInterval(function () {
                     display.innerHTML="";
+                    // console.log(seat_satisfaction_list[count]);
                     fn(seat_satisfaction_list[count++]);
                     if(count==seat_satisfaction_list.length-1){
                         clearInterval(asetinterval);
                     }
                 },500)
 
-                // for(let i=0;i<seat_satisfaction_list.length-1;i++){
-                //     display.innerHTML="";
-                //
-                //     setTimeout(fn(seat_satisfaction_list[i]),1000);
-                //
-                // }
             }
         });//ajax——的结束
 
@@ -662,17 +654,21 @@
         //第四个是座位号
         //……………………三四循环，直到团队人全部显示完毕
         display.innerHTML+="团队负责人:"+list[0]+"<br>";
-        for(let j=2;j<list.length-1;j+=2){
-            display.innerHTML+="成员"+(j/2)+":"+list[j]+"座位是"+list[j+1]+"<br>";
+        for(let j=2,jj=1;j<list.length-1;j+=3,jj++){
+            display.innerHTML+="成员"+(jj)+":"+list[j]+"座位是"+list[j+1]+"满意度："+list[j+2]+"<br>";
         }
-        for(let j=2;j<list.length-1;j+=2){
+        for(let j=2;j<list.length-1;j+=3){
             var seat=document.getElementsByClassName(list[j+1])[0];
             var par=seat.parentNode;
             par.style.transform="scale(3) rotate(-90deg)";
-            seat.style.fill="blue"
+            if(list[j+2]=="T"){
+                seat.style.fill="green";
+            }else {
+                seat.style.fill="red";
+            }
         }
         setTimeout(function(){
-            for(let j=2;j<list.length-1;j+=2){
+            for(let j=2;j<list.length-1;j+=3){
                 var seat=document.getElementsByClassName(list[j+1])[0];
                 var par=seat.parentNode;
                 par.style.transform="scale(1.5) rotate(-90deg)";
@@ -689,5 +685,6 @@
 
         }
     }
+
 </script>
 </html>

@@ -132,6 +132,15 @@
             position:absolute;
             top:50px;
         }
+        #displaycourse{
+            position: absolute;
+            top:50%;
+            margin-left: 20%;
+            border:1px solid #000;
+            width: 600px;
+            height:200px;
+            font-size: 1.5ex;
+        }
     </style>
 
     <script src="./jquery/jquery.min.js"></script>
@@ -182,6 +191,7 @@
 
 <div class="zhenti">
     <button id="satisfactionBtn">查看满意度</button>
+    <button id="allotcourse">查看分配过程</button>
     <div class="yy">
         <div>
             <span style="position: absolute;left:-20px;">K</span>
@@ -4689,11 +4699,13 @@
 
 </div>
 
-
+<div id="displaycourse"></div>
 </body>
 
 <script>
-
+    var seat=document.getElementsByClassName("seatId");
+    var display=document.getElementById("displaycourse");
+    var flight_number="k330_300a";
     //首次进入这个页面时 接收后台传送过来的数据 已经选择的座位信息
     <c:forEach items="${select_seat}" var="seat">
     //设置已近选择的座位，为蓝色
@@ -4707,8 +4719,6 @@
         if(satisfaction.innerHTML=="查看满意度"){
             satisfaction.innerHTML="看座位"
 
-            //住在这里设置航班号
-            var flight_number="k330_300a";
             $.ajax({
                 type:"POST", //请求方式
                 url:"./satisfaction", //请求路径
@@ -4759,5 +4769,93 @@
             }
         }
     }
+
+    //自定义函数清空座位，意思就是把所有的座位颜色改变为灰色
+    function clear_seat(){
+        for(let i=0;i<seat.length;i++){
+            seat[i].style.fill="#CCCCCC";
+        }
+    }
+
+    //点击查看分配过程
+    document.getElementById("allotcourse").onclick=function () {
+        clear_seat();
+        //获取显示div的id
+
+        display.innerHTML="";
+
+        $.ajax({
+            type:"POST", //请求方式
+            url:"./allotcourse", //请求路径
+            cache: false,
+            data:{flight_number:flight_number},
+            dataType: 'text',   //设置返回值类型
+            success:function(e){
+                //返回的是一个字符串——
+                // team zZz allotcourse zZz user_id zZz seat_id zZz user_id zZz seat_id YyY team zZz allotcourse zZz user_id zZz seat_id zZz user_id zZz seat_id
+                //ZzZ是座位之间的间隔
+                //zZz是座位号和满意之间的间隔
+                // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割
+                //这样进行切割得到的是 31A zZz T
+                var seat_satisfaction_list=e.split("YyY");
+
+                var count=0;
+
+                var asetinterval=setInterval(function () {
+                    display.innerHTML="";
+                    // console.log(seat_satisfaction_list[count++]);
+                    fn(seat_satisfaction_list[count++]);
+                    if(count==seat_satisfaction_list.length-1){
+                        clearInterval(asetinterval);
+                    }
+                },500)
+
+            }
+        });//ajax——的结束
+
+    }
+
+    //闭包延迟执行for
+    function fn(string) {
+        //得到每一个子 字符串，再进行切割，
+        var list=string.split("zZz");
+        // 第一个就是团队号，team
+        // 第二个就是分配的先后顺序 allotcourse
+        //第三个是用户账户
+        //第四个是座位号
+        //……………………三四循环，直到团队人全部显示完毕
+        display.innerHTML+="团队负责人:"+list[0]+"<br>";
+        for(let j=2,jj=1;j<list.length-1;j+=3,jj++){
+            display.innerHTML+="成员"+(jj)+":"+list[j]+"座位是"+list[j+1]+"满意度："+list[j+2]+"<br>";
+        }
+        for(let j=2;j<list.length-1;j+=3){
+            var seat=document.getElementsByClassName(list[j+1])[0];
+            var par=seat.parentNode;
+            par.style.transform="scale(3) rotate(-90deg)";
+            if(list[j+2]=="T"){
+                seat.style.fill="green";
+            }else {
+                seat.style.fill="red";
+            }
+        }
+        setTimeout(function(){
+            for(let j=2;j<list.length-1;j+=3){
+                var seat=document.getElementsByClassName(list[j+1])[0];
+                var par=seat.parentNode;
+                par.style.transform="scale(1.5) rotate(-90deg)";
+            }
+        }, 300);
+    }
+
+    //测试每一个座位的点击事件，现在是看变化
+    for(let i=0;i<seat.length;i++){
+        seat[i].onclick=function () {
+            var par=seat[i].parentNode;
+            par.style.transform="scale(3) rotate(-90deg)";
+            seat[i].style.fill="blue"
+
+        }
+    }
+
 </script>
 </html>
