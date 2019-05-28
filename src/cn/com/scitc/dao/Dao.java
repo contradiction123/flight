@@ -300,6 +300,9 @@ public class Dao {
     //这是查询指定航班的那些有人的语句
     public List<String> flightselect_seat(String flight_number){
         String sql="select * from "+flight_number+" where user_id is not null";
+
+        System.out.println(sql);
+
         List<String> select_seat=new ArrayList<>();
 
         SqlHelper.getConnection();

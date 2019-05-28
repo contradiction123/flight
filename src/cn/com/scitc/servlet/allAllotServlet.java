@@ -155,7 +155,7 @@ public class allAllotServlet extends HttpServlet {
 //            System.out.println("********************");
 //        }
 
-        System.out.println(flight_number);
+//        System.out.println(flight_number);
 
 //        循环完毕后所有的用户都在 userAttributeList
 //        单人和团队的数量也弄完了
