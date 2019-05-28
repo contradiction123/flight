@@ -164,29 +164,24 @@ public class SqlHelper {
         try {
             // 1.创建一个ps
             conn = getConnection();
-            String sql="";
+            String sql="insert into user_flight_seat values";
+            String value="";
             for(int i=0;i<flightSeatList.size();i++){
-                sql="insert into user_flight_seat values(?,?,?,?,?,?,?)";
-                Object[] parameters=new Object[7];
-                parameters[0]=flightSeatList.get(i).getUser_id();
-                parameters[1]=flightSeatList.get(i).getFlight_number();
-                parameters[2]=flightSeatList.get(i).getWant_seat_attribute_one();
-                parameters[3]=flightSeatList.get(i).getWant_seat_attribute_second();
-                parameters[4]=flightSeatList.get(i).getSeat_id();
-                parameters[5]=flightSeatList.get(i).getSatisfaction();
-                parameters[6]=flightSeatList.get(i).getTeam();
-
-                ps = conn.prepareStatement(sql);
-                // 给？赋值
-                if (parameters != null)
-                    for (int j = 0; j < parameters.length; j++) {
-                        //ps.setString(i + 1, parameters[i]);
-                        ps.setObject(j + 1, parameters[j]);
-                    }
-                // 执行
-                ps.executeUpdate();
+                value+=(i==0?"":",");
+                value+="('"+flightSeatList.get(i).getUser_id()+"',";
+                value+="'"+flightSeatList.get(i).getFlight_number()+"',";
+                value+="'"+flightSeatList.get(i).getWant_seat_attribute_one()+"',";
+                value+="'"+flightSeatList.get(i).getWant_seat_attribute_second()+"',";
+                value+="'"+flightSeatList.get(i).getSeat_id()+"',";
+                value+="'"+flightSeatList.get(i).getSatisfaction()+"',";
+                value+="'"+flightSeatList.get(i).getTeam()+"',";
+                value+="'"+flightSeatList.get(i).getAllot_course()+"')";
             }
-        } catch (SQLException e) {
+            sql+=value;
+//            System.out.println(sql);
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();// 开发阶段
             throw new RuntimeException(e.getMessage());
         } finally {

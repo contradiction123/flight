@@ -30,6 +30,17 @@ public class skipServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String flight_number=request.getParameter("flight_number");
 
+        Dao dao=new Dao();
+        List<String> select_seat=dao.flightselect_seat(flight_number);
+
+        request.setAttribute("select_seat",select_seat);
+
+        String jsp="/allAllot"+flight_number+".jsp";
+
+
+        request.getRequestDispatcher(jsp).forward(request,response);
     }
+
 }

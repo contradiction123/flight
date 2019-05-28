@@ -2,6 +2,15 @@ package cn.com.scitc.model;
 
 public class UserFlightSeat {
     private String user_id,flight_number,want_seat_attribute_one,want_seat_attribute_second,seat_id,satisfaction,team;
+    private Integer allot_course;
+
+    public Integer getAllot_course() {
+        return allot_course;
+    }
+
+    public void setAllot_course(Integer allot_course) {
+        this.allot_course = allot_course;
+    }
 
     public String getTeam() {
         return team;

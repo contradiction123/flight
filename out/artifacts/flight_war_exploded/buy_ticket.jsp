@@ -87,6 +87,7 @@
 </nav>
 
 
+<a href="./satisfaction?id=1">123</a>
 <div class="container">
 
     <!-- Main component for a primary marketing message or call to action -->
@@ -446,7 +447,6 @@
     satisfaction.onclick=function () {
         if(satisfaction.innerHTML=="查看满意度"){
             satisfaction.innerHTML="看座位"
-
             //住在这里设置航班号
             var flight_number="b737_700";
             $.ajax({

@@ -394,6 +394,8 @@ public class Dao {
                     userFlightSeat.setSeat_id(flightAttributes.get(j).getSeat_id());
                     userFlightSeat.setSatisfaction("T");
 
+                    userFlightSeat.setAllot_course((i+1));
+
                     //先把使用的座位属性存放在list集合
                     userFlightSeatList.add(userFlightSeat);
 
@@ -414,6 +416,7 @@ public class Dao {
 
                 userFlightSeat.setSeat_id(flightAttributes.get(0).getSeat_id());
                 userFlightSeat.setSatisfaction("F");
+                userFlightSeat.setAllot_course((i+1));
                 userFlightSeatList.add(userFlightSeat);
                 flightAttributes.remove(0);
             }
@@ -467,6 +470,9 @@ public class Dao {
         //团队名字出现的次数
         List<String> teamname=new ArrayList<>();
         List<Integer> teamtime=new ArrayList<>();
+
+        //定义一个整型变量计数,记录分配过程从1开始
+        Integer allotCourse=0;
 
         //设置挑选出现团队的名字和次数
         for(int i=0;i<userAttributeList.size();i++){
@@ -593,7 +599,8 @@ public class Dao {
 //                满意度是在satisfactionlist
 //                航班号就在flight_number
 //                当时团队分配时，就没有属性要求，直接分配在一起就行
-
+            //allotCoures表示这个团队分配的顺序是第几个
+            allotCourse++;
             for(int ii=0;ii<templist.size();ii++){
                 UserFlightSeat userFlightSeat=new UserFlightSeat();
 
@@ -604,6 +611,7 @@ public class Dao {
                 userFlightSeat.setSatisfaction(satisfactionlist.get(ii));
                 userFlightSeat.setFlight_number(flight_number);
                 userFlightSeat.setTeam(templist.get(0).getId());
+                userFlightSeat.setAllot_course((allotCourse));
 
                 userFlightSeats.add(userFlightSeat);
             }
@@ -639,6 +647,7 @@ public class Dao {
 
                     userFlightSeat.setSeat_id(flightAttributes.get(j).getSeat_id());
                     userFlightSeat.setSatisfaction("T");
+                    userFlightSeat.setAllot_course((++allotCourse));
 
                     //先把使用的座位属性存放在list集合
                     userFlightSeats.add(userFlightSeat);
@@ -660,6 +669,8 @@ public class Dao {
 
                 userFlightSeat.setSeat_id(flightAttributes.get(0).getSeat_id());
                 userFlightSeat.setSatisfaction("F");
+                userFlightSeat.setAllot_course((++allotCourse));
+
                 userFlightSeats.add(userFlightSeat);
                 flightAttributes.remove(0);
             }
@@ -751,8 +762,6 @@ public class Dao {
 
         return false;
     }
-
-
 
     //给指定人数的用户分配座位，人数不超过航班的列数,参数是用户的数量和座位列数,航班号
     //简单一点说这个方法是给用户分配连坐的
@@ -860,5 +869,54 @@ public class Dao {
             e.printStackTrace();
         }
         return flightModelList;
+    }
+
+    //获取分配过程
+    public String allotCourse(String flight_number){
+        String allotCourseString="";
+
+        String sql="select * from user_flight_seat where flight_number='"+flight_number+"' order by allot_course;";
+
+        SqlHelper.getConnection();
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        //记录有多少条数据
+        int count=0;
+        int last_allot_course=0;
+        try {
+            while (resultSet.next()){
+                count++;
+                if(count==1){
+                    allotCourseString+=resultSet.getString(7)+"zZz";//team
+                    allotCourseString+=resultSet.getInt(8)+"zZz";//allot_course
+                    allotCourseString+=resultSet.getString(1)+"zZz";//user_id
+                    allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
+
+                    last_allot_course=resultSet.getInt(8);
+                }else {
+                    if(resultSet.getInt(8)==last_allot_course){
+                        allotCourseString+=resultSet.getString(1)+"zZz";//user_id
+                        allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
+                    }else {
+                        allotCourseString+="YyY";//结束上一队
+
+                        allotCourseString+=resultSet.getString(7)+"zZz";//team
+                        allotCourseString+=resultSet.getInt(8)+"zZz";//allot_course
+                        allotCourseString+=resultSet.getString(1)+"zZz";//user_id
+                        allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
+
+                        last_allot_course=resultSet.getInt(8);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        allotCourseString+="YyY";//结束上一队
+
+//        System.out.println(count);
+//        System.out.println(allotCourseString);
+
+        return allotCourseString;
     }
 }

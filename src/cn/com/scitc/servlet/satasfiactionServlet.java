@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "SatisfactionServlet",urlPatterns = "/satisfaction")
-//这个servlet是查看用户的满意度的
-public class SatisfactionServlet extends HttpServlet {
+@WebServlet(name = "satasfiactionServlet",urlPatterns = "/satisfaction")
+public class satasfiactionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //首先接收前段发送过来的航班号
+//        首先接收前段发送过来的航班号
         String flight_number=request.getParameter("flight_number");
-//        System.out.println(flight_number);
+        System.out.println(flight_number);
         Dao dao=new Dao();
 
         //获取返回过来的字符串
@@ -27,6 +26,6 @@ public class SatisfactionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("222");
     }
 }

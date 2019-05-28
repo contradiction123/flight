@@ -133,6 +133,16 @@
         #satisfactionBtn{
 
         }
+        #displaycourse{
+            position: absolute;
+            top:50%;
+            margin-left: 20%;
+            border:1px solid #000;
+            width: 600px;
+            height:200px;
+            font-size: 1.5ex;
+        }
+
     </style>
 
     <script src="./jquery/jquery.min.js"></script>
@@ -183,6 +193,7 @@
 
     <div class="zhenti">
         <button id="satisfactionBtn">查看满意度</button>
+        <button id="allotcourse">查看分配过程</button>
         <div>
 
             <span style="position:absolute;left:170px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
@@ -524,11 +535,12 @@
         </div>
     </div>
 
-
+    <div id="displaycourse">123<br>465</div>
 </body>
 
 <script>
-
+    var seat=document.getElementsByClassName("seatId");
+    var display=document.getElementById("displaycourse");
     //首次进入这个页面时 接收后台传送过来的数据 已经选择的座位信息
     <c:forEach items="${select_seat}" var="seat">
     //设置已近选择的座位，为蓝色
@@ -585,6 +597,96 @@
             if(seats[i].style.fill==colors){
                 seats[i].style.fill="blue"
             }
+        }
+    }
+
+    //自定义函数清空座位，意思就是把所有的座位颜色改变为灰色
+    function clear_seat(){
+        for(let i=0;i<seat.length;i++){
+            seat[i].style.fill="#CCCCCC";
+        }
+    }
+
+    //点击查看分配过程
+    document.getElementById("allotcourse").onclick=function () {
+        clear_seat();
+        //获取显示div的id
+
+        display.innerHTML="";
+
+        //住在这里设置航班号
+        var flight_number="b737_700";
+        $.ajax({
+            type:"POST", //请求方式
+            url:"./allotcourse", //请求路径
+            cache: false,
+            data:{flight_number:flight_number},
+            dataType: 'text',   //设置返回值类型
+            success:function(e){
+                //返回的是一个字符串——
+                // team zZz allotcourse zZz user_id zZz seat_id zZz user_id zZz seat_id YyY team zZz allotcourse zZz user_id zZz seat_id zZz user_id zZz seat_id
+                //ZzZ是座位之间的间隔
+                //zZz是座位号和满意之间的间隔
+                // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割
+                //这样进行切割得到的是 31A zZz T
+                var seat_satisfaction_list=e.split("YyY");
+
+                var count=0;
+
+                var asetinterval=setInterval(function () {
+                    display.innerHTML="";
+                    fn(seat_satisfaction_list[count++]);
+                    if(count==seat_satisfaction_list.length-1){
+                        clearInterval(asetinterval);
+                    }
+                },500)
+
+                // for(let i=0;i<seat_satisfaction_list.length-1;i++){
+                //     display.innerHTML="";
+                //
+                //     setTimeout(fn(seat_satisfaction_list[i]),1000);
+                //
+                // }
+            }
+        });//ajax——的结束
+
+    }
+
+    //闭包延迟执行for
+    function fn(string) {
+        //得到每一个子 字符串，再进行切割，
+        var list=string.split("zZz");
+        // 第一个就是团队号，team
+        // 第二个就是分配的先后顺序 allotcourse
+        //第三个是用户账户
+        //第四个是座位号
+        //……………………三四循环，直到团队人全部显示完毕
+        display.innerHTML+="团队负责人:"+list[0]+"<br>";
+        for(let j=2;j<list.length-1;j+=2){
+            display.innerHTML+="成员"+(j/2)+":"+list[j]+"座位是"+list[j+1]+"<br>";
+        }
+        for(let j=2;j<list.length-1;j+=2){
+            var seat=document.getElementsByClassName(list[j+1])[0];
+            var par=seat.parentNode;
+            par.style.transform="scale(3) rotate(-90deg)";
+            seat.style.fill="blue"
+        }
+        setTimeout(function(){
+            for(let j=2;j<list.length-1;j+=2){
+                var seat=document.getElementsByClassName(list[j+1])[0];
+                var par=seat.parentNode;
+                par.style.transform="scale(1.5) rotate(-90deg)";
+            }
+        }, 300);
+    }
+
+    //测试每一个座位的点击事件，现在是看变化
+    for(let i=0;i<seat.length;i++){
+        seat[i].onclick=function () {
+            var par=seat[i].parentNode;
+            par.style.transform="scale(3) rotate(-90deg)";
+            seat[i].style.fill="blue"
+
         }
     }
 </script>
