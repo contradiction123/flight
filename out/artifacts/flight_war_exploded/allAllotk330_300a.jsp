@@ -133,6 +133,8 @@
         }
         .zhenti{
             position:absolute;
+            left: -100px;
+            width: 100%;
             top:50px;
         }
         #displaycourse{
@@ -206,7 +208,7 @@
             </div>
         </div><!-- /.row -->
         <div class="row col-lg-10">
-            <div class="zhenti col-lg-10">
+            <div class="zhenti">
                 <div class="yy">
                     <div>
                         <span style="position: absolute;left:-20px;">K</span>
