@@ -44,7 +44,7 @@ public class SqlHelper {
     // 加载驱动，只需要一次
     static {
         try {
-            System.out.println("456");
+//            System.out.println("456");
             pp = new Properties();
             is = SqlHelper.class.getClassLoader().getResourceAsStream("config.properties");
             pp.load(is);
@@ -57,7 +57,7 @@ public class SqlHelper {
 //            driver="com.mysql.cj.jdbc.Driver";
 //            user="flight_table";
 //            password="123";
-            System.out.println(driver);
+//            System.out.println(driver);
             Class.forName(driver);
         } catch (Exception e) {
             e.printStackTrace();

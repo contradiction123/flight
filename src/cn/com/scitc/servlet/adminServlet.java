@@ -21,6 +21,8 @@ public class adminServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long s=System.currentTimeMillis();
+
         UserDao userDao = new UserDao();
         Dao dao = new Dao();
         List<FlightModel> flightModels = dao.findAllFlightmodel();
@@ -30,5 +32,9 @@ public class adminServlet extends HttpServlet {
         request.setAttribute("flight_size",flightModels.size());
 
         request.getRequestDispatcher("/admin.jsp").forward(request,response);
+
+        long s1=System.currentTimeMillis();
+        System.out.println(s1-s);
+
     }
 }

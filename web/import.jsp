@@ -135,7 +135,12 @@
 
                 var jsonObj = {};
 
+                var count=0;
                 for (let c = 0; c < conCout; c++) {
+                    count++;
+                    if(count==40){
+
+                    }
                     var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
                     // str += "<td><input type='text' id='lz" + n + "' value='" + tm + "'></td>";
 

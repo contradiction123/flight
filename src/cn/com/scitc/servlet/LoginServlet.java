@@ -13,10 +13,13 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet",urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long s=System.currentTimeMillis();
         String user_email = request.getParameter("user_email");
         String user_psw = request.getParameter("password");
         UserDao dao = new UserDao();
         User user = dao.login(user_email);
+        long s1=System.currentTimeMillis();
+        System.out.println(s1-s);
         if (user_email.equals(user.getUser_email()) && user_psw.equals(user.getUser_psw())){
             System.out.println(user.getPermission());
             //判断管理员
@@ -26,6 +29,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("msg",user);
                 //重定向页面
                 response.sendRedirect("admin");
+
                 return;
             }else {
                 //普通用户跳转
@@ -39,6 +43,8 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("login");
             return;
         }
+
+
 
     }
 

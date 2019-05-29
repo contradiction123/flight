@@ -552,14 +552,14 @@ public class Dao {
 
 
             while (allotusernumber!=templist.size()){
-                Integer numbertemp=0;
-                //如果要分配的人数大于已知的列数，则分配的人数numbertemp=列数,否则等于总人数
-                if((templist.size()-allotusernumber)>flightColumn){
-                    numbertemp=flightColumn;
-                }else {
-                    numbertemp=templist.size()-allotusernumber;
+                Integer numbertemp=templist.size()-allotusernumber;
+                if(numbertemp>3){
+                    do
+                        numbertemp=numbertemp%2==0?numbertemp/2:numbertemp/2+1;
+                    while (numbertemp>flightColumn);
                 }
-//                System.out.println(templist.size()+","+numbertemp);
+
+                System.out.println(templist.size()+","+numbertemp);
                 while (true){
 
                     List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
@@ -812,6 +812,7 @@ public class Dao {
                             break;
                         }
                     }
+                    number=Integer.parseInt(flightAttributes.get(j).getSeat_id().substring(0,number));
 //                    System.out.println(number);
                     //判断是否是第一次获取座位数,是的话讲第一个存进numnumber
                     //不是第一个的话，将第一个numnumber与每一个number进行比较
@@ -846,7 +847,9 @@ public class Dao {
 
         for(int i=0;i<seattemp.size();i++){
             allotseat.add(seattemp.get(i));
+            System.out.print(seattemp.get(i)+" ");
         }
+        System.out.println("***");
 
         return allotseat;
     }
