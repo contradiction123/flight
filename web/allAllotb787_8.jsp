@@ -703,7 +703,7 @@
     var satisfaction=document.getElementById("satisfactionBtn");
     satisfaction.onclick=function () {
         if(satisfaction.innerHTML=="查看满意度"){
-            satisfaction.innerHTML="看座位"
+            satisfaction.innerHTML="看座位";
 
 
             $.ajax({
