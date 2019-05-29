@@ -133,6 +133,8 @@
         }
         .zhenti{
             position:absolute;
+            left: -100px;
+            width: 100%;
             top:50px;
         }
         #displaycourse{
@@ -173,9 +175,9 @@
             <ul class="nav navbar-nav side-nav">
                 <li class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
-                <li><a href="#"><i class="fa fa-table"></i> 机票售卖情况</a></li>
+                <li><a href="#"><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
-                <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 整机迁移</a></li>
+                <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -206,7 +208,7 @@
             </div>
         </div><!-- /.row -->
         <div class="row col-lg-10">
-            <div class="zhenti col-lg-10">
+            <div class="zhenti">
                 <div class="yy">
                     <div>
                         <span style="position: absolute;left:-20px;">K</span>

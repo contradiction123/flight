@@ -132,7 +132,9 @@
         }
         .zhenti{
             position:absolute;
-            top:50px
+            top:50px;
+            left: -100px;
+            width: 100%;
         }
         #displaycourse{
             position: absolute;

@@ -132,7 +132,9 @@
         }
         .zhenti{
             position:absolute;
-            top:50px
+            top:50px;
+            left: -100px;
+            width: 100%;
         }
         #displaycourse{
             position: absolute;
@@ -172,9 +174,9 @@
             <ul class="nav navbar-nav side-nav">
                 <li class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
-                <li><a href="#"><i class="fa fa-table"></i> 机票售卖情况</a></li>
+                <li><a href="#"><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
-                <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 整机迁移</a></li>
+                <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
