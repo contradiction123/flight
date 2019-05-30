@@ -161,7 +161,7 @@ public class allAllotServlet extends HttpServlet {
 //        单人和团队的数量也弄完了
         if(single>team){
 //            System.out.println("single");
-            System.out.println(new Dao().allAllotuser_single(userAttributeList,flight_number));
+            System.out.println(new Dao().allAllotuser(userAttributeList,flight_number));
         }else {
 //            System.out.println("team");
             System.out.println(new Dao().allAllotuser_team(userAttributeList,flight_number));
