@@ -17,11 +17,13 @@ import java.util.List;
 //post 是一件换机代码
 public class AdminFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String flight_1_number="b737_700";
-        String flight_2_number="b787_8";
+        String flight_1_number=request.getParameter("flight1");
+        String flight_2_number=request.getParameter("flight2");
+        System.out.println(flight_1_number);
+        System.out.println(flight_2_number);
 
         System.out.println(new Dao().changePlanes(flight_1_number,flight_2_number));
-
+        response.sendRedirect("admin");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

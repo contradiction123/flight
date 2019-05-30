@@ -23,6 +23,19 @@
     <link href="<c:url value="css/admin.css" />" rel="stylesheet">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
+    <style>
+        .select1 {
+            float: left;
+        }
+        .thumbnail1 {
+            height: 200px;
+        }
+        span{
+            text-align: center;
+            width: 50px;
+            font-size:24px;
+        }
+    </style>
 </head>
 
 <body>
@@ -87,8 +100,8 @@
                             <img src="img/2.png"
                                  alt="飞机图">
                             <div class="caption">
-                                <h3 class="clearfm"><c:out value="${flight.name}" /></h3>
-                                <p>飞机座位一共有：<c:out value="${flight.z}"/>，以售卖:<c:out value="${flight.r}"/></p>
+                                <h3>客机型号：<span class="clearfm"><c:out value="${flight.name}" /></span></h3>
+                                <p>飞机座位一共有：<span class="allseat" id="<c:out value="${flight.name}"/>_z"><c:out value="${flight.z}"/></span>，以售卖：<span class="sellseat" id="<c:out value="${flight.name}"/>_r"><c:out value="${flight.r}"/></span></p>
                                 <p>
                                     <a href="<c:url value="/skip" ><c:param name="flight_number" value="${flight.name}" /> </c:url>" class="btn btn-primary" role="button">
                                         管理
@@ -101,6 +114,32 @@
                         </div>
                     </div>
             </c:forEach>
+
+            <div class="col-sm-6 col-md-5">
+                <div class=" thumbnail1">
+                    <div class="caption">
+                        <h3>一键换机</h3>
+                        <form id="form" action="<c:url value="/admin_flight" />" method="post">
+                            <div class="select1 col-lg-5">
+                                <select name="flight1" class="form-control" id="flight1" onchange="gradeChange()">
+                                    <c:forEach items="${flight}" var="flight">
+                                        <c:if test="${flight.r != 0}"><option value="<c:out value="${flight.name}" />"><c:out value="${flight.name}" /></option></c:if>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <span class="glyphicon glyphicon-random select1"></span>
+                            <div class="col-lg-5">
+                                <select name="flight2" class="form-control" id="flight2">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                            <div class="text-right" >
+                                <button id="btn" type="button" class="btn btn-primary text-center">换机</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div><!-- /.row -->
 
     </div><!-- /#page-wrapper -->
@@ -137,6 +176,52 @@
             });//ajax——的结束
         }
     }
+
+    var form = document.getElementById("form");
+    var btn = document.getElementById("btn");
+
+    var flight_model_2 = $("#flight2");
+    var allseat=$(".allseat");
+    var sellseat = $(".sellseat");
+    var clearfm = $(".clearfm");
+    gradeChange();
+    btn.onclick = function () {
+        var flight1=$("#flight1 option:selected");  //获取选中的项
+        var flight1_value = flight1.val();   //拿到选中项的值
+        var flight2=$("#flight2 option:selected");  //获取选中的项
+        var flight2_value = flight2.val();   //拿到选中项的值
+
+       if (flight1_value == flight2_value){
+           alert("不能选择同一架飞机！")
+       }else {
+           form.submit();
+       }
+
+    }
+    function gradeChange(){
+        var a = 0;
+        var flight1=$("#flight1 option:selected");  //获取选中的项
+        var flight1_value = flight1.val();   //拿到选中项的值
+        for (var i = 0;i<clearfm.length;i++){
+            if(flight1_value == clearfm[i].innerHTML){
+                a = i;
+            }
+        }
+        var z = allseat[a].innerHTML;
+        var r = sellseat[a].innerHTML;
+        $("#flight2 option").remove();  //删除Select中索引值最大Option(最后一个
+        for (var i = 0; i<sellseat.length;i++){
+            if (r <= allseat[i].innerHTML - sellseat[i].innerHTML){
+                //alert(clearfm[i].innerHTML);
+
+                $("#flight2").append("<option value='"+clearfm[i].innerHTML+"'>"+clearfm[i].innerHTML+"</option>");
+            }
+        }
+
+    }
+
+
+
 </script>
 </body>
 </html>
