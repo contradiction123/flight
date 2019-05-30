@@ -87,13 +87,13 @@
                             <img src="img/2.png"
                                  alt="飞机图">
                             <div class="caption">
-                                <h3><c:out value="${flight.name}" /></h3>
+                                <h3 class="clearfm"><c:out value="${flight.name}" /></h3>
                                 <p>飞机座位一共有：<c:out value="${flight.z}"/>，以售卖:<c:out value="${flight.r}"/></p>
                                 <p>
                                     <a href="<c:url value="/skip" ><c:param name="flight_number" value="${flight.name}" /> </c:url>" class="btn btn-primary" role="button">
                                         管理
                                     </a>
-                                    <a href="#" class="btn btn-default" role="button">
+                                    <a href="#" class="btn btn-default clearuser" role="button">
                                         清空乘客
                                     </a>
                                 </p>
@@ -119,5 +119,24 @@
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
 
+<script>
+    var clearuser=$(".clearuser");
+    var flightNumber=$(".clearfm");
+    for(let i=0;i<clearuser.length;i++){
+        clearuser[i].onclick=function () {
+            // alert(flightNumber[i].innerHTML);
+            $.ajax({
+                type:"POST", //请求方式
+                url:"./clearflightuser", //请求路径
+                cache: false,
+                data:{flight_number:flightNumber[i].innerHTML},
+                dataType: 'text',   //设置返回值类型
+                success:function(e){
+                    alert(e);
+                }
+            });//ajax——的结束
+        }
+    }
+</script>
 </body>
 </html>

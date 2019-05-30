@@ -60,4 +60,20 @@ public class UserDao {
         return users;
     }
 
+    //删除指定飞机的用户信息
+    public boolean clearUser(String flight_number){
+        String sql="DELETE from user_flight_seat WHERE flight_number=?";
+        Object[] ps=new Object[1];
+        ps[0]=flight_number;
+
+        try {
+            SqlHelper.executeUpdate(sql,ps);
+            sql="UPDATE "+flight_number+" set user_id=null";
+            SqlHelper.executeUpdate(sql,null);
+            return true;
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+        return false;
+    }
 }
