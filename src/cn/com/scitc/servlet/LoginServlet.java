@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(user.getPermission());
             //判断管理员
             if (user.getPermission().equals(1)){
+                request.getSession().setAttribute("error","");
                 System.out.println("yes");
                 //传输用户信息到cooking
                 request.getSession().setAttribute("msg",user);
@@ -39,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             }
         }else {
             System.out.println("no!");
-            request.getSession().setAttribute("msg","用户名或密码错误!");
+            request.getSession().setAttribute("error","用户名或密码错误!");
             response.sendRedirect("login");
             return;
         }
