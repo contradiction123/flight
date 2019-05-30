@@ -23,7 +23,7 @@ public class AdminFlightServlet extends HttpServlet {
         System.out.println(flight_2_number);
 
         System.out.println(new Dao().changePlanes(flight_1_number,flight_2_number));
-        response.sendRedirect("admin");
+        response.sendRedirect("admin_flight");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
