@@ -39,10 +39,18 @@
         }
         .page{
             padding: 5px;
-            border: #0f0f0f solid 1px;
+            width: 40px;
+            height: 40px;
+            line-height: 30px;
+            text-align: center;
+            border: #cccccc solid 1px;
         }
         .page:hover{
-            background-color: #2aabd2;
+            background-color: #327AB7;
+            color: #ffffff;
+        }
+        .select1 {
+            float: left;
         }
     </style>
 </head>
@@ -99,26 +107,25 @@
     <div id="page-wrapper">
 
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="margin-bottom: 20px;">
                 <h1>整机迁移信息</h1>
             </div>
         </div><!-- /.row -->
         <!--用户列表-->
         <div class="row">
             <div class="col-lg-8">
-                <input type="file" id="xlf">
+                <input type="file" id="xlf" class="select1">
                 <pre id="out" style="display: none;"></pre>
 
-
-                <form method="post" action="./skip">
-                    <select id="flight_number" name="flight_number">
+                <form method="post" action="./skip" class="col-lg-3">
+                    <select id="flight_number" name="flight_number" class="form-control select1">
                         <c:forEach items="${flight}" var="flight">
                             <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
                         </c:forEach>
                     </select>
                 </form>
 
-                <button type="button" id="submitbtn">确认导入</button>
+                <button type="button" class="btn btn-primary" id="submitbtn">确认导入</button>
 
                 <div id="tablelist" style="position: relative;width: 100%">
 
@@ -280,22 +287,25 @@
 
         str="";
         for(let i=1;i<=count;i++){
-            str="<div class=\"page\">"+i+"</div>"
+            str="<div class=\"page text-center\">"+i+"</div>"
             $("#pages").append(str);
         }
 
         var page=$(".page");
 
-        page[0].style.backgroundColor="#2aabd2";
+        page[0].style.backgroundColor="#327AB7";
+        page[0].style.color="#fff";
 
         for(let i=0;i<page.length;i++){
             page[i].onclick=function () {
                 for(var j=0;j<tablepage.length;j++){
                     tablepage[j].style.display="none";
                     page[j].style.backgroundColor="#fff";
+                    page[j].style.color="#000";
+
                 }
                 tablepage[i].style.display="inline";
-                page[i].style.backgroundColor="#2aabd2";
+                page[i].style.backgroundColor="#327AB7";
             }
         }
 
