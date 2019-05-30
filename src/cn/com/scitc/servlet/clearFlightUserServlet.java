@@ -1,0 +1,26 @@
+package cn.com.scitc.servlet;
+
+import cn.com.scitc.dao.UserDao;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "clearFlightUserServlet",urlPatterns = "/clearflightuser")
+public class clearFlightUserServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String flight_number=request.getParameter("flight_number");
+        System.out.println(flight_number);
+
+        response.getWriter().print(new UserDao().clearUser(flight_number));
+
+//        response.sendRedirect("admin_flight");
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+}
