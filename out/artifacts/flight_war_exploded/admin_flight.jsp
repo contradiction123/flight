@@ -171,7 +171,11 @@
                 data:{flight_number:flightNumber[i].innerHTML},
                 dataType: 'text',   //设置返回值类型
                 success:function(e){
-                    alert(e);
+                    if(e=="true"){
+                        location.reload();
+                    }else {
+                        alert("换机失败");
+                    }
                 }
             });//ajax——的结束
         }

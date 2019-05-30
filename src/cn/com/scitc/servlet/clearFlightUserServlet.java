@@ -15,9 +15,15 @@ public class clearFlightUserServlet extends HttpServlet {
         String flight_number=request.getParameter("flight_number");
         System.out.println(flight_number);
 
-        response.getWriter().print(new UserDao().clearUser(flight_number));
+        String s="";
+        if(new UserDao().clearUser(flight_number)){
+            s="true";
+        }else {
+            s="false";
+        }
 
-//        response.sendRedirect("admin_flight");
+        response.getWriter().print(s);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
