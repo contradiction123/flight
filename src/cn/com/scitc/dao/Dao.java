@@ -1116,7 +1116,7 @@ public class Dao {
         //然后查出这架飞机单人多还是团队多,0单人 1团队
         List<Integer> list=single_team(userAttributeList);
 
-        if(list.get(0)>list.get(2)){
+        if(list.get(0)>list.get(1)){
             if(allAllotuser(userAttributeList,flight_2)){
                 return true;
             }
