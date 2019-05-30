@@ -1,52 +1,150 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: s8534
-  Date: 2019/5/16
-  Time: 14:22
+  User: fanxi
+  Date: 2019/5/26
+  Time: 9:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>乘客导入</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>航班分配系统后台管理</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.min.css" />" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
     <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Add custom CSS here -->
+    <link href="<c:url value="css/admin.css" />" rel="stylesheet">
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
     <style>
-        .d1 {
-            margin: 0 auto;
-            width: 60%;
-            max-height: 1500px;
+        th {
+            text-align: center;
+        }
+        td {
+            text-align: center;
+            height: 50px;
+        }
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+        .page{
+            padding: 5px;
+            border: #0f0f0f solid 1px;
+        }
+        .page:hover{
+            background-color: #2aabd2;
         }
     </style>
 </head>
 
 <body>
-<div class="d1">
-    <form method="post" action="./skip">
-        <table class="table table-striped" >
-            <thead>
-            <tr>
-                <th name="id">ID</th>
-                <th name="type_one">ONE</th>
-                <th name="type_two">TWO</th>
-                <th name="team">TEAM</th>
-            </tr>
-            </thead>
-            <tbody id="testTab"></tbody>
-        </table>
+<!--判断是不是非法进入-->
+<c:if test="${msg.user_name == null}">
+    <script>
+        alert("非法访问");
+        window.location.href="http://localhost:8080/flight/login";
+    </script>
+</c:if>
 
-        <input type="file" id="xlf">
-        <pre id="out" style="display: none;"></pre>
-        <input type="text" name="flight_number" value="b737_700" class="jsons" >
-        <button type="button" id="submitbtn">确认导入</button>
-    </form>
-</div>
+<div id="wrapper">
+
+    <!-- 侧边栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">航班分配系统后台管理</a>
+        </div>
+
+        <!-- 左侧栏列表-->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i>首页</a></li>
+                <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
+                <li><a href="#"><i class="fa fa-table"></i> 机型管理</a></li>
+                <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
+                <li class="active"><a href="<c:url value="/admin_import" /> "><i class="fa fa-font"></i> 一件导入乘客</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dropdown Item</a></li>
+                        <li><a href="#">Another Item</a></li>
+                        <li><a href="#">Third Item</a></li>
+                        <li><a href="#">Last Item</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--管理员选项-->
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>整机迁移信息</h1>
+            </div>
+        </div><!-- /.row -->
+        <!--用户列表-->
+        <div class="row">
+            <div class="col-lg-8">
+                <input type="file" id="xlf">
+                <pre id="out" style="display: none;"></pre>
+
+
+                <form method="post" action="./skip">
+                    <select id="flight_number" name="flight_number">
+                        <c:forEach items="${flight}" var="flight">
+                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
+                        </c:forEach>
+                    </select>
+                </form>
+
+                <button type="button" id="submitbtn">确认导入</button>
+
+                <div id="tablelist" style="position: relative;width: 100%">
+
+                </div>
+
+                <div id="pages" style="position: relative;width: 50%;margin: 0 auto;display: flex">
+
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
+<!-- JavaScript -->
+<script src="<c:url value="/jquery/jquery.min.js" />"></script>
+<script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
+
+
+<!-- Page Specific Plugins -->
+<script src="<c:url value="js/raphael-min.js" />"></script>
+<script src="<c:url value="js/morris-0.4.3.min.js" />"></script>
+<script src="<c:url value="js/morris/chart-data-morris.js" />"></script>
+<script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
+<script src="<c:url value="js/tablesorter/tables.js" />"></script>
 <script type="text/javascript"  src="js/ga.js"></script>
 <script type="text/javascript"  src="js/shim.js"></script>
 <script type="text/javascript"  src="js/xlsx.full.min.js"></script>
@@ -111,7 +209,7 @@
 <script type="text/javascript">
     function dealJson(sJson) {
         var vJson = eval('(' + sJson + ')');
-        var $testTab = $("#testTab");
+        var $testTab = $("#tablelist");
         var conCout = 4
         var i = 0;
         var string_name = new Array("id", "type_one", "type_two","team");
@@ -129,18 +227,24 @@
         //首先定义passenger_info的数组拿来存放每一个人选择位置的信息
         var passenger_info = new Array();
 
+        var count=0;
+
+        var tabledate="<div class=\"tablepage\" style=\"position: absolute; width: 100%\"><table class=\"table table-striped\" ><thead><tr><th name=\"id\">ID</th><th name=\"type_one\">ONE</th><th name=\"type_two\">TWO</th><th name=\"team\">TEAM</th></tr></thead><tbody class=\"testTab\">";
         for (var n in vJson) {
+            var str="";
             for (var k = 1; k < vJson[n].length; k++) {
-                var str = "<tr>";
+
 
                 var jsonObj = {};
 
-                var count=0;
-                for (let c = 0; c < conCout; c++) {
+                if((k-1)%10==0){
                     count++;
-                    if(count==40){
+                     str+= tabledate+"<tr>";
+                }else {
+                    str+="<tr>"
+                }
 
-                    }
+                for (let c = 0; c < conCout; c++) {
                     var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
                     // str += "<td><input type='text' id='lz" + n + "' value='" + tm + "'></td>";
 
@@ -157,24 +261,60 @@
                 }
                 i++;
                 str += "</tr>";
-
-                $testTab.append(str);
+                if(k%10==0 || k==vJson[n].length-1){
+                    str+="</tbody></table></div>";
+                    // console.log(str);
+                    $testTab.append(str);
+                    str="";
+                }
                 //str.parentNode.removeChild(str);
                 //document.fileForm.submit();
-
             }
         };
+        var tablepage=$(".tablepage");
+        for(var i=1;i<tablepage.length;i++){
+            tablepage[i].style.display="none";
+        }
+
+        document.getElementById("pages").style.marginTop = (parseInt(window.getComputedStyle(tablepage[0]).height) + 10)+'px';
+
+        str="";
+        for(let i=1;i<=count;i++){
+            str="<div class=\"page\">"+i+"</div>"
+            $("#pages").append(str);
+        }
+
+        var page=$(".page");
+
+        page[0].style.backgroundColor="#2aabd2";
+
+        for(let i=0;i<page.length;i++){
+            page[i].onclick=function () {
+                for(var j=0;j<tablepage.length;j++){
+                    tablepage[j].style.display="none";
+                    page[j].style.backgroundColor="#fff";
+                }
+                tablepage[i].style.display="inline";
+                page[i].style.backgroundColor="#2aabd2";
+            }
+        }
+
+
 
         var json1=new Array();
         var j={};
-        j["passenger_flight_number"]="b737_700";//航班号
-        j["passenger_num"]=i;//人数
-        j["passenger_info"]=passenger_info;//个人座位需求信息
-        json1.push(j);
 
-        alert(i);
-
+        //点击了确认导入
         $("#submitbtn").click(function () {
+
+            var flight_model = document.getElementById("flight_number");
+            var flight_name = flight_model.options[flight_model.selectedIndex].value;
+
+            j["passenger_flight_number"]=flight_name//航班机型
+            j["passenger_num"]=i;//人数
+            j["passenger_info"]=passenger_info;//个人座位需求信息
+            json1.push(j);
+
             // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
             $.ajax({
                 type:"POST", //请求方式
@@ -201,11 +341,13 @@
                 }
             });//ajax——的结束
 
-
         })
+
+
+
+
     }
 </script>
-
 
 </body>
 </html>

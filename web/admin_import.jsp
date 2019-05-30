@@ -37,6 +37,13 @@
         .table tbody tr td{
             vertical-align: middle;
         }
+        .page{
+            padding: 5px;
+            border: #0f0f0f solid 1px;
+        }
+        .page:hover{
+            background-color: #2aabd2;
+        }
     </style>
 </head>
 
@@ -48,6 +55,7 @@
         window.location.href="http://localhost:8080/flight/login";
     </script>
 </c:if>
+
 <div id="wrapper">
 
     <!-- 侧边栏 -->
@@ -108,19 +116,17 @@
                             <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
                         </c:forEach>
                     </select>
-                    <button type="button" id="submitbtn">确认导入</button>
-                    <table class="table table-striped" >
-                        <thead>
-                        <tr>
-                            <th name="id">ID</th>
-                            <th name="type_one">ONE</th>
-                            <th name="type_two">TWO</th>
-                            <th name="team">TEAM</th>
-                        </tr>
-                        </thead>
-                        <tbody id="testTab"></tbody>
-                    </table>
                 </form>
+
+                <button type="button" id="submitbtn">确认导入</button>
+
+                <div id="tablelist" style="position: relative;width: 100%">
+
+                </div>
+
+                <div id="pages" style="position: relative;width: 50%;margin: 0 auto;display: flex">
+
+                </div>
             </div>
         </div>
 
@@ -203,7 +209,7 @@
 <script type="text/javascript">
     function dealJson(sJson) {
         var vJson = eval('(' + sJson + ')');
-        var $testTab = $("#testTab");
+        var $testTab = $("#tablelist");
         var conCout = 4
         var i = 0;
         var string_name = new Array("id", "type_one", "type_two","team");
@@ -221,11 +227,22 @@
         //首先定义passenger_info的数组拿来存放每一个人选择位置的信息
         var passenger_info = new Array();
 
+        var count=0;
+
+        var tabledate="<div class=\"tablepage\" style=\"position: absolute; width: 100%\"><table class=\"table table-striped\" ><thead><tr><th name=\"id\">ID</th><th name=\"type_one\">ONE</th><th name=\"type_two\">TWO</th><th name=\"team\">TEAM</th></tr></thead><tbody class=\"testTab\">";
         for (var n in vJson) {
+            var str="";
             for (var k = 1; k < vJson[n].length; k++) {
-                var str = "<tr>";
+
 
                 var jsonObj = {};
+
+                if((k-1)%10==0){
+                    count++;
+                    str+= tabledate+"<tr>";
+                }else {
+                    str+="<tr>"
+                }
 
                 for (let c = 0; c < conCout; c++) {
                     var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
@@ -244,20 +261,50 @@
                 }
                 i++;
                 str += "</tr>";
-
-                $testTab.append(str);
+                if(k%10==0 || k==vJson[n].length-1){
+                    str+="</tbody></table></div>";
+                    // console.log(str);
+                    $testTab.append(str);
+                    str="";
+                }
                 //str.parentNode.removeChild(str);
                 //document.fileForm.submit();
-
             }
         };
+        var tablepage=$(".tablepage");
+        for(var i=1;i<tablepage.length;i++){
+            tablepage[i].style.display="none";
+        }
+
+        document.getElementById("pages").style.marginTop = (parseInt(window.getComputedStyle(tablepage[0]).height) + 10)+'px';
+
+        str="";
+        for(let i=1;i<=count;i++){
+            str="<div class=\"page\">"+i+"</div>"
+            $("#pages").append(str);
+        }
+
+        var page=$(".page");
+
+        page[0].style.backgroundColor="#2aabd2";
+
+        for(let i=0;i<page.length;i++){
+            page[i].onclick=function () {
+                for(var j=0;j<tablepage.length;j++){
+                    tablepage[j].style.display="none";
+                    page[j].style.backgroundColor="#fff";
+                }
+                tablepage[i].style.display="inline";
+                page[i].style.backgroundColor="#2aabd2";
+            }
+        }
+
+
 
         var json1=new Array();
         var j={};
 
-
-
-
+        //点击了确认导入
         $("#submitbtn").click(function () {
 
             var flight_model = document.getElementById("flight_number");
@@ -295,6 +342,10 @@
             });//ajax——的结束
 
         })
+
+
+
+
     }
 </script>
 
