@@ -90,7 +90,7 @@ public class UserFlightSeatUpdate extends Thread{
 
                     UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                    userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                    userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
                     userFlightSeat.setFlight_number(flight_number);
                     userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
                     userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
@@ -98,7 +98,7 @@ public class UserFlightSeatUpdate extends Thread{
                     //当存放一个人的时候team团队存放NO，表示不是团队
                     //当存放多个人的时候team团队，存放第一个人的id账号，表示这组人是一个团队的
                     if(userAttributeList.size()>1){
-                        userFlightSeat.setTeam(userAttributeList.get(0).getId());
+                        userFlightSeat.setTeam(userAttributeList.get(0).getUser_id());
                     }else {
                         userFlightSeat.setTeam("NO");
                     }

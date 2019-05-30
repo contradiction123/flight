@@ -117,7 +117,7 @@ public class buyTicketOperationServlet extends HttpServlet {
                     for(int j=0;j<userNume.length;j++){
                         UserAttribute userAttribute=new UserAttribute();
 
-                        userAttribute.setId(userNume[j][0]);
+                        userAttribute.setUser_id(userNume[j][0]);
                         userAttribute.setType_one(userNume[j][1]);
                         userAttribute.setType_second(userNume[j][2]);
                         userAttribute.setHeader(userNume[0][0]);

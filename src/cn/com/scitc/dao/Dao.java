@@ -12,6 +12,34 @@ import java.sql.*;
 
 public class Dao {
 
+    //这是查询制定飞机所有用户的
+    public List<UserAttribute> userselect(String flight_number){
+        String sql="select * from user_flight_seat where flight_number='"+flight_number+"' order by allot_course;";
+
+        List<UserAttribute> userAttributeList=new ArrayList<>();
+
+        SqlHelper.getConnection();
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        try {
+            while (resultSet.next()){
+                UserAttribute userAttribute=new UserAttribute();
+
+                userAttribute.setUser_id(resultSet.getString(1));
+                userAttribute.setFlight_number(flight_number);
+                userAttribute.setType_one(resultSet.getString(3));
+                userAttribute.setType_second(resultSet.getString(4));
+                userAttribute.setHeader(resultSet.getString(7));
+
+                userAttributeList.add(userAttribute);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userAttributeList;
+    }
+
     //这是查询b737-700的表格的
     public List<B737_700> b7377select(){
         String sql="select * from b737_700 order by id";
@@ -71,7 +99,7 @@ public class Dao {
 
                 FlightAttribute flightAttribute=new FlightAttribute();
                 flightAttribute.setSeat_id(resultSet.getString("seat_id"));
-                flightAttribute.setUser_id(userAttributeList.get(0).getId());
+                flightAttribute.setUser_id(userAttributeList.get(0).getUser_id());
 
                 //先把同用的座位属性存放在list集合
                 List<FlightAttribute> flightAttributes=new ArrayList<>();
@@ -164,13 +192,13 @@ public class Dao {
         for(int i=0;i<userAttributeList.size();i++){
             UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-            userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+            userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
             userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
             userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
             userFlightSeat.setSeat_id(allotseatlist.get(i));
             userFlightSeat.setSatisfaction(satisfactionlist.get(i));
             userFlightSeat.setFlight_number(flight_number);
-            userFlightSeat.setTeam(userAttributeList.get(0).getId());
+            userFlightSeat.setTeam(userAttributeList.get(0).getUser_id());
 
             userFlightSeatList.add(userFlightSeat);
         }
@@ -356,7 +384,6 @@ public class Dao {
     }
 
 
-
     //这是分配先单人的
     //接收整机分配的，参数有整机所有人
     public boolean allAllotuser_single(List<UserAttribute> userAttributeList,String flight_number){
@@ -385,7 +412,7 @@ public class Dao {
 
                     UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                    userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                    userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
                     userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
                     userFlightSeat.setFlight_number(flight_number);
                     userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
@@ -408,7 +435,7 @@ public class Dao {
             if(judge){
                 UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
                 userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
                 userFlightSeat.setFlight_number(flight_number);
                 userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
@@ -449,11 +476,8 @@ public class Dao {
         return false;
     }
 
-
-
     //这是分配先团队的
     //接收整机分配的，参数有整机所有人
-
     public Boolean allAllotuser_team(List<UserAttribute> userAttributeList,String flight_number){
 
 //        System.out.println("进入正题分配");
@@ -604,13 +628,13 @@ public class Dao {
             for(int ii=0;ii<templist.size();ii++){
                 UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                userFlightSeat.setUser_id(templist.get(ii).getId());
+                userFlightSeat.setUser_id(templist.get(ii).getUser_id());
                 userFlightSeat.setWant_seat_attribute_one(templist.get(ii).getType_one());
                 userFlightSeat.setWant_seat_attribute_second(templist.get(ii).getType_second());
                 userFlightSeat.setSeat_id(allotseatlist.get(ii));
                 userFlightSeat.setSatisfaction(satisfactionlist.get(ii));
                 userFlightSeat.setFlight_number(flight_number);
-                userFlightSeat.setTeam(templist.get(0).getId());
+                userFlightSeat.setTeam(templist.get(0).getUser_id());
                 userFlightSeat.setAllot_course((allotCourse));
 
                 userFlightSeats.add(userFlightSeat);
@@ -639,7 +663,7 @@ public class Dao {
 
                     UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                    userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                    userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
                     userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
                     userFlightSeat.setFlight_number(flight_number);
                     userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
@@ -661,7 +685,7 @@ public class Dao {
             if(judge){
                 UserFlightSeat userFlightSeat=new UserFlightSeat();
 
-                userFlightSeat.setUser_id(userAttributeList.get(i).getId());
+                userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
                 userFlightSeat.setTeam(userAttributeList.get(i).getHeader());
                 userFlightSeat.setFlight_number(flight_number);
                 userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
@@ -851,7 +875,6 @@ public class Dao {
         return allotseat;
     }
 
-
     //查看飞机机型
     public List<FlightModel> findAllFlightmodel(){
         List<FlightModel> flightModelList = new ArrayList<FlightModel>();
@@ -943,6 +966,51 @@ public class Dao {
         }catch (Exception e){
             e.printStackTrace();
         }
+        return list;
+    }
+
+    //一键换机
+    public boolean changePlanes(String flight_1,String flight_2){
+        //首先要把用户从旧飞机里面拿出来
+        List<UserAttribute> userAttributeList=userselect(flight_1);
+
+        //然后把旧飞机里面的用户删除
+        new UserDao().clearUser(flight_1);
+
+        //然后查出这架飞机单人多还是团队多,0单人 1团队
+        List<Integer> list=single_team(userAttributeList);
+
+        if(list.get(0)>list.get(2)){
+            if(allAllotuser_single(userAttributeList,flight_2)){
+                return true;
+            }
+        }else {
+            if(allAllotuser_team(userAttributeList,flight_2)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    //查询传送过来的用户list中单人多还是团队多
+    public List<Integer> single_team(List<UserAttribute> userAttributeList){
+        List<Integer> list=new ArrayList<>();
+
+        int single=0;
+        int team=0;
+
+        for(int i=0;i<userAttributeList.size();i++){
+            if(userAttributeList.get(i).getHeader().length()>2){
+                team++;
+            }else {
+                single++;
+            }
+        }
+
+        list.add(single);
+        list.add(team);
+
         return list;
     }
 }

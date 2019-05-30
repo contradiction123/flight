@@ -1,7 +1,7 @@
 package cn.com.scitc.model;
 
 public class UserAttribute {
-    private String id,type_one,type_second,header,flight_number;
+    private String user_id,type_one,type_second,header,flight_number;
 
     public String getFlight_number() {
         return flight_number;
@@ -11,12 +11,12 @@ public class UserAttribute {
         this.flight_number = flight_number;
     }
 
-    public String getId() {
-        return id;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getType_one() {

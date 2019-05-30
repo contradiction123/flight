@@ -13,13 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AdminFlightServlet",urlPatterns = "/admin_flight")
+//get 是查看飞机座位数量和乘坐用户数量
+//post 是一件换机代码
 public class AdminFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String flight_1_number="b737_700";
+        String flight_2_number="b787_8";
+
+        System.out.println(new Dao().changePlanes(flight_1_number,flight_2_number));
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Dao dao = new Dao();
         List<FlightModel> list = new ArrayList<>();
         list = dao.findAllFlightmodel();
