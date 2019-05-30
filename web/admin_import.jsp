@@ -316,15 +316,14 @@
 
         //点击了确认导入
         $("#submitbtn").click(function () {
-
             var flight_model = document.getElementById("flight_number");
             var flight_name = flight_model.options[flight_model.selectedIndex].value;
 
             j["passenger_flight_number"]=flight_name//航班机型
-            j["passenger_num"]=i;//人数
+            j["passenger_num"]=passenger_info.length;//人数
             j["passenger_info"]=passenger_info;//个人座位需求信息
             json1.push(j);
-
+            console.log(json1);
             // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
             $.ajax({
                 type:"POST", //请求方式
@@ -337,17 +336,6 @@
                 success:function(e){
                     document.getElementsByTagName("form")[0].submit();
 
-                    // // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割
-                    // var seat_id_list=e.split("zZz");
-                    // //seat_id_list的长度之所以减一，是在每一个的字符串后都是以zZz结尾，
-                    // // 所以在字符串切割的时候回造成一个多余的字符串
-                    // //所以长度减一
-                    // for(let i=0;i<seat_id_list.length-1;i++){
-                    //     // alert(seat_id_list[i]); //弹出每一个位置
-                    //
-                    //     //为每一个位置的颜色都设置为当前选择的，蓝色
-                    //     document.getElementsByClassName(seat_id_list[i])[0].style.fill="blue";
-                    // }
                 }
             });//ajax——的结束
 
