@@ -559,7 +559,7 @@ public class Dao {
                     while (numbertemp>flightColumn);
                 }
 
-                System.out.println(templist.size()+","+numbertemp);
+//                System.out.println(templist.size()+","+numbertemp);
                 while (true){
 
                     List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
@@ -801,7 +801,7 @@ public class Dao {
                 //当数据的座位是连续的时候，就该判断他们的座位是不是在一排中
                 //numnumber这个变量是一直与其他座位进行比较的
                 int numnumber=0;
-                for(int j=seatstart+usernumber-1;j>seatstart;j--){
+                for(int j=seatstart+usernumber-1;j>=seatstart;j--){
                     //获取每一个座位的排数
                     int number=0;
                     //获取数字，31A 中获取31
@@ -813,7 +813,7 @@ public class Dao {
                         }
                     }
                     number=Integer.parseInt(flightAttributes.get(j).getSeat_id().substring(0,number));
-//                    System.out.println(number);
+//                    System.out.print(number+" ");
                     //判断是否是第一次获取座位数,是的话讲第一个存进numnumber
                     //不是第一个的话，将第一个numnumber与每一个number进行比较
                     //相同则这证明是同一排
@@ -832,7 +832,6 @@ public class Dao {
                     }
 
                 }
-
                 if(judeg){
                     i=seatstart;
                     count=1;
@@ -847,9 +846,7 @@ public class Dao {
 
         for(int i=0;i<seattemp.size();i++){
             allotseat.add(seattemp.get(i));
-            System.out.print(seattemp.get(i)+" ");
         }
-        System.out.println("***");
 
         return allotseat;
     }
