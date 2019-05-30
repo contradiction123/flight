@@ -23,6 +23,13 @@ public class AdminFlightServlet extends HttpServlet {
         Dao dao = new Dao();
         List<FlightModel> list = new ArrayList<>();
         list = dao.findAllFlightmodel();
+
+        for (int i = 0; i<list.size();i++){
+            List<Integer> integerList = dao.findAllFlight(list.get(i).getName());
+            list.get(i).setZ(integerList.get(0));
+            list.get(i).setR(integerList.get(1));
+        }
+
         request.setAttribute("flight",list);
         request.getRequestDispatcher("/admin_flight.jsp").forward(request,response);
     }

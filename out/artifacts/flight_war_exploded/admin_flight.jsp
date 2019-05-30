@@ -88,9 +88,9 @@
                                  alt="飞机图">
                             <div class="caption">
                                 <h3><c:out value="${flight.name}" /></h3>
-                                <p>一些示例文本。一些示例文本。</p>
+                                <p>飞机座位一共有：<c:out value="${flight.z}"/>，以售卖:<c:out value="${flight.r}"/></p>
                                 <p>
-                                    <a href="#" class="btn btn-primary" role="button">
+                                    <a href="<c:url value="/skip" ><c:param name="flight_number" value="${flight.name}" /> </c:url>" class="btn btn-primary" role="button">
                                         管理
                                     </a>
                                     <a href="#" class="btn btn-default" role="button">

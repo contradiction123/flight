@@ -922,4 +922,27 @@ public class Dao {
 
         return allotCourseString;
     }
+
+    //获取飞机有多少座位和多少人
+    public List<Integer> findAllFlight(String flight){
+        List<Integer> list = new ArrayList<>();
+        String sql = "select * from "+flight+"";
+        int z = 0;
+        int r = 0;
+        ResultSet resultSet = SqlHelper.executeQuery(sql,null);
+        try {
+            while (resultSet.next()){
+                int i = resultSet.getInt("user_id");
+                if(i != 0){
+                    r++;
+                }
+                z++;
+            }
+            list.add(z);
+            list.add(r);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

@@ -3,6 +3,24 @@ package cn.com.scitc.model;
 public class FlightModel {
     private int id;
     private String name;
+    private int z;
+    private int r;
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public void setR(int r) {
+        this.r = r;
+    }
 
     public int getId() {
         return id;
