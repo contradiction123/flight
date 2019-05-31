@@ -19,9 +19,10 @@ public class skipServlet extends HttpServlet {
 
         Dao dao=new Dao();
         List<String> select_seat=dao.flightselect_seat(flight_number);
+        List<Integer> list = dao.satisfaction2(flight_number);
 
         request.setAttribute("select_seat",select_seat);
-
+        request.setAttribute("list",list);
         String jsp="/allAllot"+flight_number+".jsp";
 
 
@@ -34,9 +35,10 @@ public class skipServlet extends HttpServlet {
 
         Dao dao=new Dao();
         List<String> select_seat=dao.flightselect_seat(flight_number);
+        List<Integer> list = dao.satisfaction2(flight_number);
 
         request.setAttribute("select_seat",select_seat);
-
+        request.setAttribute("list",list);
         String jsp="/allAllot"+flight_number+".jsp";
 
 

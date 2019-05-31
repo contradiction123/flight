@@ -12,6 +12,8 @@ import java.sql.*;
 
 public class Dao {
 
+    private String flight_number;
+
     //这是查询制定飞机所有用户的
     public List<UserAttribute> userselect(String flight_number){
         String sql="select * from user_flight_seat where flight_number='"+flight_number+"' order by allot_course;";
@@ -1147,6 +1149,30 @@ public class Dao {
         list.add(single);
         list.add(team);
 
+        return list;
+    }
+
+
+    //查看满意人数
+    public List<Integer> satisfaction2(String flight_number){
+        List<Integer> list = new ArrayList<Integer>();
+        Integer T = 0;
+        Integer F = 0;
+        String sql="select * from user_flight_seat where flight_number= ?";
+        ResultSet resultSet=SqlHelper.executeQuery(sql,new String[]{flight_number});
+        try {
+            while (resultSet.next()){
+                if(resultSet.getString("satisfaction").equals("T")){
+                    T++;
+                }else {
+                    F++;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        list.add(T);
+        list.add(F);
         return list;
     }
 }

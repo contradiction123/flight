@@ -147,6 +147,10 @@
             font-size: 1.5ex;
         }
         .button-1{
+             position:absolute;
+             margin-top: 20%;
+         }
+        .button-2{
             position:absolute;
             margin-top: 25%;
         }
@@ -4726,6 +4730,11 @@
             <div id="displaycourse" style="display: none"></div>
         </div>
     </div><!-- /.row -->
+    <div class="row">
+        <div class="col-lg-5 button-2 text-center">
+            <div id="piechart" style="height: 250%;"></div>
+        </div>
+    </div>
 
 </div><!-- /#wrapper -->
 
@@ -4741,8 +4750,20 @@
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
 
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=20&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script> -->
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript" src="<c:url value="js/piechart.js" /> "></script>
+
 </body>
 <script>
+    piechart(<c:out value="${list.get(0)}" />,<c:out value="${list.get(1)}" />)
     var seat=document.getElementsByClassName("seatId");
     var display=document.getElementById("displaycourse");
     var flight_number="k330_300a";
