@@ -191,12 +191,12 @@
                 </div>
             </div>
         </div><!-- /.row -->
-    </div><!-- /#page-wrapper -->
+
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i>系统相应时间（单位：毫秒）</h3>
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i>系统响应时间（单位：毫秒）</h3>
                 </div>
                 <div class="panel-body">
                     <div id="time"></div>
@@ -205,8 +205,25 @@
         </div>
     </div><!-- /.row -->
 
-</div><!-- /#wrapper -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>系统运行情况</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-chart-donut"></div>
+                        <div class="text-right">
+                            <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+    </div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+</div>
 <!-- JavaScript -->
 <script src="<c:url value="/jquery/jquery.min.js" />"></script>
 <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
@@ -225,7 +242,7 @@
         // Chart data records -- each entry in this array corresponds to a point on
         // the chart.
         data: [
-            <c:forEach var="times" items="${time}" >
+            <c:forEach var="times" items="${time}" begin="${time1 - 15}" end="${time1}">
             { d: '<c:out value="${times.systemdate}" />', visits: <c:out value="${times.time}" /> },
             </c:forEach>
 
@@ -240,7 +257,17 @@
         // Disables line smoothing
         smooth: false,
     });
+    Morris.Donut({
+        element: 'morris-chart-donut',
+        data: [
+            {label: "良好", value: <c:out value="${good}" />},
+            {label: "正常", value: <c:out value="${well}" />},
+            {label: "问题", value: <c:out value="${bad}" />},
+        ],
+        formatter: function (y) { return y + "%" ;}
+    });
 </script>
+
 </body>
 </html>
 

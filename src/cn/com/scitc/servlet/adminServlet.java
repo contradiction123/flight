@@ -28,22 +28,39 @@ public class adminServlet extends HttpServlet {
         long s=System.currentTimeMillis();
         UserDao userDao = new UserDao();
         Dao dao = new Dao();
-
+        SystemTiemDao systemTiemDao = new SystemTiemDao();
+        List<SystemTimeModel> systemTimeModelList = systemTiemDao.findAllSystemTime();
         List<FlightModel> flightModels = dao.findAllFlightmodel();
         List<User> users = userDao.findAllUser();
         long s1=System.currentTimeMillis();
         Integer time = Math.toIntExact(s1 - s);
-
-        SystemTiemDao systemTiemDao = new SystemTiemDao();
         SystemTime systemTime=new SystemTime(time);
         systemTime.start();
-        List<SystemTimeModel> systemTimeModelList = systemTiemDao.findAllSystemTime();
+        int good = 0;
+        int well = 0;
+        int bad = 0;
+
+        for (int i = 0; i<systemTimeModelList.size();i++){
+            if (systemTimeModelList.get(i).getTime() <= 3000){
+                good++;
+            }else if (systemTimeModelList.get(i).getTime() <= 5000){
+                well++;
+            }else {
+                bad++;
+            }
+        }
+        int count = good+well+bad;
+        float goodf = (float) good/count;
+        float wellf = (float)well/count;
+        float badf = (float)bad/count;
 
         request.setAttribute("user_size",users.size());
         request.setAttribute("flight_size",flightModels.size());
         request.setAttribute("time",systemTimeModelList);
         request.setAttribute("time1",systemTimeModelList.size());
-
+        request.setAttribute("good",goodf*100);
+        request.setAttribute("well",wellf*100);
+        request.setAttribute("bad",badf*100);
         request.getRequestDispatcher("/admin.jsp").forward(request,response);
 
 

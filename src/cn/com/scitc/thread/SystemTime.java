@@ -34,8 +34,6 @@ public class SystemTime extends Thread{
 
             SystemTiemDao systemTiemDao = new SystemTiemDao();
             systemTiemDao.addSystemTime(date,time);
-            System.out.println("yes");
-
 
             key=false;
             try {
