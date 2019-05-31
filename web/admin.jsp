@@ -192,6 +192,18 @@
             </div>
         </div><!-- /.row -->
     </div><!-- /#page-wrapper -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i>系统相应时间（单位：毫秒）</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="time"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.row -->
 
 </div><!-- /#wrapper -->
 
@@ -206,7 +218,29 @@
 <script src="<c:url value="js/morris/chart-data-morris.js" />"></script>
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
+<script>
+    Morris.Area({
+        // ID of the element in which to draw the chart.
+        element: 'time',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: [
+            <c:forEach var="times" items="${time}" begin="${time1 - 20}" end="${time1}">
+            { d: '<c:out value="${times.systemdate}" />', visits: <c:out value="${times.time}" /> },
+            </c:forEach>
 
+        ],
+        // The name of the data record attribute that contains x-visitss.
+        xkey: 'd',
+        // A list of names of data record attributes that contain y-visitss.
+        ykeys: ['visits'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Visits'],
+        // Disables line smoothing
+        smooth: false,
+    });
+</script>
 </body>
 </html>
 
