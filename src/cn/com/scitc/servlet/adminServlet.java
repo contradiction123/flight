@@ -41,9 +41,9 @@ public class adminServlet extends HttpServlet {
         int bad = 0;
 
         for (int i = 0; i<systemTimeModelList.size();i++){
-            if (systemTimeModelList.get(i).getTime() <= 3000){
+            if (systemTimeModelList.get(i).getTime() <= 5000){
                 good++;
-            }else if (systemTimeModelList.get(i).getTime() <= 5000){
+            }else if (systemTimeModelList.get(i).getTime() <= 8000){
                 well++;
             }else {
                 bad++;

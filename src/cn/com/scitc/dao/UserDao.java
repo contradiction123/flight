@@ -2,6 +2,7 @@ package cn.com.scitc.dao;
 
 import cn.com.scitc.model.User;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class UserDao {
         User user = new User();
         String sql = "select * from user where user_email = ?";
         ResultSet resultSet = SqlHelper.executeQuery(sql,new String[]{email});
+
 
         try {
             while (resultSet.next()){

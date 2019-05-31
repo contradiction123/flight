@@ -242,7 +242,7 @@
         // Chart data records -- each entry in this array corresponds to a point on
         // the chart.
         data: [
-            <c:forEach var="times" items="${time}" begin="${time1 - 15}" end="${time1}">
+            <c:forEach var="times" items="${time}" begin="${time1 - 10}" end="${time1}">
             { d: '<c:out value="${times.systemdate}" />', visits: <c:out value="${times.time}" /> },
             </c:forEach>
 
@@ -262,7 +262,7 @@
         data: [
             {label: "良好", value: <c:out value="${good}" />},
             {label: "正常", value: <c:out value="${well}" />},
-            {label: "问题", value: <c:out value="${bad}" />},
+            {label: "缓慢", value: <c:out value="${bad}" />},
         ],
         formatter: function (y) { return y + "%" ;}
     });

@@ -36,11 +36,10 @@ public class LoginServlet extends HttpServlet {
             }else {
                 //普通用户跳转
                 request.getSession().setAttribute("msg",user);
-                response.sendRedirect("login");
+                response.sendRedirect("home");
                 return;
             }
         }else {
-            System.out.println("no!");
             request.getSession().setAttribute("error","用户名或密码错误!");
             response.sendRedirect("login");
             return;
