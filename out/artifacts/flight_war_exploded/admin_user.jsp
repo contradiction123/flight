@@ -39,13 +39,7 @@
 </head>
 
 <body>
-<!--判断是不是非法进入-->
-<c:if test="${msg.user_name == null}">
-    <script>
-        alert("非法访问");
-        window.location.href="http://localhost:8080/flight/login";
-    </script>
-</c:if>
+
 <div id="wrapper">
 
     <!-- 侧边栏 -->

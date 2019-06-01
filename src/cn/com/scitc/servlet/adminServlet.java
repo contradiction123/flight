@@ -25,6 +25,12 @@ public class adminServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //判断是否非法访问
+        if(request.getSession().getAttribute("msg") == null){
+            request.getSession().setAttribute("error","请先登录!");
+            response.sendRedirect("login");
+            return;
+        }
         long s=System.currentTimeMillis();
         UserDao userDao = new UserDao();
         Dao dao = new Dao();

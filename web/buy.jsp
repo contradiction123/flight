@@ -20,16 +20,26 @@
     <link rel="stylesheet" href="<c:url value="/layui-v2.4.5/layui/css/layui.css" />"  media="all">
     <script src="<c:url value="/layui-v2.4.5/layui/layui.all.js" />" type="text/javascript"></script>
     <style>
+        .header_wrap{
+            border-bottom: 1px solid #e5e5e5;
+            width: 100%;
+        }
+        .header{
+            width: 100%;
+            display: table;
+            margin: 0 auto;
+            margin-bottom: -10px;
+        }
+        .topMenu{
+            padding: 20px 0;
+            height: 80px;
+            margin-left: 10%;
+
+        }
         .tu{
             transform:scale(1.5) rotate(90deg);
         }
-        .fly-head{
-            width: 100%;
-            height: 80px;
-            padding-top:25px;
-            background: #fff;
-            border-bottom: 1px solid #d6dde2;
-        }
+
         div{
             display:block;
         }
@@ -235,20 +245,26 @@
     </style>
 </head>
 <body>
-<div class="fly-head">
-    <div class="headfly">
-        <div class="flylogo">
-            <a href="#">xiecheng</a>
+<div class="header_wrap">
+    <div class="header">
+        <div class="topMenu">
+            <div style="float: left">
+                <h1>四川信息职业技术学院</h1>
+            </div>
+            <div style="margin-right: 10%">
+                <ul class="nav navbar-right ">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-    </div>
-    <div class="headorder">
-        <div class="hstep hstepcols">
-            <h4>乘机信息</h4>
-        </div>
-    </div>
-    <div class="hlogin">
-        <span>尊敬的会员</span>
     </div>
 </div>
 <div class="fly-middle">
@@ -301,7 +317,7 @@
                     </div>
                 </div>
 
-                <button class="layui-btn layui-btn-sm" style="background: red; position: absolute;right: 15px;top: 10px;" id="p-del">
+                <button class="layui-btn layui-btn-sm" style="background: red; position: absolute;right: 15px;top: 10px;" id="p-del" onclick='dell()'>
                     <i class="layui-icon">&#xe640;</i>
                 </button>
 
@@ -465,6 +481,7 @@
                 //各种基于事件的操作，下面会有进一步介绍
             });
         }
+
         $("#go").on('click',function(){
 
             layer.open({

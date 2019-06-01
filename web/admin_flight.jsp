@@ -43,7 +43,7 @@
 <c:if test="${msg.user_name == null}">
     <script>
         alert("非法访问");
-        window.location.href="http://localhost:8080/flight/login";
+        window.location.href='<c:url value="/login" />';
     </script>
 </c:if>
 <div id="wrapper">
