@@ -19,8 +19,6 @@ public class AdminFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String flight_1_number=request.getParameter("flight1");
         String flight_2_number=request.getParameter("flight2");
-        System.out.println(flight_1_number);
-        System.out.println(flight_2_number);
 
         System.out.println(new Dao().changePlanes(flight_1_number,flight_2_number));
         response.sendRedirect("admin_flight");
@@ -39,11 +37,20 @@ public class AdminFlightServlet extends HttpServlet {
 
         for (int i = 0; i<list.size();i++){
             List<Integer> integerList = dao.findAllFlight(list.get(i).getName());
+
             list.get(i).setZ(integerList.get(0));
             list.get(i).setR(integerList.get(1));
         }
 
         request.setAttribute("flight",list);
-        request.getRequestDispatcher("/admin_flight.jsp").forward(request,response);
+
+        String name="";
+        if(request.getParameter("s")==null){
+            name="/admin_flight.jsp";
+        }else {
+            name="/android_h5/select_flight.jsp";
+        }
+
+        request.getRequestDispatcher(name).forward(request,response);
     }
 }

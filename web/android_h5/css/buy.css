@@ -1,0 +1,242 @@
+body,html{
+    height: 100%;
+    margin:0px;
+    background: -webkit-linear-gradient(#2aabd2, #fcf8e3); /* Safari 5.1 - 6.0 */
+
+    background: -o-linear-gradient(#2aabd2, #fcf8e3); /* Opera 11.1 - 12.0 */
+
+    background: -moz-linear-gradient(#2aabd2, #fcf8e3); /* Firefox 3.6 - 15 */
+
+    background: linear-gradient(#2aabd2, #fcf8e3); /* 标准的语法 */
+}
+span{
+    text-align: center;
+    width: 50px;
+    font-size:24px;
+}
+.flight{
+    border-radius:20px;
+    position: relative;
+    padding: 0;
+}
+
+h3{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.path_money>div{
+    text-align: center;
+    margin-top: 2%;
+    font-size: 2ex;
+}
+.functionuser{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom: #CCCCCC 0.5px dashed;
+
+}
+.functionuser>div{
+    width: 100%;
+    color: #2aabd2;
+    text-align: center;
+    font-size: 3ex;
+}
+.alluser{
+    margin-top: 5%;
+}
+.modal-header>div:nth-child(1){
+    width: 5%;
+}
+.modal-header>div:nth-child(2){
+    width: 95%;
+}
+.add{
+    width: 80%;
+    height: 80%;
+    color: #2aabd2;
+    margin-left: 0%;
+    border: 0px;
+    font-size: 2ex;
+}
+.modal-footer{
+    justify-content:center;
+}
+.model2{
+    margin-top: 26%;
+}
+.RadioStyle input {
+    display: none
+}
+.RadioStyle label {
+    border: 1px solid #CCC;
+    color: #666;
+    padding: 2px 10px 2px 5px;
+    line-height: 28px;
+    min-width: 80px;
+    text-align: center;
+    float: left;
+    margin: 2px;
+    border-radius: 4px
+}
+.RadioStyle input:checked + label {
+    background: url(../images/ico_checkon.svg) no-repeat right bottom;
+    border: 1px solid #00a4ff;
+    background-size: 21px 21px;
+    color: #00a4ff
+}
+.RadioStyle input:disabled + label {
+    opacity: 0.7;
+}
+.child_vip{
+    width: 48%;
+}
+.threechild_vip{
+    width: 98%;
+}
+.one,.second{
+    width: 23%;
+}
+.attribute{
+    display: none;
+}
+
+.user_id_type{
+    font-size: 18px;
+}
+.attribute_type{
+    font-size: 8px;
+    text-align: left;
+}
+
+
+.item span:nth-of-type(1){display:inline-block;font-size:14px;width:100%;line-height:24px;}
+.item span:nth-of-type(2){border-bottom:1px solid #eee;position:absolute;right:-60px;display:inline-block;font-size:14px;width:60px;background:#ddd;text-align: center;line-height:50px;}
+.item span:nth-of-type(3){border-bottom:1px solid #eee;position:absolute;right:-120px;display:inline-block;font-size:14px;width:60px;background:red;text-align: center;line-height:50px;}
+
+.user_id_type{
+    display: flex;
+}
+.user_id_type>div{
+    width: 50%;
+    text-align: left;
+}
+.user_id_type>div:nth-child(2){
+    position: relative;
+}
+.user_id_type>div:nth-child(2)>span{
+    position: absolute;
+    left: 0px;
+    width: 27%;
+    transform: scale(0.8);
+    border: #5e5e5e 1px solid;
+}
+.user_id_type1{
+    display: flex;
+    margin-top: 10px;
+}
+.user_id_type1>div{
+    width: 50%;
+    text-align: left;
+}
+.modal-body{
+    padding-left: 30px;
+}
+.user{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 15px;
+    position:relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.header{
+    display: flex;
+    padding-bottom: 20px;
+}
+.header>div:nth-child(1){
+    width: 80%;
+}
+.header>div:nth-child(1)>span{
+    margin-left: 0px;
+}
+.flight_information,.flight_information>div:nth-child(2)>div:nth-child(3){
+    display: flex;
+}
+.header>div:nth-child(2),.flight_information>div,.flight_information>div:nth-child(2)>div:nth-child(3)>div{
+    width: 20%;
+}
+.flight_information>div:nth-child(2),.flight_information>div:nth-child(2)>div:nth-child(3)>div:nth-child(2){
+    width: 58%;
+}
+.flight_information>div:nth-child(2)>div,.flight_information>div:nth-child(2)>div:nth-child(3)>div:nth-child(2)>div{
+    width: 100%;
+    height: auto;
+}
+.site>span{
+    font-size: 33px;
+    line-height: 200%;
+}
+.flight_number>span{
+    font-size: 20px;
+    margin-left: 28%;
+}
+.long_time>span{
+    font-size: 14px;
+    margin-left: 18%;
+}
+.flight_time>span{
+    font-size: 20px;
+    line-height: 300%;
+}
+.con{
+    -webkit-transform: scale(2.5,0.8);
+    width: 100%;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    overflow: hidden;
+}
+.con2{
+    -webkit-transform: scale(1.5,0.8);
+}
+.sell_seat>span{
+    font-size: 13px;
+    margin-left: 14%;
+}
+body{
+    overflow: scroll;
+    overflow-x:hidden;
+}
+#a1{
+    display: flex;
+}
+#a1>div{
+    width: 50%;
+}
+.attribute{
+    width: 100%;
+}
+.attribute>div{
+    width: 100%;
+}
+#a2{
+    display: flex;
+}
+#a2>div{
+    width: 25%;
+}
+#a3{
+    display: flex;
+}
+#a3>div{
+    width: 25%;
+}
+label{
+    transform: scale(0.9);
+}
+.child_vip{
+    width: 100%;
+    transform: scale(1);
+}
