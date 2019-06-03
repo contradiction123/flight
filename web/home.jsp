@@ -103,9 +103,9 @@
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 个人信息</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                            <li><a href="<c:url value="/out"/> "><i class="fa fa-power-off"></i> 退出登录</a></li>
                         </ul>
                     </li>
                 </ul>

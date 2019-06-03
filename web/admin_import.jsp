@@ -88,7 +88,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                        <li><a href="<c:url value="/out"/>"><i class="fa fa-power-off"></i> 退出登录</a></li>
                     </ul>
                 </li>
             </ul>
