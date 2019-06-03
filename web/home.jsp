@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.css" />"/>
     <script src="<c:url value="/jquery/jquery.min.js" />"></script>
     <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
-
+    <link href="<c:url value="/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" />" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="<c:url value="/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js" />" charset="UTF-8"></script>
+    <script type="text/javascript" src="<c:url value="/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js" />" charset="UTF-8"></script>
 
     <style>
         div{
@@ -153,7 +155,7 @@
                     <div>
                         <div class="col-lg-2">
                             <span>选择出行时间:</span>
-                            <input type="date" class="form-control" id="time"  value="" name="time"/>
+                            <input type="text" class="form-control lot-time" id="time"  name="time">
                         </div>
                         <div>
                             <div style="margin-top: 10px;">
@@ -227,5 +229,22 @@
     }
 
 
+</script>
+
+<script type="text/javascript">
+    //时间控件
+    $(function () {
+        $('.lot-time').datetimepicker({
+            format: "yyyy-mm-dd",
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    })
 </script>
 </html>

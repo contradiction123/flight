@@ -1,9 +1,12 @@
 package cn.com.scitc.dao;
 
+import cn.com.scitc.model.FlightAttribute;
 import cn.com.scitc.model.User;
+import cn.com.scitc.model.UserFlightSeat;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +20,13 @@ public class UserDao {
 
 
         try {
-            while (resultSet.next()){
+            while (resultSet.first()){
+                user.setUser_id(resultSet.getInt("user_id"));
                 user.setUser_email(resultSet.getString("user_email"));
                 user.setUser_psw(resultSet.getString("user_psw"));
                 user.setPermission(resultSet.getInt("permission"));
                 user.setUser_name(resultSet.getString("user_name"));
+                return user;
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -77,5 +82,42 @@ public class UserDao {
 //            e.printStackTrace();
         }
         return false;
+    }
+
+
+    //查询用户座位
+    public UserFlightSeat findFlightByUser(String user_id,String flight_number){
+        String sql = "select * from user_flight_seat where user_id = ? and flight_number = ?";
+        UserFlightSeat userFlightSeat = new UserFlightSeat();
+        ResultSet resultSet = SqlHelper.executeQuery(sql,new String[]{user_id,flight_number});
+        try {
+            while (resultSet.first()){
+                userFlightSeat.setTeam(resultSet.getString("team"));
+                userFlightSeat.setFlight_number(resultSet.getString("flight_number"));
+                userFlightSeat.setSeat_id(resultSet.getString("seat_id"));
+                return userFlightSeat;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userFlightSeat;
+    }
+
+    //查询团队座位
+    public List<UserFlightSeat> findFlightByTeam(String user_id,String flight_number){
+        List<UserFlightSeat> userFlightSeats = new ArrayList<>();
+        String sql = "select * from user_flight_seat where team = ? and flight_number = ?";
+        ResultSet resultSet = SqlHelper.executeQuery(sql,new String[]{user_id,flight_number});
+        try {
+            while (resultSet.next()){
+                UserFlightSeat userFlightSeat = new UserFlightSeat();
+                userFlightSeat.setSeat_id(resultSet.getString("seat_id"));
+                userFlightSeats.add(userFlightSeat);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  userFlightSeats;
     }
 }

@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
             }else {
                 //普通用户跳转
                 request.getSession().setAttribute("msg",user);
+                request.getSession().setAttribute("user_id",user.getUser_id());
                 response.sendRedirect("home");
                 return;
             }
