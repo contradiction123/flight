@@ -440,6 +440,7 @@
                                             <span class="price">
                                                 <dfn>￥</dfn>
                                                 150
+                                            </span>
                         </div>
                     </div>
                 </div>
@@ -451,6 +452,7 @@
                                                 <span class="price">
                                                     <dfn>￥</dfn>
                                                     50
+                                                </span>
                         </div>
                     </div>
                 </div>
@@ -479,41 +481,24 @@
 </body>
 
 <script type="text/javascript">
-    window.onload=function(){
-        var add = document.getElementById('add');
-        var container =document.getElementById('cc');
-        var node=container.nextSibling;
-        add.onclick = function(){
-            oDiv = document.createElement('div');
-            oDiv.innerHTML = "<div class='p-message' id='cc'><div class='p-card'><div class='p-num' id='num'><i class='num-1'>1</i>    </div>    <div class='input-group' style='margin-left: 15px;'>        <span class='input-group-addon'>姓名</span>        <input type='text' class='form-control ' placeholder='姓名请与登机证件保持一致' aria-label='...' style='width:360px;'>    </div>        <div>        <div style='margin-top: 10px;'>            <div class='col-lg-2' style='width:160px;'>            <select class='form-control' onchange='selectOnchang(this)'>            <option>身份证</option>            <option>护照</option>            <option>军人证</option>            </select>            </div>            <input type='text' class='form-control' placeholder='登机证件号码' style='width:270px;'>        </div>    </div>          <div>            <div style='margin-top: 10px;'>                <div class='col-lg-2' style='width:160px;'>                <select class='form-control' onchange='selectOnchang(this)'>                <option>中国大陆区号86</option>                <option>中国香港区号852</option>                <option>中国澳门区号853</option>                <option>中国台湾区号886</option>                </select>                </div>                <input type='text' class='form-control' placeholder='乘机人手机号码' style='width:270px;'>            </div>         </div>                   <button class='layui-btn layui-btn-sm' style='background: red; position: absolute;right: 15px;top: 10px;' id='p-del' onclick='dell()'>          <i class='layui-icon'>&#xe640;</i>            </button>                <div style='margin-top: 10px;'>                        <div class='layui-form-item' style='margin-bottom: 0px;'>                 <form class='layui-form' >                        <label class='layui-form-label' style='width:100px;'>您的座位</label>                        <div class='layui-input-block layui-input-inline' style='margin-left: 10px;'>                                <input type='checkbox' name='unitTypy' title='VIP' lay-skin='primary' width='100px;'>                                 <input type='checkbox' name='unitTypy' title='有无婴儿' lay-skin='primary'>                         </div>                </form>             </div>        </div>        <div style='margin-top: 10px;'>                <div class='layui-form-item'>                        <form class='layui-form' >                                <label class='layui-form-label' style='width:150px;'>您的座位更倾向于</label>                                <div class='layui-input-block layui-input-inline' style='margin-left: 20px; width:350px;'>                                        <input type='checkbox' name='unitTypy' title='靠窗' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='靠门' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='中间' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='靠过道' lay-skin='primary'>                                 </div>                        </form>                 </div>            </div>            </div></div>";
-            container.parentNode.insertBefore(oDiv, node)
-            node=oDiv.nextSibling;
-            layui.use('form', function(){
-                var form = layui.form;
-                form.render();
-                //各种基于事件的操作，下面会有进一步介绍
-            });
-        }
-
-        $("#go").on('click',function(){
-
-            layer.open({
-                type: 1 //Page层类型
-                ,area: ['500px', '300px'],
-                title: '你好，layer。',
-                shade: 0.6 ,//遮罩透明度
-                maxmin: true ,//允许全屏最小化
-                content: '<div style="padding:50px;">这是一个非常普通的页面层，传入了自定义的html</div>',
-                end:function(){
-                    location.href='main.jsp'
-                }
-            });
+    var add = document.getElementById('add');
+    var container =document.getElementById('cc');
+    var node=container.nextSibling;
+    var countnum=2;
+    add.onclick = function(){
+        oDiv = document.createElement('div');
+        oDiv.innerHTML = "<div class='p-message'><div class='p-card'><div class='p-num' id='num'><i class='num-1'>"+(countnum++)+"</i>    </div>    <div class='input-group' style='margin-left: 15px;'>        <span class='input-group-addon'>姓名</span>        <input type='text' class='form-control ' placeholder='姓名请与登机证件保持一致' aria-label='...' style='width:360px;'>    </div>        <div>        <div style='margin-top: 10px;'>            <div class='col-lg-2' style='width:160px;'>            <select class='form-control' onchange='selectOnchang(this)'>            <option>身份证</option>            <option>护照</option>            <option>军人证</option>            </select>            </div>            <input type='text' class='form-control' placeholder='登机证件号码' style='width:270px;'>        </div>    </div>          <div>            <div style='margin-top: 10px;'>                <div class='col-lg-2' style='width:160px;'>                <select class='form-control' onchange='selectOnchang(this)'>                <option>中国大陆区号86</option>                <option>中国香港区号852</option>                <option>中国澳门区号853</option>                <option>中国台湾区号886</option>                </select>                </div>                <input type='text' class='form-control' placeholder='乘机人手机号码' style='width:270px;'>            </div>         </div>                   <button class='layui-btn layui-btn-sm' style='background: red; position: absolute;right: 15px;top: 10px;' id='p-del' onclick='dell()'>          <i class='layui-icon'>&#xe640;</i>            </button>                <div style='margin-top: 10px;'>                        <div class='layui-form-item' style='margin-bottom: 0px;'>                 <form class='layui-form' >                        <label class='layui-form-label' style='width:100px;'>您的座位</label>                        <div class='layui-input-block layui-input-inline' style='margin-left: 10px;'>                                <input type='checkbox' name='unitTypy' title='VIP' lay-skin='primary' width='100px;'>                                 <input type='checkbox' name='unitTypy' title='有无婴儿' lay-skin='primary'>                         </div>                </form>             </div>        </div>        <div style='margin-top: 10px;'>                <div class='layui-form-item'>                        <form class='layui-form' >                                <label class='layui-form-label' style='width:150px;'>您的座位更倾向于</label>                                <div class='layui-input-block layui-input-inline' style='margin-left: 20px; width:350px;'>                                        <input type='checkbox' name='unitTypy' title='靠窗' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='靠门' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='中间' lay-skin='primary'>                                         <input type='checkbox' name='unitTypy' title='靠过道' lay-skin='primary'>                                 </div>                        </form>                 </div>            </div>            </div></div>";
+        container.parentNode.insertBefore(oDiv, node)
+        node=oDiv.nextSibling;
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+            //各种基于事件的操作，下面会有进一步介绍
         });
-        function dell(){
-            alert('删除');
-            var delse=document.getElementById('p-del').parentNode;
-            delse.parentNode.removeChild(delse);
-        }
+    }
+    function dell(){
+        var delse=document.getElementById('p-del').parentNode;
+        delse.parentNode.removeChild(delse);
     }
 
 </script>
@@ -522,6 +507,20 @@
         var form = layui.form;
         form.render();
         //各种基于事件的操作，下面会有进一步介绍
+    });
+    $("#go").on('click',function(){
+
+        layer.open({
+            type: 1 //Page层类型
+            ,area: ['500px', '300px'],
+            title: '你好，layer。',
+            shade: 0.6 ,//遮罩透明度
+            maxmin: true ,//允许全屏最小化
+            content: '<div style="padding:50px;">这是一个非常普通的页面层，传入了自定义的html</div>',
+            end:function(){
+                location.href='main.jsp'
+            }
+        });
     });
 </script>
 </html>
