@@ -25,12 +25,19 @@ public class AdminFlightServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //判断是否非法访问
-        if(request.getSession().getAttribute("msg") == null){
-            request.getSession().setAttribute("error","请先登录!");
-            response.sendRedirect("login");
-            return;
+        String name="";
+        if(request.getParameter("s")==null){
+            name="/admin_flight.jsp";
+            //判断是否非法访问
+            if(request.getSession().getAttribute("msg") == null){
+                request.getSession().setAttribute("error","请先登录!");
+                response.sendRedirect("login");
+                return;
+            }
+        }else {
+            name="/android_h5/select_flight.jsp";
         }
+
         Dao dao = new Dao();
         List<FlightModel> list = new ArrayList<>();
         list = dao.findAllFlightmodel();
@@ -44,12 +51,7 @@ public class AdminFlightServlet extends HttpServlet {
 
         request.setAttribute("flight",list);
 
-        String name="";
-        if(request.getParameter("s")==null){
-            name="/admin_flight.jsp";
-        }else {
-            name="/android_h5/select_flight.jsp";
-        }
+
 
         request.getRequestDispatcher(name).forward(request,response);
     }
