@@ -51,22 +51,12 @@
         <!-- 左侧栏列表-->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i>首页</a></li>
-                <li class="active"><a href="<a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
-                <li><a href="#"><i class="fa fa-table"></i> 机型管理</a></li>
-                <li><a href="#"><i class="fa fa-edit"></i> 用户满意度</a></li>
+                <li><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active"><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
+                <li><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
+                <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Dropdown Item</a></li>
-                        <li><a href="#">Another Item</a></li>
-                        <li><a href="#">Third Item</a></li>
-                        <li><a href="#">Last Item</a></li>
-                    </ul>
-                </li>
             </ul>
-
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown user-dropdown">
