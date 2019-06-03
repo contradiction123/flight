@@ -338,10 +338,23 @@
                         <form class="layui-form" >
                             <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
                             <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
-                                <input type="checkbox" name="unitTypy" title="靠窗" lay-skin="primary">
-                                <input type="checkbox" name="unitTypy" title="靠门" lay-skin="primary">
-                                <input type="checkbox" name="unitTypy" title="中间" lay-skin="primary">
-                                <input type="checkbox" name="unitTypy" title="靠过道" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="靠窗" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="靠门" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="中间" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="靠过道" lay-skin="primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="layui-form-item">
+                        <form class="layui-form" >
+                            <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
+                            <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
+                                <input type="radio" name="unitTypy" title="靠窗" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="靠门" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="中间" lay-skin="primary">
+                                <input type="radio" name="unitTypy" title="靠过道" lay-skin="primary">
                             </div>
                         </form>
                     </div>
