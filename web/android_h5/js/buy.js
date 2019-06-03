@@ -201,13 +201,6 @@ $(".addbtn").click(function(){
         },
         dataType: 'text',   //设置返回值类型
         success:function(e){
-            console.log(e);
-
-            // if(e=="1"){
-            //     document.getElementById("display").submit();
-            // }else {
-            //     alert("失败");
-            // }
 
             document.getElementById("f_number").value=flight_number;
             document.getElementById("f_name").value=user_name;

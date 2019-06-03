@@ -18,11 +18,11 @@
     <title>选飞机界面</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<c:url value="./bootstrap-3.3.7-dist/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.min.css" />" rel="stylesheet">
     <!-- Add custom CSS here -->
-    <link href="<c:url value="./css/admin.css" />" rel="stylesheet">
+    <link href="<c:url value="/css/admin.css" />" rel="stylesheet">
     <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="<c:url value="./css/morris-0.4.3.min.css" />">
+    <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
     <style>
         body,html{
             height: 100%;
@@ -131,11 +131,11 @@
         }
         .number{
             margin-top: 10px;
-            background: #ccc;
+            background: #D3E3F0;
             padding-left: 29px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            border: 2px #ccc solid;
+            border: 2px #D3E3F0 solid;
             line-height: 200%;
         }
         .ur{
@@ -266,19 +266,20 @@
         }
         .search-wrapper .input-holder .search-icon span::before {
             width: 4px;
-            height: 11px;
-            left: 9px;
-            top: 18px;
+            height: 27px;
+            left: 11px;
+            top: 9px;
             border-radius: 2px;
             background: #974BE0;
         }
         .search-wrapper .input-holder .search-icon span::after {
-            width: 14px;
-            height: 14px;
-            left: 0px;
-            top: 0px;
+            width: 27px;
+            height: 27px;
+            left: -1px;
+            top: -12px;
             border-radius: 16px;
             border: 4px solid #974BE0;
+
         }
 
         .search-wrapper .close {
@@ -374,7 +375,7 @@
 
         <div class="row">
             <div class="col-lg-12 header">
-                <div><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 10px;"></span></a></div>
+                <div><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 18px;"></span></a></div>
                 <div></div>
             </div>
 
@@ -416,16 +417,17 @@
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
-<script src="<c:url value="./jquery/jquery.min.js" />"></script>
-<script src="<c:url value="./bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
+
+<script src="<c:url value="/jquery/jquery.min.js" />"></script>
+<script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
 
 
 <!-- Page Specific Plugins -->
-<script src="<c:url value="./js/raphael-min.js" />"></script>
-<script src="<c:url value="./js/morris-0.4.3.min.js" />"></script>
-<script src="<c:url value="./js/morris/chart-data-morris.js" />"></script>
-<script src="<c:url value="./js/tablesorter/jquery.tablesorter.js" />"></script>
-<script src="<c:url value="./js/tablesorter/tables.js" />"></script>
+<script src="<c:url value="/js/raphael-min.js" />"></script>
+<script src="<c:url value="/js/morris-0.4.3.min.js" />"></script>
+<script src="<c:url value="/js/morris/chart-data-morris.js" />"></script>
+<script src="<c:url value="/js/tablesorter/jquery.tablesorter.js" />"></script>
+<script src="<c:url value="/js/tablesorter/tables.js" />"></script>
 <script type="text/javascript">
     function searchToggle(obj, evt){
         var container = $(obj).closest('.search-wrapper');

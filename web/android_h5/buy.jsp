@@ -249,21 +249,21 @@
         }
         .search-wrapper .input-holder .search-icon span::before {
             width: 4px;
-            height: 11px;
-            left: 9px;
-            top: 18px;
+            height: 27px;
+            left: 11px;
+            top: 9px;
             border-radius: 2px;
             background: #974BE0;
         }
         .search-wrapper .input-holder .search-icon span::after {
-            width: 14px;
-            height: 14px;
-            left: 0px;
-            top: 0px;
+            width: 27px;
+            height: 27px;
+            left: -1px;
+            top: -12px;
             border-radius: 16px;
             border: 4px solid #974BE0;
-        }
 
+        }
         .search-wrapper .close {
             position: absolute;
             z-index: 1;
@@ -360,7 +360,7 @@
 
         <div class="row">
             <div class="col-lg-12 header">
-                <div><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 10px;"></span></a></div>
+                <div><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 18px;"></span></a></div>
                 <div></div>
             </div>
 
