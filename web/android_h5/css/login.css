@@ -190,7 +190,7 @@ background-image: repeating-radial-gradient(circle at 50% 50%,#fcf8e3,#2aabd2 10
     font-size: 9ex}
     /* �޸����ִ�С�� */
     .menu a:hover:before {
-      opacity: 1;
+      opacity: 0;
       transform: translateX(0px); }
     .menu a:before {
       content: "";

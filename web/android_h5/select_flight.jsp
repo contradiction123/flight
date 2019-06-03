@@ -358,7 +358,8 @@
 
 <body>
 <section class="container">
-    <form onsubmit="submitFn(this, event);" method="post" action="../android/display_seat" id="search-form">
+
+    <form onsubmit="submitFn(this, event);"  method="post" action="<c:url value="/android/display_seat"/>" id="search-form">
         <div class="search-wrapper">
             <div class="input-holder">
                 <input type="text" id="text" class="search-input" placeholder="Type to search"  name="name"/>

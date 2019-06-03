@@ -121,6 +121,7 @@ public class buyTicketOperationServlet extends HttpServlet {
                         userAttribute.setType_one(userNume[j][1]);
                         userAttribute.setType_second(userNume[j][2]);
                         userAttribute.setHeader(userNume[0][0]);
+                        userAttribute.setFlight_number(flight_number);
 
                         userAttributeList.add(userAttribute);
                     }
@@ -129,58 +130,30 @@ public class buyTicketOperationServlet extends HttpServlet {
 
         }//外层的while结束
 
-        //判断有几个人就执行分配几个人的代码
+
+//        for(int i=0;i<userAttributeList.size();i++){
+//            System.out.println("***********");
+//            System.out.println(userAttributeList.get(i).getUser_id());
+//            System.out.println(userAttributeList.get(i).getType_one());
+//            System.out.println(userAttributeList.get(i).getType_second());
+//            System.out.println(userAttributeList.get(i).getFlight_number());
+//            System.out.println(userAttributeList.get(i).getHeader());
+//            System.out.println("***********");
+//        }
+
+//判断有几个人就执行分配几个人的代码
         //所有用户都在userAttributeList里面
         switch (userAttributeList.size()){
             case 1:
-                //当用户只有一个人时，调用one（）方法，里面参数是用户列表（userAttributeList）和航班号
-                //并且将返回的座位加上“zZz”进行分隔，其实是不用分隔因为只有一个，
-                // 但是为了返回后ajax接收时好进行统一的判断，
-                // 加上后把值发送到客户端由ajax接收
-                response.getWriter().print(one(userAttributeList,flight_number)+"zZz");
+                new Dao().allA(userAttributeList,flight_number);
                 break;
-            case 2:
-
-                break;
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-                //当有八个人的时候调用eight()方法，里面参数是用户列表（userAttributeList）和航班号
-                //并且将返回的座位加上“zZz”进行分隔，其实是不用分隔因为只有一个，
-                // 但是为了返回后ajax接收时好进行统一的判断，
-                // 加上后把值发送到客户端由ajax接收
-                List<String> seatList=eight(userAttributeList,flight_number);
-                String seatstring="";
-                for(int i=0;i<seatList.size();i++){
-                    seatstring+=seatList.get(i)+"zZz";
-                }
-                response.getWriter().print(seatstring);
-                break;
-
             default:
-
+                new Dao().allAteam(userAttributeList,flight_number);
                 break;
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    //当userAttributeList的长度是1的时候使用
-    //这个函数是 为一个人分配时使用的代码
-    public String one(List<UserAttribute> userAttributeList,String flight_number){
-        return new Dao().allot(userAttributeList,flight_number);
-    }
-
-    //当userAttributeList的长度是8的时候使用
-    //这个函数是 为八个人分配时使用的代码
-    private List<String> eight(List<UserAttribute> userAttributeList,String flight_number){
-        //定义的string数组是，存放分配好的座位的
-        List<String> seatList=new Dao().allotEight(userAttributeList,flight_number);
-        return seatList;
     }
 }

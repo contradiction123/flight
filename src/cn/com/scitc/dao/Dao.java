@@ -1458,7 +1458,7 @@ public class Dao {
                         UserFlightSeat userFlightSeat=new UserFlightSeat();
 
                         userFlightSeat.setUser_id(userAttributeLists.get(i).getUser_id());
-                        userFlightSeat.setTeam(userAttributeLists.get(i).getHeader());
+                        userFlightSeat.setTeam("1");
                         userFlightSeat.setFlight_number(flight_number);
                         userFlightSeat.setWant_seat_attribute_second(userAttributeLists.get(i).getType_second());
                         userFlightSeat.setWant_seat_attribute_one(userAttributeLists.get(i).getType_one());
@@ -1481,7 +1481,7 @@ public class Dao {
                     UserFlightSeat userFlightSeat=new UserFlightSeat();
 
                     userFlightSeat.setUser_id(userAttributeLists.get(i).getUser_id());
-                    userFlightSeat.setTeam(userAttributeLists.get(i).getHeader());
+                    userFlightSeat.setTeam("1");
                     userFlightSeat.setFlight_number(flight_number);
                     userFlightSeat.setWant_seat_attribute_second(userAttributeLists.get(i).getType_second());
                     userFlightSeat.setWant_seat_attribute_one(userAttributeLists.get(i).getType_one());
@@ -1633,7 +1633,7 @@ public class Dao {
                 userFlightSeat.setSeat_id(allotseatlist.get(ii));
                 userFlightSeat.setSatisfaction(satisfactionlist.get(ii));
                 userFlightSeat.setFlight_number(flight_number);
-                userFlightSeat.setTeam(templist.get(0).getUser_id());
+                userFlightSeat.setTeam("1");
                 userFlightSeat.setAllot_course((allotCourse));
 
                 userFlightSeatList.add(userFlightSeat);

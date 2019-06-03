@@ -285,11 +285,19 @@
         <div class="p-message" id="cc">
             <div class="p-card">
                 <div class="p-num">
-                    <i class="num-1">1</i>
+                    <i class="num-1"></i>
                 </div>
                 <div class="input-group" style="margin-left: 15px;">
                     <span class="input-group-addon">姓名</span>
                     <input type="text" class="form-control " value='<c:out value="${msg.user_name}" />'  aria-label="..." style="width:360px;">
+                </div>
+                <div>
+                    <div style="margin-top: 10px;">
+                        <div class="input-group" style="margin-left: 15px;">
+                            <span class="input-group-addon">账号</span>
+                            <input type="text" class="form-control  user-id" value=''  placeholder="账号" aria-label="..." style="width:360px;">
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <div style="margin-top: 10px;">
@@ -300,26 +308,11 @@
                                 <option>军人证</option>
                             </select>
                         </div>
-                        <input type="text" class="form-control" placeholder="登机证件号码" style="width:270px;">
-                    </div>
-                </div>
-                <div>
-                    <div style="margin-top: 10px;">
-                        <div class="col-lg-2" style="width:160px;">
-                            <select class="form-control" onchange="selectOnchang(this)">
-                                <option>中国大陆区号86</option>
-                                <option>中国香港区号852</option>
-                                <option>中国澳门区号853</option>
-                                <option>中国台湾区号886</option>
-                            </select>
-                        </div>
-                        <input type="text" class="form-control" placeholder="乘机人手机号码" style="width:270px;">
+                        <input type="text" class="form-control" placeholder="证件号码" style="width:270px;">
                     </div>
                 </div>
 
-                <button class="layui-btn layui-btn-sm" style="background: red; position: absolute;right: 15px;top: 10px;" id="p-del" onclick='dell()'>
-                    <i class="layui-icon">&#xe640;</i>
-                </button>
+
 
                 <div style="margin-top: 10px;">
 
@@ -327,8 +320,23 @@
                         <form class="layui-form" >
                             <label class="layui-form-label" style="width:100px;">您的座位</label>
                             <div class="layui-input-block layui-input-inline" style="margin-left: 10px;">
-                                <input type="checkbox" name="unitTypy" title="VIP" lay-skin="primary" width="100px;">
-                                <input type="checkbox" name="unitTypy" title="有无婴儿" lay-skin="primary">
+                                <input type="checkbox" name="unitTypy" class="attribute-user" value="vip" title="VIP" lay-skin="primary" width="100px;">
+                                <input type="checkbox" name="unitTypy" class="attribute-user" value="child" title="有无婴儿" lay-skin="primary">
+                                <button id="select-c-v" class="button button-fill">确定(可不选)</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="layui-form-item">
+                        <form class="layui-form" >
+                            <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
+                            <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠窗" value="windows" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠门" value="door" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="中间" value="middle" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠过道" value="aisle" lay-skin="primary">
                             </div>
                         </form>
                     </div>
@@ -338,23 +346,10 @@
                         <form class="layui-form" >
                             <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
                             <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
-                                <input type="radio" name="unitTypy" title="靠窗" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="靠门" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="中间" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="靠过道" lay-skin="primary">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div style="margin-top: 10px;">
-                    <div class="layui-form-item">
-                        <form class="layui-form" >
-                            <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
-                            <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
-                                <input type="radio" name="unitTypy" title="靠窗" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="靠门" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="中间" lay-skin="primary">
-                                <input type="radio" name="unitTypy" title="靠过道" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠窗"  value="windows" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠门" value="door" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="中间" value="middle" lay-skin="primary">
+                                <input type="radio" class="attribute-user" name="unitTypy" title="靠过道" value="aisle" lay-skin="primary">
                             </div>
                         </form>
                     </div>
@@ -411,6 +406,9 @@
                     <div class="plane-type">
                         <c:out value="${flight_number}" />
                     </div>
+                    <form method="get" action="#" id="formflight">
+                        <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
+                    </form>
                     <div class="plane-type">
                         经济舱
                     </div>
@@ -464,10 +462,10 @@
                 </div>
                 <div>
                     <div class="total-price">
-                                                <span>
-                                                    <dfn style="font-size: 18px;">￥</dfn>
-                                                    200
-                                                </span>
+                        <span>
+                            <dfn style="font-size: 18px;">￥</dfn>
+                            200
+                        </span>
                     </div>
                 </div>
             </div>
@@ -484,10 +482,9 @@
     var add = document.getElementById('add');
     var container =document.getElementById('cc');
     var node=container.nextSibling;
-    var countnum=2;
     add.onclick = function(){
         oDiv = document.createElement('div');
-        oDiv.innerHTML = "<div class='p-message'><div class='p-card'><div class='p-num' id='num'><i class='num-1'>"+(countnum++)+"</i>    </div>    <div class='input-group' style='margin-left: 15px;'>        <span class='input-group-addon'>姓名</span>        <input type='text' class='form-control ' placeholder='姓名请与登机证件保持一致' aria-label='...' style='width:360px;'>    </div>        <div>        <div style='margin-top: 10px;'>            <div class='col-lg-2' style='width:160px;'>            <select class='form-control' onchange='selectOnchang(this)'>            <option>身份证</option>            <option>护照</option>            <option>军人证</option>            </select>            </div>            <input type='text' class='form-control' placeholder='登机证件号码' style='width:270px;'>        </div>    </div>          <div>            <div style='margin-top: 10px;'>                <div class='col-lg-2' style='width:160px;'>                <select class='form-control' onchange='selectOnchang(this)'>                <option>中国大陆区号86</option>                <option>中国香港区号852</option>                <option>中国澳门区号853</option>                <option>中国台湾区号886</option>                </select>                </div>                <input type='text' class='form-control' placeholder='乘机人手机号码' style='width:270px;'>            </div>         </div>                   <button class='layui-btn layui-btn-sm' style='background: red; position: absolute;right: 15px;top: 10px;' id='p-del' onclick='dell()'>          <i class='layui-icon'>&#xe640;</i>            </button>                             </div>        </div>              </div></div>";
+        oDiv.innerHTML = "<div class='p-message'><div class='p-card'><div class='p-num' id='num'><i class='num-1'></i>    </div>    <div class='input-group' style='margin-left: 15px;'>        <span class='input-group-addon'>账号</span>        <input type='text' class='form-control user-id' placeholder='账号' aria-label='...' style='width:360px;'>    </div>        <div>        <div style='margin-top: 10px;'>            <div class='col-lg-2' style='width:160px;'>            <select class='form-control' onchange='selectOnchang(this)'>            <option>身份证</option>            <option>护照</option>            <option>军人证</option>            </select>            </div>            <input type='text' class='form-control' placeholder='登机证件号码' style='width:270px;'>        </div>    </div>          <div>            <div style='margin-top: 10px;'>                <div class='col-lg-2' style='width:160px;'>                <select class='form-control' onchange='selectOnchang(this)'>                <option>中国大陆区号86</option>                <option>中国香港区号852</option>                <option>中国澳门区号853</option>                <option>中国台湾区号886</option>                </select>                </div>                <input type='text' class='form-control' placeholder='乘机人手机号码' style='width:270px;'>            </div>         </div>                   <button class='layui-btn layui-btn-sm p-del' style='background: red; position: absolute;right: 15px;top: 10px;'  onclick='dell(0)'>          <i class='layui-icon'>&#xe640;</i>            </button>                             </div>        </div>              </div></div>";
         container.parentNode.insertBefore(oDiv, node)
         node=oDiv.nextSibling;
         layui.use('form', function(){
@@ -496,9 +493,14 @@
             //各种基于事件的操作，下面会有进一步介绍
         });
     }
-    function dell(){
-        var delse=document.getElementById('p-del').parentNode;
-        delse.parentNode.removeChild(delse);
+    function dell(e){
+        // var delse=document.getElementsByClassName('p-del')[e].parentNode;
+        // delse.parentNode.removeChild(delse);
+        $(".p-del").click(function(){
+            var a=$(".p-del").index(this);
+            var delse=document.getElementsByClassName('p-del')[a].parentNode;
+            delse.parentNode.removeChild(delse);
+        })
     }
 
 </script>
@@ -510,17 +512,111 @@
     });
     $("#go").on('click',function(){
 
-        layer.open({
-            type: 1 //Page层类型
-            ,area: ['500px', '300px'],
-            title: '你好，layer。',
-            shade: 0.6 ,//遮罩透明度
-            maxmin: true ,//允许全屏最小化
-            content: '<div style="padding:50px;">这是一个非常普通的页面层，传入了自定义的html</div>',
-            end:function(){
-                location.href='main.jsp'
+        // layer.open({
+        //     type: 1 //Page层类型
+        //     ,area: ['500px', '300px'],
+        //     title: '你好，layer。',
+        //     shade: 0.6 ,//遮罩透明度
+        //     maxmin: true ,//允许全屏最小化
+        //     content: '<div style="padding:50px;">这是一个非常普通的页面层，传入了自定义的html</div>',
+        //     end:function(){
+        //         location.href='main.jsp'
+        //     }
+        // });
+        var user_id=$(".user-id");
+        var judge=0;
+        for(let i=0;i<$(".user-id").length;i++){
+
+            if(user_id[i].value.length<2){
+                judge=1;
+                document.getElementsByClassName("user-id")[i].style.border="2px solid #red";
+                break;
             }
-        });
+        }
+
+        if(judge==0){
+            //首先定义passenger_info的数组拿来存放每一个人选择位置的信息
+            var passenger_info = new Array();
+            var user_name="";
+            var json1=new Array();
+            if($(".user-id").length==1){
+
+                var attribute=new Array(2);
+                var arbk=0;
+                var user_attribute=$(".attribute-user");
+                if(user_attribute[0].checked)attribute[arbk++]="vip";
+                if(user_attribute[1].checked)attribute[arbk++]="child";
+                if(user_attribute[2].checked)attribute[arbk++]="windows";
+                if(user_attribute[3].checked)attribute[arbk++]="door";
+                if(user_attribute[4].checked)attribute[arbk++]="middle";
+                if(user_attribute[5].checked)attribute[arbk++]="aisle";
+                if(user_attribute[6].checked)attribute[arbk++]="windows";
+                if(user_attribute[7].checked)attribute[arbk++]="door";
+                if(user_attribute[8].checked)attribute[arbk++]="middle";
+                if(user_attribute[9].checked)attribute[arbk++]="aisle";
+
+                // console.log(attribute[0]+","+attribute[1]);
+
+                var jsonObj = {};
+                user_name+=$(".user-id:eq(0)").val()+",";
+                jsonObj["Id"]=$(".user-id:eq(0)").val();
+                jsonObj["type_one"]=attribute[0];
+                jsonObj["type_second"]=attribute[1];
+
+                passenger_info.push(jsonObj);
+
+                //新建一个json数组并存进航班号和有多少个人和每一个人的选座信息
+                //这里位置顺序不能弄乱因为在后台是按照顺序读取的
+
+                var j={};
+                j["passenger_flight_number"]="<c:out value="${flight_number}" />";//航班号
+                j["passenger_num"]=$(".user-id").length;//人数
+                j["passenger_info"]=passenger_info;//个人座位需求信息
+                json1.push(j);
+
+
+            }else {
+                console.log($(".user-id:eq(1)").val());
+                for(let i=0;i<$(".user-id").length;i++){
+                    console.log(i);
+                    user_name+=document.getElementsByClassName("user-id")[i].value+",";
+                    var jsonObj = {};
+                    jsonObj["Id"]=document.getElementsByClassName("user-id")[i].value;
+                    console.log(document.getElementsByClassName("user-id")[i].value);
+                    jsonObj["type_one"]="null";
+                    jsonObj["type_second"]="null";
+                    passenger_info.push(jsonObj);
+                }
+
+                //新建一个json数组并存进航班号和有多少个人和每一个人的选座信息
+                //这里位置顺序不能弄乱因为在后台是按照顺序读取的
+                var json1=new Array();
+                var j={};
+                j["passenger_flight_number"]="<c:out value="${flight_number}" />";//航班号
+                j["passenger_num"]=$(".user-id").length;//人数
+                j["passenger_info"]=passenger_info;//个人座位需求信息
+                json1.push(j);
+            }
+
+            //使用ajax用post的方式传到后台进行处理，为每一个人分配位置
+            $.ajax({
+                type:"POST", //请求方式
+                url:"./buy_ticket_operation", //请求路径
+                cache: false,
+                data:{//传参_传递刚才创建的json1数组
+                    "jsonArr":json1,
+                },
+                dataType: 'text',   //设置返回值类型
+                success:function(e){
+                    //
+                    document.getElementById("formflight").submit();
+                }
+            });//ajax——的结束
+        }
     });
+</script>
+
+<script>
+
 </script>
 </html>

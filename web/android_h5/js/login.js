@@ -85,7 +85,7 @@ tlClose.add("close")
 }, "close")
 .to(menuMiddle, 0.2, {
   backgroundColor: "#6295ca", ease: Power4.easeInOut
-}, "close") 
+}, "close")
 .to(menuBottom, 0.2, {
   backgroundColor: "#6295ca", ease: Power4.easeInOut
 }, "close")
@@ -130,16 +130,26 @@ tlClose.add("close")
   x: "-=80px", y: "+=80px", delay: 0.1, ease: Power4.easeOut
 }, "close");
 
+$("#logo-svg").click(function () {
+    a();
+    $("#logo-svg").css("z-index","-1");
+});
+
 //EVENTS
 openTrigger.on('click', function(){
-  if(tlOpen.progress() < 1){
-                tlOpen.play();
-            } else {
-                tlOpen.restart();
-            }
+  a();
 });
-       
+function a(){
+    if(tlOpen.progress() < 1){
+        tlOpen.play();
+    } else {
+        tlOpen.restart();
+
+    }
+}
 closeTrigger.on('click', function(){
+    if(judge)searchToggle($(".close"),event);
+    $("#logo-svg").css("z-index","10");
   if(tlClose.progress() < 1){
                 tlClose.play();
             } else {
