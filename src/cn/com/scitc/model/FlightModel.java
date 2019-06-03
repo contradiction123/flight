@@ -5,6 +5,24 @@ public class FlightModel {
     private String name;
     private int z;
     private int r;
+    private float t;
+    private float f;
+
+    public float getT() {
+        return t;
+    }
+
+    public void setT(float t) {
+        this.t = t;
+    }
+
+    public float getF() {
+        return f;
+    }
+
+    public void setF(float f) {
+        this.f = f;
+    }
 
     public int getZ() {
         return z;

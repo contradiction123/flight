@@ -47,7 +47,7 @@
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${msg.user_name}" /><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -58,20 +58,25 @@
         </div><!-- /.navbar-collapse -->
     </nav>
     <div id="page-wrapper">
+
         <div class="row">
+            <c:forEach var="flight_name" items="${flight_name}">
             <div class="col-lg-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>系统运行情况</h3>
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i><c:out value="${flight_name.name}" />客机满意度： </h3>
                     </div>
                     <div class="panel-body">
-                        <div id="morris-chart-donut"></div>
+                        <div id='<c:out value="${flight_name.name}" />'></div>
                         <div class="text-right">
                             <a href="#">查看详细信息 <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
+            </c:forEach>
+        </div>
+
     </div><!-- /#wrapper -->
 </div>
 <!-- JavaScript -->
@@ -85,6 +90,17 @@
 <script src="<c:url value="js/morris/chart-data-morris.js" />"></script>
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
-
+<script>
+    <c:forEach items="${flight_name}" var="flight">
+    Morris.Donut({
+        element: '<c:out value="${flight.name}" />',
+        data: [
+            {label: "满意", value: <c:out value="${flight.t}" />},
+            {label: "不满意", value: <c:out value="${flight.f}" />},
+        ],
+        formatter: function (y) { return y + "%" ;}
+    });
+    </c:forEach>
+</script>
 </body>
 </html>
