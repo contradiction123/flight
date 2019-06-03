@@ -132,15 +132,15 @@ public class android_Ticket extends HttpServlet {
 
         }//外层的while结束
 
-        for(int i=0;i<userAttributeList.size();i++){
-            System.out.println("***********");
-            System.out.println(userAttributeList.get(i).getUser_id());
-            System.out.println(userAttributeList.get(i).getType_one());
-            System.out.println(userAttributeList.get(i).getType_second());
-            System.out.println(userAttributeList.get(i).getFlight_number());
-            System.out.println(userAttributeList.get(i).getHeader());
-            System.out.println("***********");
-        }
+//        for(int i=0;i<userAttributeList.size();i++){
+//            System.out.println("***********");
+//            System.out.println(userAttributeList.get(i).getUser_id());
+//            System.out.println(userAttributeList.get(i).getType_one());
+//            System.out.println(userAttributeList.get(i).getType_second());
+//            System.out.println(userAttributeList.get(i).getFlight_number());
+//            System.out.println(userAttributeList.get(i).getHeader());
+//            System.out.println("***********");
+//        }
 
         //判断有几个人就执行分配几个人的代码
         //所有用户都在userAttributeList里面

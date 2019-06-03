@@ -335,7 +335,10 @@
         .search-wrapper.active{
             right:-84px;
         }
+
     </style>
+
+
 </head>
 
 <body>
@@ -431,6 +434,7 @@
                                 <input type="text" class="form-control" placeholder="name" name="s" id="name">
                             </div>
                         </div>
+
                         <div class="form-group modal-body-div child_vip_type">
                             <div>
                                 <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
@@ -505,6 +509,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
 

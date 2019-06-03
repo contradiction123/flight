@@ -243,6 +243,124 @@
             border-radius: 3px;
         }
     </style>
+    <%--<link href="<c:url value="/android_h5/css/buy.css"/>" rel="stylesheet">--%>
+    <style>
+        .clear {
+            clear: both
+        }
+        .RadioStyle input {
+            display: none
+        }
+        .RadioStyle label {
+            border: 1px solid #CCC;
+            color: #666;
+            padding: 2px 10px 2px 5px;
+            line-height: 28px;
+            min-width: 80px;
+            text-align: center;
+            float: left;
+            margin: 2px;
+            border-radius: 4px
+        }
+        .RadioStyle input:checked + label {
+            background: url(<c:url value="/android_h5/images/ico_checkon.svg" />) no-repeat right bottom;
+            border: 1px solid #00a4ff;
+            background-size: 21px 21px;
+            color: #00a4ff
+        }
+        .RadioStyle input:disabled + label {
+            opacity: 0.7;
+        }
+        .child_vip{
+            width: 48%;
+        }
+        .threechild_vip{
+            width: 98%;
+        }
+        .one,.second{
+            width: 23%;
+        }
+        .attribute{
+            display: none;
+        }
+
+        .user_id_type{
+            font-size: 18px;
+        }
+        .attribute_type{
+            font-size: 8px;
+            text-align: left;
+        }
+
+
+        .item span:nth-of-type(1){display:inline-block;font-size:14px;width:100%;line-height:24px;}
+        .item span:nth-of-type(2){border-bottom:1px solid #eee;position:absolute;right:-60px;display:inline-block;font-size:14px;width:60px;background:#ddd;text-align: center;line-height:50px;}
+        .item span:nth-of-type(3){border-bottom:1px solid #eee;position:absolute;right:-120px;display:inline-block;font-size:14px;width:60px;background:red;text-align: center;line-height:50px;}
+
+        .user_id_type{
+            display: flex;
+        }
+        .user_id_type>div{
+            width: 50%;
+            text-align: left;
+        }
+        .user_id_type>div:nth-child(2){
+            position: relative;
+        }
+        .user_id_type>div:nth-child(2)>span{
+            position: absolute;
+            left: 0px;
+            width: 27%;
+            transform: scale(0.8);
+            border: #5e5e5e 1px solid;
+        }
+        .user_id_type1{
+            display: flex;
+            margin-top: 10px;
+        }
+        .user_id_type1>div{
+            width: 50%;
+            text-align: left;
+        }
+        #a1{
+            display: flex;
+        }
+        #a1>div{
+            width: 50%;
+        }
+        .attribute{
+            width: 100%;
+        }
+        .attribute>div{
+            width: 70%;
+        }
+
+        #a2{
+            display: flex;
+        }
+        #a2>div{
+            width: 25%;
+        }
+        #a3{
+            display: flex;
+        }
+        #a3>div{
+            width: 25%;
+        }
+        label{
+            transform: scale(0.9);
+        }
+        .child_vip{
+            width: 100%;
+            transform: scale(1);
+        }
+        .RadioStyle{
+            width: 70%;
+        }
+        .one,.second{
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="header_wrap">
@@ -314,44 +432,78 @@
 
 
 
-                <div style="margin-top: 10px;">
-
-                    <div class="layui-form-item" style="margin-bottom: 0px;">
-                        <form class="layui-form" >
-                            <label class="layui-form-label" style="width:100px;">您的座位</label>
-                            <div class="layui-input-block layui-input-inline" style="margin-left: 10px;">
-                                <input type="checkbox" name="unitTypy" class="attribute-user" value="vip" title="VIP" lay-skin="primary" width="100px;">
-                                <input type="checkbox" name="unitTypy" class="attribute-user" value="child" title="有无婴儿" lay-skin="primary">
-                                <button id="select-c-v" class="button button-fill">确定(可不选)</button>
+                <div class="form-group modal-body-div child_vip_type">
+                    <div style="margin-top: 20px;">
+                        <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
+                    </div>
+                    <div class="RadioStyle">
+                        <div class="Block PaddingL">
+                            <div id="a1">
+                                <div>
+                                    <input type="checkbox" id="love1" name="Storage" class="Storage"/>
+                                    <label for="love1" class="child_vip">child</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="love2" name="Storage" class="Storage" />
+                                    <label for="love2" class="child_vip">vip</label>
+                                </div>
                             </div>
-                        </form>
-
+                            <div>
+                                <input type="checkbox" id="love3" name="Storage" class="Storage"/>
+                                <label for="love3" class="child_vip threechild_vip">不选</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top: 10px;">
-                    <div class="layui-form-item">
-                        <form class="layui-form" >
-                            <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
-                            <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠窗" value="windows" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠门" value="door" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="中间" value="middle" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠过道" value="aisle" lay-skin="primary">
+                <div class="form-group modal-body-div attribute">
+                    <div>
+                        <label class="modal-body-label">第一属性：</label>
+                    </div>
+                    <div class="RadioStyle">
+                        <div class="Block PaddingL" id="a2">
+                            <div>
+                                <input type="radio" name="Storage1" id="model7" class="Storage1" />
+                                <label for="model7" class="one">windows</label>
                             </div>
-                        </form>
+                            <div>
+                                <input type="radio" name="Storage1" id="model4" class="Storage1" />
+                                <label for="model4" class="one">door</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="Storage1" id="model5" class="Storage1"/>
+                                <label for="model5" class="one">middle</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="Storage1" id="model6" class="Storage1"/>
+                                <label for="model6" class="one">aisle</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top: 10px;">
-                    <div class="layui-form-item">
-                        <form class="layui-form" >
-                            <label class="layui-form-label" style="width:150px;">您的座位更倾向于</label>
-                            <div class="layui-input-block layui-input-inline" style="margin-left: 20px; width:350px;">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠窗"  value="windows" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠门" value="door" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="中间" value="middle" lay-skin="primary">
-                                <input type="radio" class="attribute-user" name="unitTypy" title="靠过道" value="aisle" lay-skin="primary">
+
+                <div class="form-group modal-body-div attribute">
+                    <div>
+                        <label class="wenzi-5ex modal-body-label">第二属性:</label>
+                    </div>
+                    <div class="RadioStyle">
+                        <div class="Block PaddingL" id="a3">
+                            <div>
+                                <input type="radio" name="Storage2" id="model11" class="Storage2"/>
+                                <label for="model11" class="second">windows</label>
                             </div>
-                        </form>
+                            <div>
+                                <input type="radio" name="Storage2" id="model8" class="Storage2"/>
+                                <label for="model8" class="second">door</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="Storage2" id="model9" class="Storage2"/>
+                                <label for="model9" class="second">middle</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="Storage2" id="model10" class="Storage2"/>
+                                <label for="model10" class="second">aisle</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -544,16 +696,16 @@
                 var attribute=new Array(2);
                 var arbk=0;
                 var user_attribute=$(".attribute-user");
-                if(user_attribute[0].checked)attribute[arbk++]="vip";
-                if(user_attribute[1].checked)attribute[arbk++]="child";
-                if(user_attribute[2].checked)attribute[arbk++]="windows";
-                if(user_attribute[3].checked)attribute[arbk++]="door";
-                if(user_attribute[4].checked)attribute[arbk++]="middle";
-                if(user_attribute[5].checked)attribute[arbk++]="aisle";
-                if(user_attribute[6].checked)attribute[arbk++]="windows";
-                if(user_attribute[7].checked)attribute[arbk++]="door";
-                if(user_attribute[8].checked)attribute[arbk++]="middle";
-                if(user_attribute[9].checked)attribute[arbk++]="aisle";
+                if(storage[0].checked )attribute[arbk++]="vip";
+                if(storage[1].checked )attribute[arbk++]="child";
+                if(storage1[0].checked)attribute[arbk++]="windows";
+                if(storage1[1].checked)attribute[arbk++]="door";
+                if(storage1[2].checked)attribute[arbk++]="middle";
+                if(storage1[3].checked)attribute[arbk++]="aisle";
+                if(storage2[0].checked)attribute[arbk++]="windows";
+                if(storage2[1].checked)attribute[arbk++]="door";
+                if(storage2[2].checked)attribute[arbk++]="middle";
+                if(storage2[3].checked)attribute[arbk++]="aisle";
 
                 // console.log(attribute[0]+","+attribute[1]);
 
@@ -617,6 +769,119 @@
 </script>
 
 <script>
+    var child_vip=$(".child_vip");
+    var storage=$(".Storage");
+    var attribute=$(".attribute");
+    var storage1=$(".Storage1");
+    var storage2=$(".Storage2");
+    var isselect=0;
+    var one=$(".one");
+    var second=$(".second");
+    var onek=0;
+    var secondk=0;
 
+    var userconut=0;
+
+    var user=$(".user");
+
+    var list_item=$(".list-item");
+
+    var user_name="";
+
+    $(".add:eq(0)").click(function () {
+        clearadduser();
+    });
+
+    function clearadduser() {
+        $(".child_vip_type:eq(0)").css('display','inline');
+        $(".child_vip:eq(2)").css('display','inline');
+
+        $("#love1").attr("disabled",false);
+        $("#love2").attr("disabled",false);
+        $("#love3").attr("disabled",false);
+        storage[0].checked=false;
+        storage[1].checked=false;
+        storage[2].checked=false;
+
+        for(let i=0;i<storage1.length;i++){
+            storage1[i].checked=false;
+            storage2[i].checked=false;
+        };
+
+        attribute[0].style.display="none";
+        attribute[1].style.display="none";
+
+        document.getElementById("name").style.border="2px solid #ced4da";
+
+        document.getElementById("name").value="";
+
+        document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
+
+        isselect=0;
+        onek=0;
+        secondk=0;
+    }
+
+    child_vip[0].onclick=function () {
+        if(!storage[0].checked||storage[1].checked){
+            storage[0].style.border="1px solid #CCC";
+            storage[1].style.border="1px solid #CCC";
+            child_vip[2].innerHTML="确定";
+            isselect++;
+            document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
+        }else {
+            child_vip[2].innerHTML="不选";
+            isselect--;
+        };
+    };
+    child_vip[1].onclick=function () {
+        if(!storage[1].checked||storage[0].checked){
+            isselect++;
+            document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
+            storage[0].style.border="1px solid #CCC";
+            storage[1].style.border="1px solid #CCC";
+            child_vip[2].innerHTML="确定";
+        }else {
+            child_vip[2].innerHTML="不选";
+            isselect--;
+        }
+
+    };
+    child_vip[2].onclick=function () {
+        if(storage[1].checked&&storage[0].checked){
+            storage[0].style.border="1px solid #CCC";
+            storage[1].style.border="1px solid #CCC";
+            sureClick();
+        }else {
+            attribute[0].style.display="inline";
+            if(!storage[1].checked&&!storage[0].checked){
+                attribute[1].style.display="inline";
+            };
+            child_vip[2].style.display="none";
+
+            $("#love1").attr("disabled",true);
+            $("#love2").attr("disabled",true);
+            $("#love3").attr("disabled",true);
+        }
+    };
+
+    for(let i=0;i<storage1.length;i++){
+        one[i].onclick=function () {
+            onek++;
+            if(!storage1[i].checked){
+                if(onek==1){
+                    isselect++;
+                }
+                document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
+            }
+        }
+        second[i].onclick=function () {
+            secondk++
+            if(!storage2[i].checked){
+                if(secondk==1)isselect++;
+                document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
+            }
+        }
+    }
 </script>
 </html>
