@@ -95,7 +95,8 @@
     <div class="header">
         <div class="topMenu">
             <div style="float: left">
-                <h1>四川信息职业技术学院</h1>
+                <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
+                <h1 style="float: right; line-height: 10px; margin-left: 20px;">Eyat</h1>
             </div>
             <div style="margin-right: 10%">
                 <ul class="nav navbar-right ">
@@ -119,7 +120,7 @@
         <div class="big">
             <div class="fySearch">
                 <div class="stopImg">
-                    <p class="mt text-center">Enjoy your flight</p>
+                    <p class="mt text-center">Enjoy Your Air Time</p>
                     <p class="mc text-center">精准可靠的航班动态数据服务</p>
                 </div>
                 <div class="stopMain clearfix" >
@@ -152,7 +153,7 @@
                     <div>
                         <div class="col-lg-2">
                             <span>选择出行时间:</span>
-                            <input type="date" class="form-control"  value="" name="time"/>
+                            <input type="date" class="form-control" id="time"  value="" name="time"/>
                         </div>
                         <div>
                             <div style="margin-top: 10px;">
@@ -168,7 +169,8 @@
                             </div>
                         </div>
                         <div class="col-lg-4 text-center" style="margin-top: 18px;">
-                            <button class="btn btn-primary col-lg-4" type="submit" >订购</button>
+                            <c:if test="${msg.user_name == null}"><button class="btn btn-primary col-lg-4" onclick="login()" type="button" >登录订购</button></c:if>
+                            <c:if test="${msg.user_name != null}"><button class="btn btn-primary col-lg-4" type="submit" >订购</button></c:if>
                         </div>
 
                     </div>
@@ -208,6 +210,21 @@
             content: 'tt01.html'
         });
     });
+
+    // 给input  date设置默认值
+    var now = new Date();
+    //格式化日，如果小于9，前面补0
+    var day = ("0" + now.getDate()).slice(-2);
+    //格式化月，如果小于9，前面补0
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    //拼装完整日期格式
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    //完成赋值
+    $('#time').val(today);
+    
+    function login() {
+        window.location.href="<c:url value="/login"/> ";
+    }
 
 
 </script>

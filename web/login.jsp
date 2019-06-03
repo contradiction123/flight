@@ -42,4 +42,14 @@
     </div>
 </div>
 </body>
+<script language='javascript'>
+    var form = document.getElementById("login")
+    document.onkeydown=function(){
+        if (event.keyCode == 13){
+            form.submit();
+        }
+    }
+</script>
+
+
 </html>
