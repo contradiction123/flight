@@ -558,7 +558,7 @@
                     <div class="plane-type">
                         <c:out value="${flight_number}" />
                     </div>
-                    <form method="get" action="#" id="formflight">
+                    <form method="get" action="./user_info" id="formflight">
                         <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
                     </form>
                     <div class="plane-type">

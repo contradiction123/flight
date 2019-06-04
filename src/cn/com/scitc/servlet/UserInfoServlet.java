@@ -19,15 +19,20 @@ public class UserInfoServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String flight_number=request.getParameter("flight");
+
         Object user_id = request.getSession().getAttribute("user_id");
         UserDao userdao = new UserDao();
-        UserFlightSeat userFlightSeat = userdao.findFlightByUser(user_id.toString(),"b737_700");
+        UserFlightSeat userFlightSeat = userdao.findFlightByUser(user_id.toString(),flight_number);
         if (userFlightSeat.getTeam().equals("1")){
             request.getSession().setAttribute("flight_seat",userFlightSeat);
         }else {
-            List<UserFlightSeat> list = userdao.findFlightByTeam(user_id.toString(),"b737_700");
+            List<UserFlightSeat> list = userdao.findFlightByTeam(user_id.toString(),flight_number);
             request.getSession().setAttribute("flight_seat_list",list);
         }
-        request.getRequestDispatcher("/user_info_b737_700.jsp").forward(request,response);
+
+        String jsp="/user_info_"+flight_number+".jsp";
+//        request.getRequestDispatcher("/user_info_b737_700.jsp").forward(request,response);
+        request.getRequestDispatcher(jsp).forward(request,response);
     }
 }
