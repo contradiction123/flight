@@ -31,7 +31,10 @@ public class AdminSatisfactionServlet extends HttpServlet {
             float f = (float) b/count;
             flightModelList.get(i).setT(t*100);
             flightModelList.get(i).setF(f*100);
+            System.out.println(flightModelList.get(i).getT());
         }
+
+
         request.setAttribute("flight_name",flightModelList);
         request.getRequestDispatcher("/admin_Satisfaction.jsp").forward(request,response);
     }

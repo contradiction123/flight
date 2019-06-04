@@ -61,9 +61,7 @@
             margin-top: 5%;
             margin-left: 25%;
         }
-        span {
-            color: #ffffff;
-        }
+
         .f_content{
             width: 100%;
         }

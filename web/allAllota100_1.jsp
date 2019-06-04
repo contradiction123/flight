@@ -192,7 +192,7 @@
                 </div>
             </div>
         </div><!-- /.row -->
-        <div class="row col-lg-10">
+        <div class="row col-lg-10" style="margin-left: 10%;">
 
             <div class="zhenti">
                 <<div class="smallPlane">

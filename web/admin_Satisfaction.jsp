@@ -79,6 +79,7 @@
 
     </div><!-- /#wrapper -->
 </div>
+
 <!-- JavaScript -->
 <script src="<c:url value="/jquery/jquery.min.js" />"></script>
 <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
@@ -95,8 +96,14 @@
     Morris.Donut({
         element: '<c:out value="${flight.name}" />',
         data: [
+            <c:if test="${flight.t == 'NaN' }" >
+                {label: "空闲", value: 100},
+
+            </c:if>
+            <c:if test="${flight.t != 'NaN'}">
             {label: "满意", value: <c:out value="${flight.t}" />},
             {label: "不满意", value: <c:out value="${flight.f}" />},
+            </c:if>
         ],
         formatter: function (y) { return y + "%" ;}
     });
