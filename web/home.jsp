@@ -162,9 +162,9 @@
                                 <div class="col-lg-2">
                                     <span>航班号:</span>
                                     <select class="form-control" name="flight_number">
-                                        <option value="k330_300B">空客330-300B</option>
+                                        <option value="k330_300b">空客330-300B</option>
                                         <option value="b737_700">波音737-700</option>
-                                        <option value="k330_300A">空客330-300A</option>
+                                        <option value="k330_300a">空客330-300A</option>
                                         <option value="b787_8">波音787-8</option>
                                         <option value="a100_1">自定义航班a100_1</option>
                                     </select>
