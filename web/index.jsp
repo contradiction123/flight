@@ -36,7 +36,7 @@
   <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   <script language="javascript">
     <!--修改跳转页面-->
-    window.location.href='<c:url value="/login" /> ';
+    window.location.href='<c:url value="/home" /> ';
   </script>
 </head>
 

@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
             }
         }else {
             request.getSession().setAttribute("error","用户名或密码错误!");
-            response.sendRedirect("login");
+            response.sendRedirect("home");
             return;
         }
 
@@ -51,6 +51,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/home.jsp").forward(request,response);
     }
 }

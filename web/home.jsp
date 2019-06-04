@@ -80,7 +80,53 @@
             border-bottom: 1px solid red;
         }
 
+
+
+        .front{
+            padding: 15px;
+        }
+        #uid,#pass,#user_email,#user_name,#user_passw{
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px #000 solid;
+            margin-bottom: 20px;
+            font-family: initial;
+            font-style: italic;
+            font-size: 17px;
+            padding-left: 10px;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 7px;
+        }
+        .J_codeimg{
+            width: 80px;
+            position: absolute;
+            right: 10%;
+            transform: skewX(-45deg);
+            -ms-transform: skewX(-45deg);
+            -webkit-transform: skewX(-45deg);
+        }
+        #code,#register-code{
+            width: 70%;
+            height: 40px;
+            border-bottom: 1px #000 solid;
+            margin-bottom: 20px;
+            font-family: initial;
+            font-style: italic;
+            font-size: 17px;
+            padding-left: 10px;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 7px;
+        }
+        .modal-footer>div{
+            display: flex;
+            justify-content: space-around;
+        }
+        .modal-content{
+            background-color: rgba(255,255,255,0.5);
+        }
     </style>
+
+
 </head>
 <body style="overflow-y:hidden">
 
@@ -172,7 +218,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 text-center" style="margin-top: 18px;">
-                            <c:if test="${msg.user_name == null}"><button class="btn btn-primary col-lg-4" onclick="login()" type="button" >登录订购</button></c:if>
+                            <c:if test="${msg.user_name == null}"><button class="btn btn-primary col-lg-4"  type="button"  data-toggle="modal" data-target="#myModal2">登录订购</button></c:if>
                             <c:if test="${msg.user_name != null}"><button class="btn btn-primary col-lg-4" type="submit" >订购</button></c:if>
                         </div>
 
@@ -184,7 +230,88 @@
         </div>
     </div>
 </form>
+
+
+<!-- 模态框 登录"-->
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">登录</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="front">
+
+                    <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
+                        <input type="text" id="uid" name="user_email" placeholder="请输入邮箱地址"/>
+                        <input type="password" id="pass" name="password" placeholder="请输入密码"/>
+                        <div >
+                            <input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >
+                            <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                        </div>
+                        <p style="color: red;position: absolute;font-size: 12px;right: 40%;"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <div>
+                    <div><button type="button" class="btn btn-secondary" btn="trans submit" id="register" data-dismiss="modal" data-toggle="modal" data-target="#myModal3">注册</button></div>
+                    <div><button type="button" class="btn btn-secondary" btn="primary" id="subbtn" onclick="login();">登录</button></div>
+                    <div><button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 模态框 注册"-->
+<div class="modal fade" id="myModal3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">注册</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form id="register-form" action="<c:url value="/register" />" method="post" class="grid xl-1">
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="front">
+
+                        <input type="text" name="user_email" id="user_email" placeholder="用户邮箱"/>
+                        <input type="password" name="password" id="user_passw" placeholder="用户密码"/>
+                        <input type="text" name="user_name" id="user_name" placeholder="用户姓名"/>
+
+
+                </div>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <div>
+                    <div><button type="button" class="btn btn-secondary" data-dismiss="modal" btn="trans submit" onclick="document:register-form.submit();" btn="primary"id="register-submit">提交</button></div>
+                    <div><button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#myModal2">已注册？登陆</button></div>
+                    <div><button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button></div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
+<script src='<c:url value="/js/login_Verification.js" />' type="text/javascript"></script>
 <script>
 
     // $('zhuce').on('click',function(){
@@ -225,9 +352,7 @@
     //完成赋值
     $('#time').val(today);
     
-    function login() {
-        window.location.href="<c:url value="/login"/> ";
-    }
+
 
 
 </script>
@@ -247,5 +372,14 @@
             forceParse: 0
         });
     })
+</script>
+
+<script>
+    var form = document.getElementById("login")
+    document.onkeydown=function(){
+        if (event.keyCode == 13){
+            login();
+        }
+    }
 </script>
 </html>
