@@ -18,7 +18,7 @@ import java.util.Map;
 public class allAllotServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
 
         response.setContentType("text/html");
 
@@ -161,16 +161,16 @@ public class allAllotServlet extends HttpServlet {
 //        单人和团队的数量也弄完了
         if(single>team){
 //            System.out.println("single");
-            System.out.println(new Dao().allAllotuser(userAttributeList,flight_number));
+            new Dao().allAllotuser(userAttributeList,flight_number);
         }else {
 //            System.out.println("team");
-            System.out.println(new Dao().allAllotuser_team(userAttributeList,flight_number));
+            new Dao().allAllotuser_team(userAttributeList,flight_number);
         }
 
 
-        long endTime = System.currentTimeMillis();
+//        long endTime = System.currentTimeMillis();
 
-        System.out.println(endTime-startTime+"ms");
+//        System.out.println(endTime-startTime+"ms");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

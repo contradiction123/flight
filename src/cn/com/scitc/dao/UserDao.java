@@ -93,7 +93,7 @@ public class UserDao {
         try {
             while (resultSet.first()){
                 userFlightSeat.setTeam(resultSet.getString("team"));
-                System.out.println(resultSet.getString("team"));
+//                System.out.println(resultSet.getString("team"));
                 userFlightSeat.setFlight_number(resultSet.getString("flight_number"));
                 userFlightSeat.setSeat_id(resultSet.getString("seat_id"));
                 return userFlightSeat;

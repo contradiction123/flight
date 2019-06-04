@@ -53,7 +53,7 @@
             <a onclick="login();" btn="primary">登陆</a>
             <a href="<c:url value="/register" />"><div btn="trans submit">没有账号？注册</div></a>
         </form>
-        
+
     </div>
 </div>
 </body>

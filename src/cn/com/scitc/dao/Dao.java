@@ -339,7 +339,7 @@ public class Dao {
     //这是给航班更新用id时的
     public boolean update(FlightAttribute flightAttribute,String flight_number){
         try {
-            System.out.println("update");
+//            System.out.println("update");
             String sql="update "+flight_number+" set user_id=? where seat_id=?";
             Object[] ps=new Object[2];
             ps[0]=flightAttribute.getUser_id();

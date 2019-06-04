@@ -15,7 +15,7 @@ public class satasfiactionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        首先接收前段发送过来的航班号
         String flight_number=request.getParameter("flight_number");
-        System.out.println(flight_number);
+//        System.out.println(flight_number);
         Dao dao=new Dao();
 
         //获取返回过来的字符串
@@ -27,6 +27,6 @@ public class satasfiactionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("222");
+//        System.out.println("222");
     }
 }

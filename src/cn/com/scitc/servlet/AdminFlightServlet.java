@@ -20,7 +20,7 @@ public class AdminFlightServlet extends HttpServlet {
         String flight_1_number=request.getParameter("flight1");
         String flight_2_number=request.getParameter("flight2");
 
-        System.out.println(new Dao().changePlanes(flight_1_number,flight_2_number));
+        new Dao().changePlanes(flight_1_number,flight_2_number);
         response.sendRedirect("admin_flight");
     }
 

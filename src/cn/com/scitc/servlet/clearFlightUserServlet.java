@@ -13,7 +13,7 @@ import java.io.IOException;
 public class clearFlightUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String flight_number=request.getParameter("flight_number");
-        System.out.println(flight_number);
+//        System.out.println(flight_number);
 
         String s="";
         if(new UserDao().clearUser(flight_number)){
