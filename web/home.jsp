@@ -124,6 +124,23 @@
         .modal-content{
             background-color: rgba(255,255,255,0.5);
         }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #mainSVG {
+            width: 100%;
+            height: 100%;
+             /*display: none;*/
+            z-index: 100;
+            position: absolute;
+            top: 0px;
+            background: rgba(255,255,255,0.5);
+        }
     </style>
 
 
@@ -310,7 +327,17 @@
     </div>
 </div>
 
+<i id="mysvg"></i>
+
 </body>
+
+
+<script src='<c:url value="/js/TweenMax.min.js"/>'></script>
+<script src='<c:url value="/js/MorphSVGPlugin.min.js"/>'></script>
+
+
+
+
 <script src='<c:url value="/js/login_Verification.js" />' type="text/javascript"></script>
 <script>
 
