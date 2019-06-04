@@ -251,21 +251,22 @@
                             </div>
                             <div class="flight-tit">
                                 <div class="plane-type">
-                                    <c:out value="${flight}" />
+                                    <%= request.getParameter("flight")%>
                                 </div>
+                                <input type="hidden" id="seatlist" value="<%= request.getParameter("seat")%>">
                                 <div class="plane-type">
                                     经济舱
                                 </div>
                             </div>
                             <div class="flight-detail">
-                                <div class="flt-arrow">
+                                <div class="flt-arrow" id="u-s-n">
                                     您的座位:
-                                    <c:if test="${flight_seat.team == 1}"><c:out value="${flight_seat.seat_id}" /></c:if>
-                                    <c:if test="${flight_seat.team != 1}">
-                                        <c:forEach var="list" items="${flight_seat_list}">
-                                            <c:out value="${list.seat_id}"/>
-                                        </c:forEach>
-                                    </c:if>
+                                    <%--<c:if test="${flight_seat.team == 1}"><span class="user-seat"><c:out value="${flight_seat.seat_id}" /></span></c:if>--%>
+                                    <%--<c:if test="${flight_seat.team != 1}">--%>
+                                        <%--<c:forEach var="list" items="${flight_seat_list}">--%>
+                                            <%--<span class="user-seat"><c:out value="${list.seat_id}"/></span>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</c:if>--%>
 
                                 </div>
                             </div>
@@ -627,4 +628,15 @@
 </div>
 
 </body>
+<script>
+    var u_seat=document.getElementById("seatlist").value.split("zZz");
+
+    for(let i=1;i<u_seat.length-2;i++){
+        $("#u-s-n").append(
+            '<span class="user-seat" style="margin-left:6px">'+u_seat[i]+'</span>'
+        );
+        document.getElementsByClassName(u_seat[i])[0].style.fill="blue";
+    }
+
+</script>
 </html>

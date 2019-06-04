@@ -558,8 +558,9 @@
                     <div class="plane-type">
                         <c:out value="${flight_number}" />
                     </div>
-                    <form method="get" action="./user_info" id="formflight">
+                    <form method="post" action="user_info_b737_700.jsp" id="formflight">
                         <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
+                        <input type="hidden" name="seat" id="user-seat">
                     </form>
                     <div class="plane-type">
                         经济舱
@@ -728,13 +729,10 @@
 
 
             }else {
-                console.log($(".user-id:eq(1)").val());
                 for(let i=0;i<$(".user-id").length;i++){
-                    console.log(i);
                     user_name+=document.getElementsByClassName("user-id")[i].value+",";
                     var jsonObj = {};
                     jsonObj["Id"]=document.getElementsByClassName("user-id")[i].value;
-                    console.log(document.getElementsByClassName("user-id")[i].value);
                     jsonObj["type_one"]="null";
                     jsonObj["type_second"]="null";
                     passenger_info.push(jsonObj);
@@ -760,8 +758,10 @@
                 },
                 dataType: 'text',   //设置返回值类型
                 success:function(e){
-                    //
+
+                    document.getElementById("user-seat").value=e;
                     document.getElementById("formflight").submit();
+                    // console.log(e);
                 }
             });//ajax——的结束
         }

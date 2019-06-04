@@ -145,10 +145,10 @@ public class buyTicketOperationServlet extends HttpServlet {
         //所有用户都在userAttributeList里面
         switch (userAttributeList.size()){
             case 1:
-                new Dao().allA(userAttributeList,flight_number);
+                response.getWriter().print(new Dao().allA(userAttributeList,flight_number));
                 break;
             default:
-                new Dao().allAteam(userAttributeList,flight_number);
+                response.getWriter().print(new Dao().allAteam(userAttributeList,flight_number));
                 break;
         }
     }
