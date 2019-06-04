@@ -27,9 +27,7 @@
         .select1 {
             float: left;
         }
-        .thumbnail1 {
-            height: 200px;
-        }
+
         span{
             text-align: center;
             width: 50px;
@@ -79,8 +77,30 @@
     <div id="page-wrapper">
 
         <div class="row">
-            <div class="col-lg-12">
-                <h1>机型信息</h1>
+            <div class="col-lg-20">
+                <h1 style="float: left">机型信息</h1>
+                <div class="col-lg-8" style="margin-top: 20px;">
+                        <div class="caption">
+                            <form id="form" action="<c:url value="/admin_flight" />" method="post">
+                                <div class="select1 col-lg-4">
+                                    <select name="flight1" class="form-control" id="flight1" onchange="gradeChange()">
+                                        <c:forEach items="${flight}" var="flight">
+                                            <c:if test="${flight.r != 0}"><option value="<c:out value="${flight.name}" />"><c:out value="${flight.name}" /></option></c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <span class="glyphicon glyphicon-random select1"></span>
+                                <div class="col-lg-4">
+                                    <select name="flight2" class="form-control" id="flight2">
+                                        <option>请选择</option>
+                                    </select>
+                                </div>
+                                <div class="text-left" >
+                                    <button id="btn" type="button" class="btn btn-primary text-center">换机</button>
+                                </div>
+                            </form>
+                        </div>
+                </div>
             </div>
         </div><!-- /.row -->
 
@@ -106,31 +126,7 @@
                     </div>
             </c:forEach>
 
-            <div class="col-sm-6 col-md-5">
-                <div class=" thumbnail1">
-                    <div class="caption">
-                        <h3>一键换机</h3>
-                        <form id="form" action="<c:url value="/admin_flight" />" method="post">
-                            <div class="select1 col-lg-5">
-                                <select name="flight1" class="form-control" id="flight1" onchange="gradeChange()">
-                                    <c:forEach items="${flight}" var="flight">
-                                        <c:if test="${flight.r != 0}"><option value="<c:out value="${flight.name}" />"><c:out value="${flight.name}" /></option></c:if>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <span class="glyphicon glyphicon-random select1"></span>
-                            <div class="col-lg-5">
-                                <select name="flight2" class="form-control" id="flight2">
-                                    <option>请选择</option>
-                                </select>
-                            </div>
-                            <div class="text-right" >
-                                <button id="btn" type="button" class="btn btn-primary text-center">换机</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
         </div><!-- /.row -->
 
     </div><!-- /#page-wrapper -->

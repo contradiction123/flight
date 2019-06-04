@@ -201,11 +201,15 @@
         </div><!-- /.navbar-collapse -->
     </nav>
     <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-10">
-                <h1>航班座位图</h1>
+        <div class="col-lg-10">
+            <h1 style="float: left">航班座位图</h1>
+
+            <div class="col-lg-5" style="margin-top: 20px;">
+                <button class="btn btn-primary" id="satisfactionBtn">查看满意度</button>
+                <button class="btn btn-primary" id="allotcourse">查看分配过程</button>
+                <div id="displaycourse" style="display: none"></div>
             </div>
-        </div><!-- /.row -->
+        </div>
         <div class="row col-lg-10">
             <div class="zhenti">
                 <div class="smallPlane">
@@ -4601,15 +4605,8 @@
     </div><!-- /#page-wrapper -->
 
     <div class="row">
-        <div class="col-lg-10 text-center button-1">
-            <button class="btn btn-primary" id="satisfactionBtn">查看满意度</button>
-            <button class="btn btn-primary" id="allotcourse">查看分配过程</button>
-            <div id="displaycourse" style="display: none"></div>
-        </div>
-    </div><!-- /.row -->
-    <div class="row">
-        <div class="col-lg-5 button-2 text-center">
-            <div id="piechart" style="height: 250%;"></div>
+        <div class="col-lg-5" style="margin-top: 35%;">
+            <div id="piechart" style="height: 300px;"></div>
         </div>
     </div>
 
