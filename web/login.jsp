@@ -20,6 +20,17 @@
     <link href="css/grid.css" rel="stylesheet">
     <!-- 主题 CSS -->
     <link href="css/cl-blue.css" rel="stylesheet">
+    <style>
+        .J_codeimg {
+            width: 85px;
+            height: 36px;
+            position: absolute;
+            left: 70%;
+            top:50%;
+        }
+
+    </style>
+
 </head>
 <body>
 <div grid>
@@ -32,21 +43,26 @@
         <p class="title">登录</p>
 
         <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
-            <input type="text" name="user_email" placeholder="请输入邮箱地址"/>
-            <input type="password" name="password" placeholder="请输入密码"/><br />
+            <input type="text" id="uid" name="user_email" placeholder="请输入邮箱地址"/>
+            <input type="password" id="pass" name="password" placeholder="请输入密码"/>
+            <div class="row">
+            <input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >
+            <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+            </div>
             <p style="color: red;position: absolute;font-size: 12px;right: 40%;"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
-            <a onclick="document:login.submit();" btn="primary">登陆</a>
+            <a onclick="login();" btn="primary">登陆</a>
             <a href="<c:url value="/register" />"><div btn="trans submit">没有账号？注册</div></a>
         </form>
-        <a href="#" class="subtitle">忘记密码?</a>
+
     </div>
 </div>
 </body>
+<script src='<c:url value="/js/login_Verification.js" />' type="text/javascript"></script>
 <script language='javascript'>
     var form = document.getElementById("login")
     document.onkeydown=function(){
         if (event.keyCode == 13){
-            form.submit();
+            login();
         }
     }
 </script>
