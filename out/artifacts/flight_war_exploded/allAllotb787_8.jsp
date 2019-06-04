@@ -731,7 +731,7 @@
 
     </div><!-- /#page-wrapper -->
 
-    <div class="row">
+    <div class="row" style="display: none;">
         <div class="col-lg-5" style="margin-top: 35%;">
             <div id="piechart" style="height: 300px;"></div>
         </div>

@@ -33,6 +33,21 @@
             width: 50px;
             font-size:24px;
         }
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+
+        }
+        #mainSVG {
+            width: 100%;
+            height: 100%;
+            /*display: none;*/
+            z-index: 100;
+            position: absolute;
+            top: 0px;
+            background: rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 
@@ -132,7 +147,10 @@
     </div><!-- /#page-wrapper -->
 
 </div><!-- /#wrapper -->
+<i id="mysvg"></i>
 
+<script src='<c:url value="/js/TweenMax.min.js"/>'></script>
+<script src='<c:url value="/js/MorphSVGPlugin.min.js"/>'></script>
 <!-- JavaScript -->
 <script src="<c:url value="/jquery/jquery.min.js" />"></script>
 <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
@@ -150,6 +168,7 @@
     var flightNumber=$(".clearfm");
     for(let i=0;i<clearuser.length;i++){
         clearuser[i].onclick=function () {
+            addsvg();
             // alert(flightNumber[i].innerHTML);
             $.ajax({
                 type:"POST", //请求方式
@@ -161,7 +180,8 @@
                     if(e=="true"){
                         location.reload();
                     }else {
-                        alert("换机失败");
+                        clearsvg();
+                        alert("清空失败");
                     }
                 }
             });//ajax——的结束
@@ -177,6 +197,7 @@
     var clearfm = $(".clearfm");
     gradeChange();
     btn.onclick = function () {
+        addsvg();
         var flight1=$("#flight1 option:selected");  //获取选中的项
         var flight1_value = flight1.val();   //拿到选中项的值
         var flight2=$("#flight2 option:selected");  //获取选中的项
@@ -214,5 +235,53 @@
 
 
 </script>
+<script>
+    function  addsvg() {
+        $("#mysvg").append(
+            '<svg id="mainSVG" viewBox="0 0 800 600">'+
+            '<defs>'+
+            '<circle id="dot" cx="0" cy="0" r="5" fill="#fff" />'+
+            '</defs>'+
+            '<circle id="mainCircle" fill="none" stroke="none" stroke-width="2" stroke-miterlimit="10" cx="400" cy="300" r="70" />'+
+            '<circle id="circlePath" fill="none" stroke="none" stroke-width="2" stroke-miterlimit="10" cx="400" cy="300" r="80" />'+
+            '<g id="mainContainer">'+
+            '<path id="plane" fill="#FFF" d="M38.1,19.6c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.6-0.3-0.7c-1.2-1-2.8-1.6-4.4-1.6l-8.7,0L12.2,0L8.2,0l6.3,16.5	l-5.9,0c-0.5,0-1.1,0.1-1.6,0.4L3.1,11L0,11l3.1,7.9L0,26.7l3.1,0l3.9-5.9c0.5,0.3,1,0.4,1.6,0.4l5.9,0L8.2,37.7h3.9l13-16.5l8.7,0	C35.4,21.2,36.9,20.6,38.1,19.6"'+
+            '/>'+
+            '</g>'+
+            '</svg>'
+        )
+
+        var script = document.createElement("script");
+        script.id="mainsvgsrc1";
+        script.src = "js/TweenMax.min.js";
+        document.body.appendChild(script);
+        var script = document.createElement("script");
+        script.id="mainsvgsrc2";
+        script.src = "js/MorphSVGPlugin.min.js";
+        document.body.appendChild(script);
+        var script = document.createElement("script");
+        script.id="mainsvgsrc3";
+        script.src = "jquery/jquery.min.js";
+        document.body.appendChild(script);
+        var script = document.createElement("script");
+        script.id="mainsvgsrc4";
+        script.src = "js/mysvg.js";
+        document.body.appendChild(script);
+    }
+    function clearsvg() {
+
+        var my=document.getElementById("mainsvgsrc1");
+        my.parentNode.removeChild(my);
+        var my=document.getElementById("mainsvgsrc2");
+        my.parentNode.removeChild(my);
+        var my=document.getElementById("mainsvgsrc3");
+        my.parentNode.removeChild(my);
+        var my=document.getElementById("mainsvgsrc4");
+        my.parentNode.removeChild(my);
+        var my=document.getElementById("mainSVG");
+        my.parentNode.removeChild(my);
+    }
+</script>
+
 </body>
 </html>
