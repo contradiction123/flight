@@ -28,13 +28,51 @@
             width: 100%;
             display: table;
             margin: 0 auto;
+            background-color: black;
             margin-bottom: -10px;
         }
         .topMenu{
             padding: 20px 0;
             height: 80px;
             margin-left: 10%;
+            color: #ffffff;
+        }
 
+        .fySearch{
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .stopImg{
+            padding-top: 115px;
+            color: #fff;
+            font-size: 26px;
+        }
+        .mt{
+            font-size: 54px;
+            line-height: 60px;
+            font-weight: 700;
+        }
+        .mc{
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .stopMain{
+            margin-top: 5%;
+            margin-left: 25%;
+        }
+        span {
+            color: #ffffff;
+        }
+        .f_content{
+            width: 100%;
+        }
+        a {
+            color: #ffffff;
+        }
+        a:hover {
+            color: white;
+            border-bottom: 1px solid red;
         }
         .tu{
             transform:scale(1.5) rotate(90deg);
@@ -367,16 +405,17 @@
     <div class="header">
         <div class="topMenu">
             <div style="float: left">
-                <h1>四川信息职业技术学院</h1>
+                <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
+                <h1 style="float: right; margin-left: 20px;">Eyat</h1>
             </div>
             <div style="margin-right: 10%">
                 <ul class="nav navbar-right ">
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-gear"></i> 个人中心</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 个人信息</a></li>
                             <li class="divider"></li>
-                            <li><a href="<c:url value="/out"/>"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                            <li><a href="<c:url value="/out"/> "><i class="fa fa-power-off"></i> 退出登录</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -384,6 +423,7 @@
         </div>
 
     </div>
+</div>
 </div>
 <div class="fly-middle">
     <div class="main">
