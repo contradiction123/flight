@@ -251,7 +251,7 @@
                             </div>
                             <div class="flight-tit">
                                 <div class="plane-type">
-                                    波音330-300A
+                                    <c:out value="${flight}" />
                                 </div>
                                 <div class="plane-type">
                                     经济舱

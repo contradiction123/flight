@@ -30,7 +30,7 @@ public class UserInfoServlet extends HttpServlet {
             List<UserFlightSeat> list = userdao.findFlightByTeam(user_id.toString(),flight_number);
             request.getSession().setAttribute("flight_seat_list",list);
         }
-
+        request.getSession().setAttribute("flight",flight_number);
         String jsp="/user_info_"+flight_number+".jsp";
 //        request.getRequestDispatcher("/user_info_b737_700.jsp").forward(request,response);
         request.getRequestDispatcher(jsp).forward(request,response);
