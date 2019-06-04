@@ -294,7 +294,7 @@
         </div>
     </div>
 
-    <div class="row col-lg-10" style="margin-left: 20%;">
+    <div class="row col-lg-10" style="padding-left: 20%;">
         <div class="zhenti">
             <div class="smallPlane">
 
@@ -828,7 +828,9 @@
 
     </div><!-- /.row -->
 </div>
-
+<div  style="margin-top: 30%;padding-left: 40%">
+    <button class="btn btn-primary col-lg-4" onclick="back();" >返回</button>
+</div>
 </body>
 <script>
     var u_seat=document.getElementById("seatlist").value.split("zZz");
@@ -838,6 +840,9 @@
             '<span class="user-seat" style="margin-left:6px">'+u_seat[i]+'</span>'
         );
         document.getElementsByClassName(u_seat[i])[0].style.fill="blue";
+    }
+    function back() {
+        window.history.back(-1);
     }
 
 </script>

@@ -301,7 +301,7 @@
         </div>
     </div>
 
-    <div class="row col-lg-10" style="margin-left: 10%;">
+    <div class="row col-lg-10" style="padding-left: 10%;">
         <div class="zhenti">
             <div class="smallPlane">
                 <span style="position:absolute;left:30px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
@@ -4695,7 +4695,9 @@
 
     </div><!-- /.row -->
 </div>
-
+<div  style="margin-top: 30%;padding-left: 40%">
+    <button class="btn btn-primary col-lg-4" onclick="back();" >返回</button>
+</div>
 </body>
 <script>
     var u_seat=document.getElementById("seatlist").value.split("zZz");
@@ -4706,7 +4708,9 @@
         );
         document.getElementsByClassName(u_seat[i])[0].style.fill="blue";
     }
-
+    function back() {
+        window.history.back(-1);
+    }
 </script>
 </html>
 
