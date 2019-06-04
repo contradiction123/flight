@@ -760,6 +760,7 @@
                 success:function(e){
 
                     document.getElementById("user-seat").value=e;
+                    document.getElementById("formflight").action="user_info_<c:out value="${flight_number}" />.jsp";
                     document.getElementById("formflight").submit();
                     // console.log(e);
                 }
