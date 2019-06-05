@@ -83,6 +83,7 @@ child_vip[2].onclick=function () {
         storage[0].style.border="1px solid #CCC";
         storage[1].style.border="1px solid #CCC";
         sureClick();
+        $('#myModal2').modal('hide');
     }else {
         attribute[0].style.display="inline";
         if(!storage[1].checked&&!storage[0].checked){
@@ -257,5 +258,5 @@ function addusertype(x,y,z) {
         }
     });
 
-
+    bodyheight();
 }

@@ -464,8 +464,17 @@
 <script src="<c:url value="../jquery/jquery.min.js" />"></script>
 <script src="<c:url value="../bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
 </body>
-    <script>
 
+    <script>
+        function bodyhe() {
+            var ar=$(".alluser");
+
+            var h=ar[ar.length-1].offsetHeight+ar[ar.length-1].offsetTop;
+
+            var bodyh=$("body").height();
+
+            if(h>bodyh)$("body").height(h+30);
+        }
         var name=document.getElementById("name_get").value.toString().trim();
         var seat=document.getElementById("seat_get").value.toString().trim();
         var flight=document.getElementById("flight_get").value.toString().trim();
@@ -539,11 +548,11 @@
             adduserseatsvg(nolikelist[i]);
         }
 
-        for(let i=0;i<seatlist.length;i++){
-            console.log(seatlist[i]);
+        for(let i=0;i<seatlist.length-1;i++){
             document.getElementsByClassName(seatlist[i])[0].style.fill="#6DC4D8";
-        }
 
+        }
+        bodyhe();
         function adduserseatsvg(flight_num) {
 
             var str="";
@@ -717,4 +726,6 @@
         evt.preventDefault();
     }
 </script>
+
+
 </html>

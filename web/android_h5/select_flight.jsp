@@ -381,7 +381,7 @@
             </div>
 
             <c:forEach items="${flight}" var="flight">
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4 flight-all">
                     <div class="thumbnail flight">
                         <c:if test="${flight.z!=flight.r}">
                             <a href="./android_h5/buy.jsp?flight_number=<c:out value="${flight.name}" />&all_seat=<c:out value="${flight.z}"/>&sell_seat=<c:out value="${flight.r}"/>" class="button">
@@ -463,6 +463,16 @@
 
         evt.preventDefault();
     }
+</script>
+
+<script>
+
+    var flight_all=$(".flight-all");
+
+    var h=flight_all[flight_all.length-1].offsetHeight+flight_all[flight_all.length-1].offsetTop;
+
+    $("body").height(h);
+
 </script>
 </body>
 </html>

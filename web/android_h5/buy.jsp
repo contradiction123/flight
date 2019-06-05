@@ -545,7 +545,7 @@
 
 </body>
 
-<script type="text/javascript" src="js/buy.js"></script>
+<script type="text/javascript" src="js/buy1.js"></script>
 <script type="text/javascript" src="js/framework7.min.js"></script>
 <script type="text/javascript" src="js/upscroller.js"></script>
 <script type="text/javascript" src="js/my-app.js"></script>
@@ -584,5 +584,17 @@
 
         evt.preventDefault();
     }
+</script>
+
+<script>
+function bodyheight() {
+    var flight=$(".flight");
+
+    var h=flight[0].offsetHeight+flight[0].offsetTop;
+
+    var bodyh=$("body").height();
+
+    if(h>bodyh)$("body").height(h);
+}
 </script>
 </html>

@@ -124,6 +124,9 @@
         .modal-content{
             background-color: rgba(255,255,255,0.5);
         }
+        .modal-body{
+            padding-bottom: 50px;
+        }
 
         body,
         html {
@@ -271,7 +274,7 @@
                             <input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >
                             <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
                         </div>
-                        <p style="color: red;position: absolute;font-size: 12px;right: 40%;"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
+                        <p style="color: red;position: absolute;font-size: 12px;right: 40%; bottom:0px"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
                     </form>
 
                 </div>
