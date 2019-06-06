@@ -75,7 +75,7 @@ public class UserDao {
 
         try {
             SqlHelper.executeUpdate(sql,ps);
-            sql="UPDATE "+flight_number+" set user_id=null";
+            sql="UPDATE flight_attribute set user_id=null where flight_number='"+flight_number+"'";
             SqlHelper.executeUpdate(sql,null);
             return true;
         } catch (Exception e) {

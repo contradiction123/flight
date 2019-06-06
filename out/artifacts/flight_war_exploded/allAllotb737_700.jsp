@@ -711,7 +711,7 @@
                     if(count==seat_satisfaction_list.length-1){
                         clearInterval(asetinterval);
                     }
-                },500)
+                },100)
 
             }
         });//ajax——的结束
@@ -747,7 +747,7 @@
                 var par=seat.parentNode;
                 par.style.transform="scale(1.5) rotate(-90deg)";
             }
-        }, 300);
+        }, 100);
     }
 
     //测试每一个座位的点击事件，现在是看变化

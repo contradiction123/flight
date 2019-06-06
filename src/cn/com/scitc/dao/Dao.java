@@ -44,7 +44,7 @@ public class Dao {
 
     //这是查询b737-700的表格的
     public List<B737_700> b7377select(){
-        String sql="select * from b737_700 order by id";
+        String sql="select * from flight_attribute where flight_number='b737_700' order by id";
         List<B737_700> b737_700s=new ArrayList<>();
 
         SqlHelper.getConnection();
@@ -73,145 +73,6 @@ public class Dao {
         return b737_700s;
     }
 
-    //这是给航班分配一个人时的语句
-    public String allot(List<UserAttribute> userAttributeList,String flight_number){
-        String sql;
-        if(userAttributeList.get(0).getType_one()=="null"||userAttributeList.get(0).getType_second()=="null"){
-            if(userAttributeList.get(0).getType_one()=="null"){
-                sql="select * from "+flight_number+" where (" +
-                        "("+userAttributeList.get(0).getType_second()+"='1' and user_id is null ) or " +
-                        "user_id is null order by "+userAttributeList.get(0).getType_one()+" desc,"+userAttributeList.get(0).getType_second()+" desc, middle desc";
-
-            }else {
-                sql="select * from "+flight_number+" where ("+userAttributeList.get(0).getType_one()+"='1' and user_id is null ) or " +
-                        "user_id is null order by "+userAttributeList.get(0).getType_one()+" desc,"+userAttributeList.get(0).getType_second()+" desc, middle desc";
-
-            }
-        }else {
-            sql="select * from "+flight_number+" where ("+userAttributeList.get(0).getType_one()+"='1' and user_id is null ) or " +
-                    "("+userAttributeList.get(0).getType_second()+"='1' and user_id is null ) or " +
-                    "user_id is null order by "+userAttributeList.get(0).getType_one()+" desc,"+userAttributeList.get(0).getType_second()+" desc, middle desc";
-        }
-
-        SqlHelper.getConnection();
-        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
-
-        try {
-            while (resultSet.next()){
-
-                FlightAttribute flightAttribute=new FlightAttribute();
-                flightAttribute.setSeat_id(resultSet.getString("seat_id"));
-                flightAttribute.setUser_id(userAttributeList.get(0).getUser_id());
-
-                //先把同用的座位属性存放在list集合
-                List<FlightAttribute> flightAttributes=new ArrayList<>();
-                flightAttributes.add(flightAttribute);
-
-                //然后实例一个子线程用来存放用户是否满意
-                //userAttributeList这里面存放的是用户的id，想要的第一位置，第二位置，买票人
-                //flight_number这是航班号
-                //flightAttributes这是存放分配好的座位号，和用户账户
-                //最后的1，代表的意思是一人
-                UserFlightSeatUpdate userFlightSeatUpdate=new UserFlightSeatUpdate(userAttributeList,flight_number,flightAttributes,1);
-                //运行子线程
-                userFlightSeatUpdate.start();
-
-                //不管子线程如何，执行更新语句将用户的座位更新到指定的航班座位中
-                if(update(flightAttribute,flight_number)){
-                    //更新成功返回分配的座位
-                    return  flightAttribute.getSeat_id();
-                }
-            }
-            //没有更新成功返回null
-            return null;
-        } catch (SQLException e) {
-            //没有更新成功返回null
-//            e.printStackTrace();
-            return null;
-        }
-    }
-
-    //这是给航班分配多人的语句
-    public List<String> allotEight(List<UserAttribute> userAttributeList,String flight_number){
-        //查询指定航班的列数
-        Integer flightColumn=selectFlightColumn(flight_number);
-        //所有的座位都在flightAttributes中
-        List<FlightAttribute> flightAttributes=nullseat(flight_number);
-        //存放已经分配的人数
-        Integer allotusernumber=0;
-        //存放已经分派好的座位
-        List<String> allotseatlist=new ArrayList<>();
-        //存放是否满意，我的定义是超过一个人分配在一起就满意
-        List<String> satisfactionlist=new ArrayList<>();
-
-        //这里开始分配座位，分配完毕就结束
-        //TODO 这个分配不是好的分配希望能改善
-        while (allotusernumber!=userAttributeList.size()){
-            Integer numbertemp=0;
-            //如果要分配的人数大于已知的列数，则分配的人数numbertemp=列数,否则等于总人数
-            if((userAttributeList.size()-allotusernumber)>flightColumn){
-                numbertemp=flightColumn;
-            }else {
-                numbertemp=userAttributeList.size()-allotusernumber;
-            }
-            while (true){
-
-                List<String> stringlist=allotnumberseat(numbertemp,flightColumn,flightAttributes);
-                if(stringlist.get(0).equals("T")){
-                    for(int ii=0;ii<numbertemp;ii++){
-                        allotseatlist.add(stringlist.get(ii+2));
-
-                        Iterator<FlightAttribute> it = flightAttributes.iterator();
-                        while(it.hasNext()){
-                            FlightAttribute x = it.next();
-                            if(x.getSeat_id().equals(stringlist.get(ii+2))){
-                                it.remove();
-                            }
-                        }
-
-                        if(numbertemp>1){
-                            satisfactionlist.add("T");
-                        }else {
-                            satisfactionlist.add("F");
-                        }
-                    }
-                    allotusernumber+=numbertemp;
-                    break;
-                }else {
-                    numbertemp--;
-                }
-                stringlist.clear();
-            }
-        }
-
-        //分配结束后，开始吧每一个人座位信息存到userFlightSeatList集合里面
-        //分配好的的座位在allotseatlist
-        //满意度是在satisfactionlist
-        //航班号就在flight_number
-        //当时团队分配时，就没有属性要求，直接分配在一起就行
-
-        List<UserFlightSeat> userFlightSeatList=new ArrayList<>();
-        for(int i=0;i<userAttributeList.size();i++){
-            UserFlightSeat userFlightSeat=new UserFlightSeat();
-
-            userFlightSeat.setUser_id(userAttributeList.get(i).getUser_id());
-            userFlightSeat.setWant_seat_attribute_one(userAttributeList.get(i).getType_one());
-            userFlightSeat.setWant_seat_attribute_second(userAttributeList.get(i).getType_second());
-            userFlightSeat.setSeat_id(allotseatlist.get(i));
-            userFlightSeat.setSatisfaction(satisfactionlist.get(i));
-            userFlightSeat.setFlight_number(flight_number);
-            userFlightSeat.setTeam(userAttributeList.get(0).getUser_id());
-
-            userFlightSeatList.add(userFlightSeat);
-        }
-
-        //将所有的用户信息安排好之后就是将座位反馈到前端和存到数据库
-        //启动子线程来更新数据库
-        UserFlightSeatUpdate userFlightSeatUpdate=new UserFlightSeatUpdate(userFlightSeatList,userAttributeList.size());
-        userFlightSeatUpdate.start();
-        //将分配的座位字符串返回
-        return allotseatlist;
-    }
     //查询飞机座位属性
     private String flightSeatRow(String flight_number){
         String sql="select seat from flight_model where name='"+flight_number+"'";
@@ -238,7 +99,7 @@ public class Dao {
         List<String> allotseat=new ArrayList<>();
         allotseat.add("F");
 
-        String sql="select * from "+flight_number+" where user_id is null order by id";
+        String sql="select * from flight_attribute where flight_number='"+flight_number+"' and user_id is null order by id";
         SqlHelper.getConnection();
         ResultSet resultSet=SqlHelper.executeQuery(sql,null);
 
@@ -310,7 +171,7 @@ public class Dao {
     //查看指定航班有多少列的方法,参数是发送过来的航班号
     private Integer selectFlightColumn(String flight_number){
         //把这个航班内的所有的数据全部查出来
-        String sql="select * from "+flight_number+" order by id";
+        String sql="select * from flight_attribute where flight_number='"+flight_number+"' order by id";
 
         SqlHelper.getConnection();
         ResultSet resultSet=SqlHelper.executeQuery(sql,null);
@@ -340,10 +201,11 @@ public class Dao {
     public boolean update(FlightAttribute flightAttribute,String flight_number){
         try {
 //            System.out.println("update");
-            String sql="update "+flight_number+" set user_id=? where seat_id=?";
-            Object[] ps=new Object[2];
+            String sql="update flight_attribute set user_id=? where seat_id=? and flight_number=?";
+            Object[] ps=new Object[3];
             ps[0]=flightAttribute.getUser_id();
             ps[1]=flightAttribute.getSeat_id();
+            ps[2]=flight_number;
 
             SqlHelper.executeUpdate(sql,ps);
             //更新成功返回true，表示成功
@@ -357,7 +219,7 @@ public class Dao {
 
     //这是查询指定航班的那些有人的语句
     public List<String> flightselect_seat(String flight_number){
-        String sql="select * from "+flight_number+" where user_id is not null";
+        String sql="select * from flight_attribute where flight_number='"+flight_number+"' and user_id is not null";
         List<String> select_seat=new ArrayList<>();
 
         SqlHelper.getConnection();
@@ -875,7 +737,7 @@ public class Dao {
         String sql="";
 
         //首先把所有的空座位查出来放在座位list中
-        sql="select * from "+flight_number+" where user_id is null order by id";
+        sql="select * from flight_attribute where flight_number='"+flight_number+"' and user_id is null order by id";
         SqlHelper.getConnection();
         ResultSet resultSet=SqlHelper.executeQuery(sql,null);
 //        System.out.println(sql);
@@ -904,7 +766,7 @@ public class Dao {
     //更新多人的的update
     private boolean updateAllot(List<UserFlightSeat> userFlightSeatList,Connection connection){
 
-        String sql="UPDATE "+userFlightSeatList.get(0).getFlight_number()+" SET user_id = CASE seat_id ";
+        String sql="UPDATE flight_attribute SET user_id = CASE seat_id ";
         String wherein="";
         for(int i=0;i<userFlightSeatList.size();i++){
 
@@ -915,8 +777,7 @@ public class Dao {
             }
         }
 
-        sql+="END WHERE id IN (select a.id from (select id from "+userFlightSeatList.get(0).getFlight_number()+" where seat_id in("+wherein+"))a )";
-
+        sql+="END WHERE id IN (select a.id from (select id from "+userFlightSeatList.get(0).getFlight_number()+" where seat_id in("+wherein+"))a ) and flight_number='"+userFlightSeatList.get(0).getFlight_number()+"'";
 
 
         try {
@@ -1100,7 +961,7 @@ public class Dao {
     //获取飞机有多少座位和多少人
     public List<Integer> findAllFlight(String flight){
         List<Integer> list = new ArrayList<>();
-        String sql = "SELECT (select COUNT(*) as seatnum from "+flight+" WHERE user_id is not null) as num1,(select COUNT(*) as sea from "+flight+") as num2;";
+        String sql = "SELECT (select COUNT(*) as seatnum from flight_attribute WHERE flight_number='"+flight+"' and user_id is not null) as num1,(select COUNT(*) as sea from flight_attribute where flight_number='"+flight+"') as num2";
         int z = 0;
         int r = 0;
         ResultSet resultSet = SqlHelper.executeQuery(sql,null);
