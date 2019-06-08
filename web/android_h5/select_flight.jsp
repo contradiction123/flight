@@ -79,7 +79,7 @@
         }
         .header{
             display: flex;
-            padding-bottom: 20px;
+            padding-bottom: 40px;
         }
         .header>div:nth-child(1){
             width: 80%;
@@ -376,7 +376,7 @@
 
         <div class="row">
             <div class="col-lg-12 header">
-                <div><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 18px;"></span></a></div>
+                <div style="display: none"><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-menu-left" style="font-size: 18px;"></span></a></div>
                 <div></div>
             </div>
 
