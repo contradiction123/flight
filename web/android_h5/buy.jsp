@@ -428,7 +428,7 @@
                     <form class="form form-box" action="../admin_flight" method="get">
                         <div class="form-group modal-body-div">
                             <div>
-                                <label class="wenzi-5ex modal-body-label">账号:</label>
+                                <label class="wenzi-5ex modal-body-label">请输入购买人的账号</label>
                             </div>
                             <div>
                                 <input type="text" class="form-control" placeholder="name" name="s" id="name">
@@ -437,18 +437,18 @@
 
                         <div class="form-group modal-body-div child_vip_type">
                             <div>
-                                <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
+                                <label class="wenzi-6ex modal-body-label">首先选择以下选项，如果都没有请点击"不选"</label>
                             </div>
                             <div class="RadioStyle">
                                 <div class="Block PaddingL">
                                     <div id="a1">
                                         <div>
                                             <input type="checkbox" id="love1" name="Storage" class="Storage"/>
-                                            <label for="love1" class="child_vip">child</label>
+                                            <label for="love1" class="child_vip">是否带有儿童</label>
                                         </div>
                                         <div>
                                             <input type="checkbox" id="love2" name="Storage" class="Storage" />
-                                            <label for="love2" class="child_vip">vip</label>
+                                            <label for="love2" class="child_vip">是否是vip</label>
                                         </div>
                                     </div>
                                     <div>
@@ -460,25 +460,25 @@
                         </div>
                         <div class="form-group modal-body-div attribute">
                             <div>
-                                <label class="modal-body-label">第一属性：</label>
+                                <label class="modal-body-label">您第一想要的座位是在哪里？</label>
                             </div>
                             <div class="RadioStyle">
                                 <div class="Block PaddingL" id="a2">
                                     <div>
                                         <input type="radio" name="Storage1" id="model7" class="Storage1" />
-                                        <label for="model7" class="one">windows</label>
+                                        <label for="model7" class="one">靠窗位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage1" id="model4" class="Storage1" />
-                                        <label for="model4" class="one">door</label>
+                                        <label for="model4" class="one">靠门位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage1" id="model5" class="Storage1"/>
-                                        <label for="model5" class="one">middle</label>
+                                        <label for="model5" class="one">中间位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage1" id="model6" class="Storage1"/>
-                                        <label for="model6" class="one">aisle</label>
+                                        <label for="model6" class="one">靠过道位置</label>
                                     </div>
                                 </div>
                             </div>
@@ -486,25 +486,25 @@
 
                         <div class="form-group modal-body-div attribute">
                             <div>
-                                <label class="wenzi-5ex modal-body-label">第二属性:</label>
+                                <label class="wenzi-5ex modal-body-label">如果没有第一想要的位置了，那么您还想要什么位置</label>
                             </div>
                             <div class="RadioStyle">
                                 <div class="Block PaddingL" id="a3">
                                     <div>
                                         <input type="radio" name="Storage2" id="model11" class="Storage2"/>
-                                        <label for="model11" class="second">windows</label>
+                                        <label for="model11" class="second">靠窗位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage2" id="model8" class="Storage2"/>
-                                        <label for="model8" class="second">door</label>
+                                        <label for="model8" class="second">靠门位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage2" id="model9" class="Storage2"/>
-                                        <label for="model9" class="second">middle</label>
+                                        <label for="model9" class="second">中间位置</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="Storage2" id="model10" class="Storage2"/>
-                                        <label for="model10" class="second">aisle</label>
+                                        <label for="model10" class="second">靠过道位置</label>
                                     </div>
                                 </div>
                             </div>

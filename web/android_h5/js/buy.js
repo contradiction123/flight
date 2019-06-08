@@ -80,6 +80,11 @@ child_vip[0].onclick=function () {
         child_vip[2].innerHTML="不选";
         isselect--;
     };
+    if(!storage[0].checked&&storage[1].checked){
+        child_vip[2].style.display="none";
+    }else {
+        child_vip[2].style.display="inline";
+    }
 };
 child_vip[1].onclick=function () {
     if(!storage[1].checked||storage[0].checked){
@@ -92,7 +97,11 @@ child_vip[1].onclick=function () {
         child_vip[2].innerHTML="不选";
         isselect--;
     }
-
+    if(storage[0].checked&&!storage[1].checked){
+        child_vip[2].style.display="none";
+    }else {
+        child_vip[2].style.display="inline";
+    }
 };
 child_vip[2].onclick=function () {
     if(storage[1].checked&&storage[0].checked){
