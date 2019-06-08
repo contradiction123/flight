@@ -184,8 +184,8 @@
                     <div class="form-group">
                         <label>飞机列表</label>
                         <div id="col-id">
-                            <input type="text" class="form-control col-id" placeholder="列标">
-                            <input type="text" class="form-control col-id" placeholder="列标">
+                            <input type="text" class="form-control col-id" placeholder="列标" maxlength="1">
+                            <input type="text" class="form-control col-id" placeholder="列标" maxlength="1">
                         </div>
                     </div>
                     <div class="form-group">
@@ -193,16 +193,16 @@
                         <div id="start-aisle-col">
                             <input type="button" id="add-aisle-col" value="增加"/>
                             <div class="start-aisle-col">
-                                <input type="text" class="form-control start-col" placeholder="过道">
+                                <input type="text" class="form-control start-col" placeholder="列过道" maxlength="2">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>多少行后面是过道（只能填行号）：</label>
                         <div id="start-aisle-row">
-                            <input type="button" id="add-aisle-row" value="增加"/>
+                            <input type="button" id="add-aisle-row" value="增加" />
                             <div class="start-aisle-row">
-                                <input type="text" class="form-control start-row" placeholder="过道">
+                                <input type="text" class="form-control start-row" placeholder="行过道" oninput="value=value.replace(/[^\d]/g,'')" maxlength="2"/>
                             </div>
                         </div>
                     </div>
@@ -243,197 +243,6 @@
 <script type="text/javascript"  src="js/shim.js"></script>
 <script type="text/javascript"  src="js/xlsx.full.min.js"></script>
 <script type="text/javascript"  src="js/jquery.js"></script>
-<script>
-    var X = XLSX;
-
-    var global_wb;
-
-    var process_wb = (function() {
-        var OUT = document.getElementById('out');
-        var HTMLOUT = document.getElementById('htmlout');
-        var to_json = function to_json(workbook) {
-            var result = {};
-            workbook.SheetNames.forEach(function(sheetName) {
-                var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName], {
-                    header: 1
-                });
-                //var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]);
-                if (roa.length) result[sheetName] = roa;
-            });
-            return JSON.stringify(result, 2, 2);
-        };
-
-        return function process_wb(wb) {
-            global_wb = wb;
-            var output = "";
-            output = to_json(wb);
-            if (OUT.innerText === undefined) OUT.textContent = output;
-            else OUT.innerText = output;
-            dealJson(output);
-        };
-    })();
-
-
-    var do_file = (function() {
-        return function do_file(files) {
-            var f = files[0];
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var data = e.target.result;
-                data = new Uint8Array(data);
-                process_wb(X.read(data, {
-                    type: 'array'
-                }));
-            };
-            reader.readAsArrayBuffer(f);
-        };
-    })();
-    (function() {
-        var xlf = document.getElementById('xlf');
-        if (!xlf.addEventListener) return;
-
-        function handleFile(e) {
-            do_file(e.target.files);
-        }
-        xlf.addEventListener('change', handleFile, false);
-
-    })();
-</script>
-
-<script type="text/javascript">
-    function dealJson(sJson) {
-        var vJson = eval('(' + sJson + ')');
-        var $testTab = $("#tablelist");
-        var conCout = 4
-        var i = 0;
-        var string_name = new Array("id", "type_one", "type_two","team");
-
-        //这个是js创建的json模板
-        // var json1=[{"passenger_num":userName.length,
-        //             "passenger_flight_number":b737_700,
-        //             "passenger_info":[
-        //             {"id":"3","type_one":"window","type_second":"aisle"},
-        //             {"id":"4","type_one":"child","type_second":"window"},
-        //             {"id":"5","type_one":"aisle","type_second":"door"}
-        //     ]}]
-
-
-        //首先定义passenger_info的数组拿来存放每一个人选择位置的信息
-        var passenger_info = new Array();
-
-        var count=0;
-
-        var tabledate="<div class=\"tablepage\" style=\"position: absolute; width: 100%\"><table class=\"table table-striped\" ><thead><tr><th name=\"id\">ID</th><th name=\"type_one\">ONE</th><th name=\"type_two\">TWO</th><th name=\"team\">TEAM</th></tr></thead><tbody class=\"testTab\">";
-        for (var n in vJson) {
-            var str="";
-            for (var k = 1; k < vJson[n].length; k++) {
-
-
-                var jsonObj = {};
-
-                if((k-1)%10==0){
-                    count++;
-                    str+= tabledate+"<tr>";
-                }else {
-                    str+="<tr>"
-                }
-
-                for (let c = 0; c < conCout; c++) {
-                    var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
-                    // str += "<td><input type='text' id='lz" + n + "' value='" + tm + "'></td>";
-
-                    str += "<td josnval='' class='" + string_name[c] + "' value='" + tm + "'>"+tm+"</td>";
-
-                    if(string_name[c]=="id")jsonObj["Id"]=tm;
-                    if(string_name[c]=="type_one")jsonObj["type_one"]=tm;
-                    if(string_name[c]=="type_two")jsonObj["type_second"]=tm;
-                    if(string_name[c]=="team"){
-                        jsonObj["team"]=tm;
-                        passenger_info.push(jsonObj);
-                    }
-
-                }
-                i++;
-                str += "</tr>";
-                if(k%10==0 || k==vJson[n].length-1){
-                    str+="</tbody></table></div>";
-                    // console.log(str);
-                    $testTab.append(str);
-                    str="";
-                }
-                //str.parentNode.removeChild(str);
-                //document.fileForm.submit();
-            }
-        };
-        var tablepage=$(".tablepage");
-        for(var i=1;i<tablepage.length;i++){
-            tablepage[i].style.display="none";
-        }
-
-        document.getElementById("pages").style.marginTop = (parseInt(window.getComputedStyle(tablepage[0]).height) + 10)+'px';
-
-        str="";
-        for(let i=1;i<=count;i++){
-            str="<div class=\"page text-center\">"+i+"</div>"
-            $("#pages").append(str);
-        }
-
-        var page=$(".page");
-
-        page[0].style.backgroundColor="#327AB7";
-        page[0].style.color="#fff";
-
-        for(let i=0;i<page.length;i++){
-            page[i].onclick=function () {
-                for(var j=0;j<tablepage.length;j++){
-                    tablepage[j].style.display="none";
-                    page[j].style.backgroundColor="#fff";
-                    page[j].style.color="#000";
-
-                }
-                tablepage[i].style.display="inline";
-                page[i].style.backgroundColor="#327AB7";
-            }
-        }
-
-
-
-        var json1=new Array();
-        var j={};
-
-        //点击了确认导入
-        $("#submitbtn").click(function () {
-            addsvg();
-            var flight_model = document.getElementById("flight_number");
-            var flight_name = flight_model.options[flight_model.selectedIndex].value;
-
-            j["passenger_flight_number"]=flight_name//航班机型
-            j["passenger_num"]=passenger_info.length;//人数
-            j["passenger_info"]=passenger_info;//个人座位需求信息
-            json1.push(j);
-            console.log(json1);
-            // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
-            $.ajax({
-                type:"POST", //请求方式
-                url:"./allAllotservlet", //请求路径
-                cache: true,
-                data:{//传参_传递刚才创建的json1数组
-                    "jsonArr":json1,
-                },
-                dataType: 'text',   //设置返回值类型
-                success:function(e){
-                    document.getElementsByTagName("form")[0].submit();
-
-                }
-            });//ajax——的结束
-
-        })
-
-
-
-
-    }
-</script>
 
 <script>
     function  addsvg() {
@@ -492,7 +301,7 @@
         my.parentNode.removeChild(my);
 
         $(".start-aisle-col:eq(0)").append(
-            '<input type="text" class="form-control start-col" placeholder="过道">'
+            '<input type="text" class="form-control start-col" placeholder="列过道" maxlength="2">'
         )
 
         var script = document.createElement("script");
@@ -505,7 +314,7 @@
         my.parentNode.removeChild(my);
 
         $(".start-aisle-row:eq(0)").append(
-            '<input type="text" class="form-control start-row" placeholder="过道">'
+            '<input type="text" class="form-control start-row" placeholder="行过道" oninput="value=value.replace(/[^\\d]/g,\'\')" maxlength="2"/>'
         )
 
         var script = document.createElement("script");
@@ -532,8 +341,8 @@
         $("#flight-number").val("");
     });
 
-    $("#col-table").keydown(function(event){
-        createcol(parseInt(event.key));
+    $("#col-table").keyup(function(event){
+        createcol(parseInt( $("#col-table").val()));
     });
 
     function createcol(n) {
@@ -548,7 +357,7 @@
 
         for(let i=0;i<n;i++){
             $("#col-id").append(
-                '<input type="text" class="form-control col-id" placeholder="列标">'
+                '<input type="text" class="form-control col-id" placeholder="列标" maxlength="1">'
             )
         }
         var script = document.createElement("script");
@@ -753,6 +562,8 @@
                     passenger_info.push(jsonObj);
 
                     count++;
+                }else {
+                    delete_seat+=document.getElementsByClassName("seat-id")[sumcunt].id+",";
                 }
                 sumcunt++;
             }

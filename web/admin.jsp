@@ -372,11 +372,11 @@
     var option = {
         backgroundColor: '#FFFFFF',
         title: {
-            text: '系统运行情况',
-            left: 'left',
+            text: '    2秒内好，2-5秒一般,5秒以上緩慢',
+            left: 'center',
             top: 0,
             textStyle: {
-                color: 'rgba(0,0,0,0)'
+                color: 'rgba(0,0,0,1)'
             }
         },
 
@@ -401,10 +401,10 @@
             color: ['#fe9590', '#39d6fe', '#337AB7'], //'#FBFE27','rgb(11,228,96)','#FE5050'
             data: [{
                 value: parseInt(good),
-                name: '良好'
+                name: '好'
             },{
                 value: parseInt(well),
-                name: '正常'
+                name: '一般'
             },
                 {
                     value: parseInt(bad),
@@ -417,7 +417,7 @@
 
             label: {
                 normal: {
-                    formatter: ['{c|{c}次}', '{b|{b}}'].join('\n'),
+                    formatter: ['{c|{c}%}', '{b|{b}}'].join('\n'),
                     rich: {
                         c: {
                             color: '#000',

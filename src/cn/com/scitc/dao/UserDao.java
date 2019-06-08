@@ -130,7 +130,28 @@ public class UserDao {
 
     //修改信息
     public void editUserById(String name,String email,String password,String sex, String id){
-        String sql = "update user set user_name = ?, user_email = ?, user_psw = ?, user_sex = ? where user_id = ?";
-        SqlHelper.executeUpdate(sql,new Object[]{name,email,password,sex,id});
+//        String sql = "update user set user_name = ?, user_email = ?, user_psw = ?, user_sex = ? where user_id = ?";
+//        SqlHelper.executeUpdate(sql,new Object[]{name,email,password,sex,id});
+
+        String sql = "update user set user_name = ?, user_email = ?, user_sex = ? where user_id = ?";
+        SqlHelper.executeUpdate(sql,new Object[]{name,email,sex,id});
+    }
+
+    //删除飞机
+    public boolean deleteFlight(String flight_number){
+        String sql="delete from flight_attribute where flight_number='"+flight_number+"'";
+        try {
+            SqlHelper.executeUpdate(sql,null);
+
+            sql="delete from flight_model where name='"+flight_number+"'";
+
+            SqlHelper.executeUpdate(sql,null);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

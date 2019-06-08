@@ -1,9 +1,14 @@
 $(".col-id").keyup(function (e) {
     var a=$(".col-id").index(this);
-    if(a<$(".col-id").length-1){
-        var s=parseInt(a)+1;
-        document.getElementsByClassName("col-id")[s].focus();
+
+    if(document.getElementsByClassName("col-id")[a].value.length>0){
+        if(a<$(".col-id").length-1){
+            var s=parseInt(a)+1;
+            document.getElementsByClassName("col-id")[s].focus();
+        }
     }
+
+
 });
 
 $(".start-col").keyup(function (e) {
@@ -22,7 +27,9 @@ $(".start-row").keyup(function (e) {
 });
 $(".seat-id").click(function () {
     var a=$(".seat-id").index(this);
-    document.getElementsByClassName("svg")[a].style.visibility="hidden";//visible
-    document.getElementsByClassName("seat-id")[a].style.visibility="hidden";//visible
-    delete_seat+=document.getElementsByClassName("seat-id")[a].id+",";
+    if(document.getElementsByClassName("svg")[a].style.visibility=="hidden"){
+        document.getElementsByClassName("svg")[a].style.visibility="visible";
+    }else {
+        document.getElementsByClassName("svg")[a].style.visibility="hidden";//visible
+    }
 });

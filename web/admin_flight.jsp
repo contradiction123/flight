@@ -136,6 +136,9 @@
                                     <a href="#" class="btn btn-default clearuser" role="button">
                                         清空乘客
                                     </a>
+                                    <a href="#" class="btn btn-default clearflight" role="button">
+                                        删除飞机
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -173,6 +176,30 @@
             // alert(flightNumber[i].innerHTML);
             $.ajax({
                 type:"POST", //请求方式
+                url:"./clearflightuser", //请求路径
+                cache: false,
+                data:{flight_number:flightNumber[i].innerHTML},
+                dataType: 'text',   //设置返回值类型
+                success:function(e){
+                    if(e=="true"){
+                        location.reload();
+                    }else {
+                        clearsvg();
+                        alert("清空失败");
+                    }
+                }
+            });//ajax——的结束
+        }
+    }
+
+    var clearflight=$(".clearflight");
+    var flightNumber=$(".clearfm");
+    for(let i=0;i<clearflight.length;i++){
+        clearflight[i].onclick=function () {
+            addsvg();
+            // alert(flightNumber[i].innerHTML);
+            $.ajax({
+                type:"GET", //请求方式
                 url:"./clearflightuser", //请求路径
                 cache: false,
                 data:{flight_number:flightNumber[i].innerHTML},

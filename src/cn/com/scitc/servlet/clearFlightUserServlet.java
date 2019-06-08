@@ -27,6 +27,19 @@ public class clearFlightUserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String flight_number=request.getParameter("flight_number");
+//        System.out.println(flight_number);
+        String s="";
+        if(new UserDao().clearUser(flight_number)){
+            if(new UserDao().deleteFlight(flight_number)){
+                s="true";
+            }else {
+                s="false";
+            }
+        }else {
+            s="false";
+        }
 
+        response.getWriter().print(s);
     }
 }

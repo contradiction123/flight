@@ -17,7 +17,7 @@ function showCheck(a) {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 1000, 1000);
     ctx.font = "80px 'Hiragino Sans GB'";
-    ctx.fillStyle = "rgb(26, 82, 204)";
+    ctx.fillStyle = "rgb(255, 255, 200)";
     ctx.fillText(a, 0, 100);
 }
 
@@ -55,6 +55,7 @@ function login() {
 
             alert("验证码输入错误");
             clearsvg();
+            Code();
         }
     } else {
         alert("用户名或者密码错误");

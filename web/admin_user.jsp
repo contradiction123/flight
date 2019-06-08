@@ -192,7 +192,7 @@
     </div><!-- /.modal -->
 </div>
 
-<!-- 删除用户模态框（Modal） -->
+<!-- 修改用户模态框（Modal） -->
 <div class="modal fade" id="edit_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
