@@ -121,4 +121,16 @@ public class UserDao {
         }
         return  userFlightSeats;
     }
+
+    //删除用户
+    public void deleteUserById(String id){
+        String sql = "DELETE FROM user WHERE user_id = ?";
+        SqlHelper.executeUpdate(sql,new Object[]{id});
+    }
+
+    //修改信息
+    public void editUserById(String name,String email,String password,String sex, String id){
+        String sql = "update user set user_name = ?, user_email = ?, user_psw = ?, user_sex = ? where user_id = ?";
+        SqlHelper.executeUpdate(sql,new Object[]{name,email,password,sex,id});
+    }
 }
