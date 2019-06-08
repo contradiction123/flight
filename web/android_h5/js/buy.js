@@ -21,8 +21,19 @@ var user_name="";
 
 $(".add:eq(0)").click(function () {
     clearadduser();
-    document.getElementsByClassName("addbtn")[0].style.visibility="hidden"
+    document.getElementsByClassName("addbtn")[0].style.visibility="hidden";
+    timeaddbtn();
 });
+
+function timeaddbtn(){
+    var s=setInterval(function () {
+        if(!($("body:eq(0)").hasClass("modal-open"))){
+            document.getElementsByClassName("addbtn")[0].style.visibility="visible";
+            clearInterval(s);
+        }
+    },100);
+}
+
 $(document).click(function (e) {
     if(!($("body:eq(0)").hasClass("modal-open"))){
         document.getElementsByClassName("addbtn")[0].style.visibility="visible";
