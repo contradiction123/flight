@@ -100,6 +100,7 @@
                 <li class="active"><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
@@ -180,7 +181,12 @@
     var satasfiactionF=<c:out value="${satasfiactionlist.get(1)}"/>;
 
     var s=Math.round(satasfiactionT/(satasfiactionF+satasfiactionT)*10000);
-    document.getElementById("satafiactionlv").innerHTML=(s/100)+"%";
+    if(s>0){
+        document.getElementById("satafiactionlv").innerHTML=(s/100)+"%";
+    }else {
+        document.getElementById("satafiactionlv").innerHTML="";
+    }
+
 
     var delete_seat="<c:out value="${flightmodel.getDelete_seat()}"/>";
     var dseat=delete_seat.split(",");

@@ -673,12 +673,13 @@
         //首先定义passenger_info的数组拿来存放每一个座位的信息
         var passenger_info = new Array();
         var count=0;
+        var sumcunt=0;
         for(let i=0;i<parseInt(flight_row);i++){
             for(let j=0;j<parseInt(flight_col);j++){
                 var jsonObj = {};
-                if(document.getElementsByClassName("seat-id")[count].style.visibility!="hidden"){
+                if(document.getElementsByClassName("seat-id")[sumcunt].style.visibility!="hidden"){
                     jsonObj["Id"]=count+1;
-                    jsonObj["seat_id"]=document.getElementsByClassName("seat-id")[count].id;
+                    jsonObj["seat_id"]=document.getElementsByClassName("seat-id")[sumcunt].id;
                     jsonObj["user_id"]=null;
 
                     jsonObj["child"]="0";
@@ -753,6 +754,7 @@
 
                     count++;
                 }
+                sumcunt++;
             }
         }
 
