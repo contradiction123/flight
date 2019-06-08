@@ -545,7 +545,7 @@
 
 </body>
 
-<script type="text/javascript" src="js/buy1.js"></script>
+<script type="text/javascript" src="js/buy.js"></script>
 <script type="text/javascript" src="js/framework7.min.js"></script>
 <script type="text/javascript" src="js/upscroller.js"></script>
 <script type="text/javascript" src="js/my-app.js"></script>

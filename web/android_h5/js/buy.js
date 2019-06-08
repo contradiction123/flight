@@ -21,8 +21,13 @@ var user_name="";
 
 $(".add:eq(0)").click(function () {
     clearadduser();
+    document.getElementsByClassName("addbtn")[0].style.visibility="hidden"
 });
-
+$(document).click(function (e) {
+    if(!($("body:eq(0)").hasClass("modal-open"))){
+        document.getElementsByClassName("addbtn")[0].style.visibility="visible";
+    }
+});
 function clearadduser() {
     $(".child_vip_type:eq(0)").css('display','inline');
     $(".child_vip:eq(2)").css('display','inline');
@@ -206,18 +211,27 @@ $(".addbtn").click(function(){
             document.getElementById("f_number").value=flight_number;
             document.getElementById("f_name").value=user_name;
 
-            var list=e.split("zZz");
-
+            var list=e.split("TtT");
+            var list1=list[0].split("zZz");
+            var list2=list[1].split("zZz");
             var seat_l="";
 
-            for(let i=1;i<list.length-2;i++){
-                seat_l+=list[i]+",";
+            for(let i=1;i<list1.length-1;i++){
+                seat_l+=list1[i]+",";
             }
             document.getElementById("f_seat").value=seat_l;
-            document.getElementById("f_seatlist").value=list[list.length-2];
+
+            document.getElementById("f_seatlist").value=list2[1];
 
             document.getElementById("display").submit();
 
+            // console.log(flight_number);
+            // console.log(user_name);
+            // console.log(seat_l);
+            // console.log(list2[1]);
+            // console.log(e);
+            // console.log(list1);
+            // console.log(list2);
         }
     });//ajax——的结束
 

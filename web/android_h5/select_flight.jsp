@@ -406,7 +406,11 @@
 
                         <div class="number">
                             <div class="number-name">经济舱
-                                <span class="sellseat" id="<c:out value="${flight.name}"/>_z"><c:out value="${flight.z-flight.r}"/></span>
+                                <span class="sellseat" id="<c:out value="${flight.name}"/>_z"><c:out value="${flight.z-flight.r}"/>
+                                <c:if test="${flight.z==flight.r}">
+                                    本航班的票已近售完请选择其他航班
+                                </c:if>
+                                </span>
                             </div>
                         </div>
 
