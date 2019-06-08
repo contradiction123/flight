@@ -279,7 +279,11 @@
             border-radius: 3px;
         }
     </style>
-    <%--<link href="<c:url value="/android_h5/css/buy.css"/>" rel="stylesheet">--%>
+    <!-- Add custom CSS here -->
+    <link href="<c:url value="css/admin.css" />" rel="stylesheet">
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
+
     <style>
         .clear {
             clear: both
@@ -413,277 +417,305 @@
             background: rgba(0,0,0,0.5);
             left:0px
         }
+        .main{
+            padding-top: 88px;
+        }
+        .side-nav{
+            top: 98px;
+            position: fixed;
+            z-index: -100;
+        }
+        .sidebar{
+            margin-top: 84px;
+            position: fixed;
+            right: 0px;
+        }
     </style>
 </head>
 <body>
-<div class="header_wrap">
-    <div class="header">
-        <div class="topMenu">
-            <div style="float: left">
-                <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
-                <h1 style="float: right; margin-left: 20px;">Eyat</h1>
-            </div>
-            <div style="margin-right: 10%">
-                <ul class="nav navbar-right ">
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-gear"></i> 个人信息</a></li>
-                            <li class="divider"></li>
-                            <li><a href="<c:url value="/out"/> "><i class="fa fa-power-off"></i> 退出登录</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+
+
+<div id="wrapper">
+
+    <!-- 侧边栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <img style="width: 88px;" src="<c:url value="/img/logo.png"/> " />
+            <h1 style="    float: right;margin-left: 26px;line-height: 240%;color: #fff;">Eyat</h1>
         </div>
 
-    </div>
-</div>
-</div>
-<div class="fly-middle">
-    <div class="main">
-        <div class="box-message">
-            <div class="box-tit">
-                <h2>乘客</h2>
-                <div class="box-tips">
-                    <div>一次最多为8位乘客添加购票信息
-                        <button type="button" class="btn btn-info" style="margin-left: 330px;" id="add">+添加乘客</button>
+        <!-- 左侧栏列表-->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active"><a href="<c:url value="/buy"/> "><i class="fa fa-dashboard"></i>首页</a></li>
+                <li><a href="<c:url value="/userFormation"/>?name=<c:out value="${msg.user_name}" />"><i class="fa fa-bar-chart-o"></i>个人信息</a></li>
+                <li><a href="#"><i class="fa fa-table"></i></a></li>
+                <li><a href="#"><i class="fa fa-edit"></i></a></li>
+                <li><a href="#"><i class="fa fa-font"></i></a></li>
+            </ul>
+
+            <!--管理员选项-->
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff;font-size: 36px;line-height: 200%;"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    <div id="page-wrapper">
+
+        <div class="fly-middle">
+            <div class="main">
+                <div class="box-message">
+                    <div class="box-tit">
+                        <h2>乘客</h2>
+                        <div class="box-tips">
+                            <div>一次最多为8位乘客添加购票信息
+                                <button type="button" class="btn btn-info" style="margin-left: 330px;" id="add">+添加乘客</button>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-
-            </div>
-        </div>
-
-        <div class="p-message" id="cc">
-            <div class="p-card">
-                <div class="p-num">
-                    <i class="num-1"></i>
-                </div>
-                <div class="input-group" style="margin-left: 15px;">
-                    <span class="input-group-addon">姓名</span>
-                    <input type="text" class="form-control " value='<c:out value="${msg.user_name}" />'  aria-label="..." style="width:360px;">
-                </div>
-                <div>
-                    <div style="margin-top: 10px;">
+                <div class="p-message" id="cc">
+                    <div class="p-card">
+                        <div class="p-num">
+                            <i class="num-1"></i>
+                        </div>
                         <div class="input-group" style="margin-left: 15px;">
-                            <span class="input-group-addon">账号</span>
-                            <input type="text" class="form-control  user-id" value=''  placeholder="账号" aria-label="..." style="width:360px;">
+                            <span class="input-group-addon">姓名</span>
+                            <input type="text" class="form-control " value='<c:out value="${msg.user_name}" />'  aria-label="..." style="width:360px;">
                         </div>
-                    </div>
-                </div>
-                <div>
-                    <div style="margin-top: 10px;">
-                        <div class="col-lg-2" style="width:160px;">
-                            <select class="form-control" onchange="selectOnchang(this)">
-                                <option>身份证</option>
-                                <option>护照</option>
-                                <option>军人证</option>
-                            </select>
-                        </div>
-                        <input type="text" class="form-control" placeholder="证件号码" style="width:270px;">
-                    </div>
-                </div>
-
-
-
-                <div class="form-group modal-body-div child_vip_type">
-                    <div style="margin-top: 20px;">
-                        <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
-                    </div>
-                    <div class="RadioStyle">
-                        <div class="Block PaddingL">
-                            <div id="a1">
-                                <div>
-                                    <input type="checkbox" id="love1" name="Storage" class="Storage"/>
-                                    <label for="love1" class="child_vip">child</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="love2" name="Storage" class="Storage" />
-                                    <label for="love2" class="child_vip">vip</label>
+                        <div>
+                            <div style="margin-top: 10px;">
+                                <div class="input-group" style="margin-left: 15px;">
+                                    <span class="input-group-addon">账号</span>
+                                    <input type="text" class="form-control  user-id" value=''  placeholder="账号" aria-label="..." style="width:360px;">
                                 </div>
                             </div>
-                            <div>
-                                <input type="checkbox" id="love3" name="Storage" class="Storage"/>
-                                <label for="love3" class="child_vip threechild_vip">不选</label>
+                        </div>
+                        <div>
+                            <div style="margin-top: 10px;">
+                                <div class="col-lg-2" style="width:160px;">
+                                    <select class="form-control" onchange="selectOnchang(this)">
+                                        <option>身份证</option>
+                                        <option>护照</option>
+                                        <option>军人证</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" placeholder="证件号码" style="width:270px;">
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group modal-body-div attribute">
-                    <div>
-                        <label class="modal-body-label">第一属性：</label>
-                    </div>
-                    <div class="RadioStyle">
-                        <div class="Block PaddingL" id="a2">
-                            <div>
-                                <input type="radio" name="Storage1" id="model7" class="Storage1" />
-                                <label for="model7" class="one">windows</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="Storage1" id="model4" class="Storage1" />
-                                <label for="model4" class="one">door</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="Storage1" id="model5" class="Storage1"/>
-                                <label for="model5" class="one">middle</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="Storage1" id="model6" class="Storage1"/>
-                                <label for="model6" class="one">aisle</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-group modal-body-div attribute">
-                    <div>
-                        <label class="wenzi-5ex modal-body-label">第二属性:</label>
+
+
+                        <div class="form-group modal-body-div child_vip_type">
+                            <div style="margin-top: 20px;">
+                                <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
+                            </div>
+                            <div class="RadioStyle">
+                                <div class="Block PaddingL">
+                                    <div id="a1">
+                                        <div>
+                                            <input type="checkbox" id="love1" name="Storage" class="Storage"/>
+                                            <label for="love1" class="child_vip">child</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="love2" name="Storage" class="Storage" />
+                                            <label for="love2" class="child_vip">vip</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="love3" name="Storage" class="Storage"/>
+                                        <label for="love3" class="child_vip threechild_vip">不选</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group modal-body-div attribute">
+                            <div>
+                                <label class="modal-body-label">第一属性：</label>
+                            </div>
+                            <div class="RadioStyle">
+                                <div class="Block PaddingL" id="a2">
+                                    <div>
+                                        <input type="radio" name="Storage1" id="model7" class="Storage1" />
+                                        <label for="model7" class="one">windows</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage1" id="model4" class="Storage1" />
+                                        <label for="model4" class="one">door</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage1" id="model5" class="Storage1"/>
+                                        <label for="model5" class="one">middle</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage1" id="model6" class="Storage1"/>
+                                        <label for="model6" class="one">aisle</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group modal-body-div attribute">
+                            <div>
+                                <label class="wenzi-5ex modal-body-label">第二属性:</label>
+                            </div>
+                            <div class="RadioStyle">
+                                <div class="Block PaddingL" id="a3">
+                                    <div>
+                                        <input type="radio" name="Storage2" id="model11" class="Storage2"/>
+                                        <label for="model11" class="second">windows</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage2" id="model8" class="Storage2"/>
+                                        <label for="model8" class="second">door</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage2" id="model9" class="Storage2"/>
+                                        <label for="model9" class="second">middle</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="Storage2" id="model10" class="Storage2"/>
+                                        <label for="model10" class="second">aisle</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="RadioStyle">
-                        <div class="Block PaddingL" id="a3">
-                            <div>
-                                <input type="radio" name="Storage2" id="model11" class="Storage2"/>
-                                <label for="model11" class="second">windows</label>
+
+
+                </div>
+                <div style="margin-bottom:30px;">
+                    <div class="box-tit">
+                        <h2>联系人</h2>
+                    </div>
+                    <div class="p-card">
+                        <div>
+                            <div style="margin-top: 10px;">
+                                <div class="col-lg-2" style="width:160px;">
+                                    <select class="form-control" onchange="selectOnchang(this)">
+                                        <option>中国大陆区号86</option>
+                                        <option>中国香港区号852</option>
+                                        <option>中国澳门区号853</option>
+                                        <option>中国台湾区号886</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="form-control" placeholder="乘机人手机号码" style="width:270px;">
                             </div>
-                            <div>
-                                <input type="radio" name="Storage2" id="model8" class="Storage2"/>
-                                <label for="model8" class="second">door</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="Storage2" id="model9" class="Storage2"/>
-                                <label for="model9" class="second">middle</label>
-                            </div>
-                            <div>
-                                <input type="radio" name="Storage2" id="model10" class="Storage2"/>
-                                <label for="model10" class="second">aisle</label>
-                            </div>
+                        </div>
+                        <div style="margin-top: 10px;margin-left:15px;">
+                            <input type="text" class="form-control" placeholder="Email(选填，接收航变信息）" style="width:415px;">
+
                         </div>
                     </div>
                 </div>
-
+                <div style="width:700px;text-align: center;">
+                    <a href="javascript:;" class="b-go" id="go">提交</a>
+                </div>
             </div>
-
 
         </div>
-        <div style="margin-bottom:30px;">
-            <div class="box-tit">
-                <h2>联系人</h2>
-            </div>
-            <div class="p-card">
+        <div class="sidebar">
+            <div class="sidebar-cont">
                 <div>
-                    <div style="margin-top: 10px;">
-                        <div class="col-lg-2" style="width:160px;">
-                            <select class="form-control" onchange="selectOnchang(this)">
-                                <option>中国大陆区号86</option>
-                                <option>中国香港区号852</option>
-                                <option>中国澳门区号853</option>
-                                <option>中国台湾区号886</option>
-                            </select>
+                    <div class="flight-info" style="border-bottom: none;padding-bottom: 0">
+                        <div class="flight-city">
+                            <div class="flt-date">
+                                <c:out value="${time}" />
+                                <span class="week">周二</span>
+                                <div class="flt-depart"><c:out value="${cfcity}" /></div>
+                                <div class="flt-depart">--></div>
+                                <div class="flt-depart"><c:out value="${ddcity}" /></div>
+                            </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="乘机人手机号码" style="width:270px;">
+                        <div class="flight-tit">
+                            <div class="plane-type">
+                                <c:out value="${flight_number}" />
+                            </div>
+                            <form method="post" action="user_display_flight.jsp" id="formflight">
+                                <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
+                                <input type="hidden" name="seat" id="user-seat">
+                            </form>
+                            <div class="plane-type">
+                                经济舱
+                            </div>
+                        </div>
+                        <div class="flight-detail">
+                            <div class="flt-arrow">
+                                <!-- 您的座位:31K -->
+                            </div>
+                        </div>
+                        <div class="">
+                            <span style="position:absolute;left:300px;top:10px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
+                        </div>
                     </div>
                 </div>
-                <div style="margin-top: 10px;margin-left:15px;">
-                    <input type="text" class="form-control" placeholder="Email(选填，接收航变信息）" style="width:415px;">
-
-                </div>
-            </div>
-        </div>
-        <div style="width:700px;text-align: center;">
-            <a href="javascript:;" class="b-go" id="go">提交</a>
-        </div>
-    </div>
-
-</div>
-<div class="sidebar">
-    <div class="sidebar-cont">
-        <div>
-            <div class="flight-info" style="border-bottom: none;padding-bottom: 0">
-                <div class="flight-city">
-                    <div class="flt-date">
-                        <c:out value="${time}" />
-                        <span class="week">周二</span>
-                        <div class="flt-depart"><c:out value="${cfcity}" /></div>
-                        <div class="flt-depart">--></div>
-                        <div class="flt-depart"><c:out value="${ddcity}" /></div>
-                    </div>
-                </div>
-                <div class="flight-tit">
-                    <div class="plane-type">
-                        <c:out value="${flight_number}" />
-                    </div>
-                    <form method="post" action="user_info_b737_700.jsp" id="formflight">
-                        <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
-                        <input type="hidden" name="seat" id="user-seat">
-                    </form>
-                    <div class="plane-type">
-                        经济舱
-                    </div>
-                </div>
-                <div class="flight-detail">
-                    <div class="flt-arrow">
-                        <!-- 您的座位:31K -->
-                    </div>
-                </div>
-                <div class="">
-                    <span style="position:absolute;left:300px;top:10px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
-                </div>
-            </div>
-        </div>
-        <div class="flight-cost">
-            <div class="cost-detail">
-                <div class="cost-row">
-                    <div class="cost-tit">
-                        <span>成人</span>
-                        <span class="abb">
+                <div class="flight-cost">
+                    <div class="cost-detail">
+                        <div class="cost-row">
+                            <div class="cost-tit">
+                                <span>成人</span>
+                                <span class="abb">
                                         退改
                                         <dfn style="padding-left:3px;">￥</dfn>
                                         15起
                                     </span>
-                        <span class="abb">行李额</span>
-                        <div class="corner">
+                                <span class="abb">行李额</span>
+                                <div class="corner">
                                             <span class="price">
                                                 <dfn>￥</dfn>
                                                 150
                                             </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="cost-row">
-                    <div class="cost-tit">
-                        <span>机建</span>
-                        <div class="corner">
+                        <div class="cost-row">
+                            <div class="cost-tit">
+                                <span>机建</span>
+                                <div class="corner">
                                                 <span class="price">
                                                     <dfn>￥</dfn>
                                                     50
                                                 </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="cost-row">
-                    <div class="cost-tit">
-                        <span>燃油费</span>
-                        <div class="corner">免费</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="total-price">
+                        <div class="cost-row">
+                            <div class="cost-tit">
+                                <span>燃油费</span>
+                                <div class="corner">免费</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="total-price">
                         <span>
                             <dfn style="font-size: 18px;">￥</dfn>
                             200
                         </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-</div>
-</div>
-<div>
-</div>
+        </div>
+
+
+    </div><!-- /#page-wrapper -->
+
+</div><!-- /#wrapper -->
+
 <i id="mysvg"></i>
 
 
@@ -820,7 +852,7 @@
                 success:function(e){
 
                     document.getElementById("user-seat").value=e;
-                    document.getElementById("formflight").action="user_info_<c:out value="${flight_number}" />.jsp";
+                    <%--document.getElementById("formflight").action="user_info_<c:out value="${flight_number}" />.jsp";--%>
                     document.getElementById("formflight").submit();
                     // console.log(e);
                 }

@@ -86,6 +86,29 @@ public class Dao {
         }
         return null;
     }
+    //查看指定航班的用户对座位是否满意的
+    //返回的是一个字符串——31K zZz T ZzZ 32A zZz F
+    //ZzZ是座位之间的间隔
+    //zZz是座位号和满意之间的间隔
+    public String satisfaction(String flight_number){
+        String seat_satisfaction="";
+
+        String sql="select * from user_flight_seat where flight_number='"+flight_number+"'";
+
+        SqlHelper.getConnection();
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        try {
+            while (resultSet.next()){
+                seat_satisfaction+=resultSet.getString("seat_id")+"zZz";
+                seat_satisfaction+=resultSet.getString("satisfaction")+"ZzZ";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(sql);
+        return seat_satisfaction;
+    }
 
 
     //给指定人数的用户分配座位，人数不超过航班的列数,参数是用户的数量和座位列数,航班号
@@ -1112,14 +1135,23 @@ public class Dao {
         for(int i=0;i<userFlightSeats.size();i++){
             stringss+=userFlightSeats.get(i).getSeat_id()+"zZz";
         }
-        stringss+=flightSeatRow(flight_number)+"zZz";
+        stringss+="TtT";
+
+        FlightModel flightModel=selectFloghtModel(flight_number);
+
+        stringss+=flightModel.getName()+"zZz";
+        stringss+=flightModel.getSeat()+"zZz";
+        stringss+=flightModel.getRow()+"zZz";
+        stringss+=flightModel.getCol()+"zZz";
+        stringss+=flightModel.getStart_number()+"zZz";
+        stringss+=flightModel.getRow()+"zZz";
+        stringss+=flightModel.getDelete_seat()+"zZz";
+
         try {
-            Connection connection=SqlHelper.getConnection();
-            //执行更新多人的update
-            updateAllot(userFlightSeats,connection);
-            connection.close();
+            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeats);
+            allUserFlightSeatUpdate.start();
             return stringss;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -1190,14 +1222,25 @@ public class Dao {
         for(int i=0;i<userFlightSeatList.size();i++){
             stringss+=userFlightSeatList.get(i).getSeat_id()+"zZz";
         }
-        stringss+=flightSeatRow(flight_number)+"zZz";
+
+        stringss+="TtT";
+
+        FlightModel flightModel=selectFloghtModel(flight_number);
+
+        stringss+=flightModel.getName()+"zZz";
+        stringss+=flightModel.getSeat()+"zZz";
+        stringss+=flightModel.getRow()+"zZz";
+        stringss+=flightModel.getCol()+"zZz";
+        stringss+=flightModel.getStart_number()+"zZz";
+        stringss+=flightModel.getRow_aisle()+"zZz";
+        stringss+=flightModel.getDelete_seat()+"zZz";
 
         try {
             //执行更新多人的update
-            updateAllot(userFlightSeatList,connection);
-            connection.close();
+            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeatList);
+            allUserFlightSeatUpdate.start();
             return stringss;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -1245,12 +1288,11 @@ public class Dao {
 
 
         String value="";
-        sql="insert into flight_attribute values";
+        sql="insert into flight_attribute(`id`,`seat_id`,`child`,`vip`,`windows`,`door`,`middle`,`aisle`,`flight_number`) values";
         for(int i=0;i<flightAttributeList.size();i++){
             value+=(i==0?"":",");
             value+="("+flightAttributeList.get(i).getId()+",";
             value+="'"+flightAttributeList.get(i).getSeat_id()+"',";
-            value+="'"+flightAttributeList.get(i).getUser_id()+"',";
             value+="'"+flightAttributeList.get(i).getChild()+"',";
             value+="'"+flightAttributeList.get(i).getVip()+"',";
             value+="'"+flightAttributeList.get(i).getWindows()+"',";
@@ -1263,8 +1305,6 @@ public class Dao {
         sql+=value;
 //        System.out.println(sql);
         try {
-            SqlHelper.executeUpdate(sql,null);
-            sql="UPDATE flight_attribute SET user_id=null WHERE flight_number='"+flight_number+"'";
             SqlHelper.executeUpdate(sql,null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1300,28 +1340,27 @@ public class Dao {
         return null;
     }
 
-    //查看指定航班的用户对座位是否满意的
-    //返回的是一个字符串——31K zZz T ZzZ 32A zZz F
-    //ZzZ是座位之间的间隔
-    //zZz是座位号和满意之间的间隔
-    public String satisfaction(String flight_number){
-        String seat_satisfaction="";
-
-        String sql="select * from user_flight_seat where flight_number='"+flight_number+"'";
-
-        SqlHelper.getConnection();
-        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
-
+    //查找指定用户信息
+    public List<User> findUser(String name){
+        List<User> users = new ArrayList<User>();
+        String sql = "select * from user where user_name='"+name+"'";
+        ResultSet resultSet = SqlHelper.executeQuery(sql,null);
         try {
             while (resultSet.next()){
-                seat_satisfaction+=resultSet.getString("seat_id")+"zZz";
-                seat_satisfaction+=resultSet.getString("satisfaction")+"ZzZ";
+                User user = new User();
+                user.setUser_name(resultSet.getString("user_name"));
+                user.setUser_email(resultSet.getString("user_email"));
+                user.setUser_psw(resultSet.getString("user_psw"));
+                user.setUser_id(resultSet.getInt("user_id"));
+                user.setUser_id_card(resultSet.getString("user_id_card"));
+                user.setUser_sex(resultSet.getString("user_sex"));
+                user.setUser_img_path(resultSet.getString("user_img_path"));
+                user.setPermission(resultSet.getInt("permission"));
+                users.add(user);
             }
-        } catch (SQLException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
-//        System.out.println(sql);
-        return seat_satisfaction;
+        return users;
     }
-
 }
