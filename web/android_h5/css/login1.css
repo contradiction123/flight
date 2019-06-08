@@ -43,7 +43,8 @@ background-image: repeating-radial-gradient(circle at 50% 50%,#fcf8e3,#2aabd2 10
 
 .close-trigger {
   z-index: 5;
-  top: 42px; }
+  top: 42px;
+display: none}
 
 .menu-trigger-bar {
   display: block;
