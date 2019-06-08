@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>用户信息</h1>
-                <a href="#" class="glyphicon glyphicon-plus btn btn-info" >增加用户</a>
+                <a href="#" class="glyphicon glyphicon-plus btn btn-info" data-toggle="modal" data-target="#add_user_modal">增加用户</a>
             </div>
         </div><!-- /.row -->
         <!--用户列表-->
@@ -93,17 +93,17 @@
                 </tr>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <td class="col-lg-1"><c:out value="${user.user_id}" /></td>
-                        <td class="col-lg-1"><c:out value="${user.user_name}" /></td>
-                        <td class="col-lg-1"><c:out value="${user.user_email}" /></td>
+                        <td class="col-lg-1 user_id"><c:out value="${user.user_id}" /></td>
+                        <td class="col-lg-1 user_name"><c:out value="${user.user_name}" /></td>
+                        <td class="col-lg-1 user_email"><c:out value="${user.user_email}" /></td>
                         <td class="col-lg-1"><c:out value="${user.user_sex}" /></td>
                         <td class="col-lg-1">
                             <c:if test="${user.permission == 1}" ><span style="color: red">管理员</span></c:if>
                             <c:if test="${user.permission != 1}" ><span style="color: green">普通用户</span></c:if>
                         </td>
                         <td class="col-lg-1">
-                            <a href="#" class=" glyphicon glyphicon-pencil btn btn-info" >修改</a>
-                            <a href="#" class=" glyphicon glyphicon-remove btn btn-danger" >删除</a>
+                            <a class=" glyphicon glyphicon-pencil btn btn-info" >修改</a>
+                            <a class="glyphicon glyphicon-remove btn btn-danger delete_a"  >删除</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -114,6 +114,84 @@
     </div><!-- /#page-wrapper -->
 
 </div><!-- /#wrapper -->
+
+<!-- 添加用户模态框（Modal） -->
+<div class="modal fade" id="add_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    添加用户
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="<c:url value="/register" />" method="post" id="add_user_from">
+                    <div class="form-group">
+                        <label>用户邮箱</label>
+                        <input class="form-control" type="text" name="user_email" id="user_email" placeholder="用户邮箱"/>
+                    </div>
+                    <div class="form-group">
+                        <label>用户密码</label>
+                        <input class="form-control" type="password" name="password" id="user_passw" placeholder="用户密码"/>
+                    </div>
+                    <div class="form-group">
+                        <label>用户姓名</label>
+                        <input class="form-control" type="text" name="user_name" id="user_name" placeholder="用户姓名"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button id="add_user" type="button" class="btn btn-primary">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 添加用户模态框（Modal） -->
+<div class="modal fade" id="delete_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    删除用户
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="<c:url value="/register" />" method="post" >
+                    <div class="form-group">
+                        <label>用户邮箱</label>
+                        <input class="form-control" type="text" name="user_email"  placeholder="用户邮箱"/>
+                    </div>
+                    <div class="form-group">
+                        <label>用户密码</label>
+                        <input class="form-control" type="password" name="password"  placeholder="用户密码"/>
+                    </div>
+                    <div class="form-group">
+                        <label>用户姓名</label>
+                        <input class="form-control" type="text" name="user_name"  placeholder="用户姓名"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 <!-- JavaScript -->
 <script src="<c:url value="/jquery/jquery.min.js" />"></script>
@@ -126,6 +204,15 @@
 <script src="<c:url value="js/morris/chart-data-morris.js" />"></script>
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
+
+<script>
+    $(".delete_a").onclick(function () {
+        var a = $(".delete_a").index(this);
+        alert(a);
+    });
+
+
+</script>
 
 </body>
 </html>
