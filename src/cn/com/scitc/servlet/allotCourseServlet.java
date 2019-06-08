@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "allotcourseServlet",urlPatterns = "/allotcourse")
+@WebServlet(name = "allotcourseServlet",urlPatterns = "/allotcourse",asyncSupported = true)
 public class allotCourseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //首先接收前段发送过来的航班号

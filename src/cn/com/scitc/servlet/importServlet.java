@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "importServlet",urlPatterns = "/admin_import")
+@WebServlet(name = "importServlet",urlPatterns = "/admin_import",asyncSupported = true)
 public class importServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

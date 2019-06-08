@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "b737_700_SelectServlet",urlPatterns = "/b7377select")
+@WebServlet(name = "b737_700_SelectServlet",urlPatterns = "/b7377select",asyncSupported = true)
 //这个servlet是查看b737-700的数据表的
 public class b737_700_SelectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

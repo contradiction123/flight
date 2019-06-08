@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "android_Ticket",urlPatterns = "/android/android_Ticket")
+@WebServlet(name = "android_Ticket",urlPatterns = "/android/android_Ticket",asyncSupported = true)
 public class android_Ticket extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");

@@ -75,11 +75,12 @@
                 <li class="active"><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -129,7 +130,7 @@
                                 <h3>客机型号：<span class="clearfm"><c:out value="${flight.name}" /></span></h3>
                                 <p>飞机座位一共有：<span class="allseat" id="<c:out value="${flight.name}"/>_z"><c:out value="${flight.z}"/></span>，以售卖：<span class="sellseat" id="<c:out value="${flight.name}"/>_r"><c:out value="${flight.r}"/></span></p>
                                 <p>
-                                    <a href="<c:url value="/skip" ><c:param name="flight_number" value="${flight.name}" /> </c:url>" class="btn btn-primary" role="button">
+                                    <a href="<c:url value="/display" ><c:param name="flight" value="${flight.name}" /> </c:url>" class="btn btn-primary" role="button">
                                         管理
                                     </a>
                                     <a href="#" class="btn btn-default clearuser" role="button">

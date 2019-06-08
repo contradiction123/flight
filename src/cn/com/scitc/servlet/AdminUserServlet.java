@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AdminUserServlet",urlPatterns = "/admin_user")
+@WebServlet(name = "AdminUserServlet",urlPatterns = "/admin_user",asyncSupported = true)
 public class AdminUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

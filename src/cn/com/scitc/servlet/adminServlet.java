@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "adminServlet", urlPatterns = "/admin")
+@WebServlet(name = "adminServlet", urlPatterns = "/admin",asyncSupported = true)
 public class adminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

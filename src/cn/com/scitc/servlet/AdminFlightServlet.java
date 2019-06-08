@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "AdminFlightServlet",urlPatterns = "/admin_flight")
+@WebServlet(name = "AdminFlightServlet",urlPatterns = "/admin_flight",asyncSupported = true)
 //get 是查看飞机座位数量和乘坐用户数量
 //post 是一件换机代码
 public class AdminFlightServlet extends HttpServlet {

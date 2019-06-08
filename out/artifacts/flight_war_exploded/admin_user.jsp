@@ -56,6 +56,7 @@
                 <li><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
@@ -75,11 +76,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>用户信息</h1>
+                <a href="#" class="glyphicon glyphicon-plus btn btn-info" >增加用户</a>
             </div>
         </div><!-- /.row -->
         <!--用户列表-->
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="width: 100%;">
             <table class="table table-striped table-hover table-bordered ">
                 <tr>
                     <th class="col-lg-1">用户ID</th>

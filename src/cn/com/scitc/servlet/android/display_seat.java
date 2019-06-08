@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "display_seat",urlPatterns = "/android/display_seat")
+@WebServlet(name = "display_seat",urlPatterns = "/android/display_seat",asyncSupported = true)
 public class display_seat extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search_name=request.getParameter("name");

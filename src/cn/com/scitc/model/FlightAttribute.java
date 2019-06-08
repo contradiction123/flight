@@ -2,8 +2,16 @@ package cn.com.scitc.model;
 
 //这是所有飞机的基础模型如果那些没加上的请自行添加
 public class FlightAttribute {
-    private String seat_id,user_id,child,vip,windows,door,middle,aisle;
+    private String seat_id,user_id,child,vip,windows,door,middle,aisle,flight_number;
     private Integer id;
+
+    public String getFlight_number() {
+        return flight_number;
+    }
+
+    public void setFlight_number(String flight_number) {
+        this.flight_number = flight_number;
+    }
 
     public Integer getId() {
         return id;

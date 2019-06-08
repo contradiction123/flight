@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "SignOutServlet",urlPatterns = "/out")
+@WebServlet(name = "SignOutServlet",urlPatterns = "/out",asyncSupported = true)
 public class SignOutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

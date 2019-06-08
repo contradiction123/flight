@@ -24,6 +24,13 @@
     <link href="<c:url value="css/admin.css" />" rel="stylesheet">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
+
+    <style>
+        .panel-body{
+            padding: 0px;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,11 +50,12 @@
                 <li><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li class="active"><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${msg.user_name}" /><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -61,19 +69,19 @@
 
         <div class="row">
             <c:forEach var="flight_name" items="${flight_name}">
-            <div class="col-lg-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i><c:out value="${flight_name.name}" />客机满意度： </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id='<c:out value="${flight_name.name}" />'></div>
-                        <div class="text-right">
-                            <a href="#">查看详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i><c:out value="${flight_name.name}" />客机满意度： </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id='<c:out value="${flight_name.name}" />' style='width:600px;height:400px;'></div>
+                            <div class="text-right">
+                                <a href="./display?flight=<c:out value="${flight_name.name}" />">查看详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </c:forEach>
         </div>
 
@@ -92,22 +100,94 @@
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
 <script>
-    <c:forEach items="${flight_name}" var="flight">
-    Morris.Donut({
-        element: '<c:out value="${flight.name}" />',
-        data: [
-            <c:if test="${flight.t == 'NaN' }" >
-                {label: "空闲", value: 100},
+    <%--<c:forEach items="${flight_name}" var="flight">--%>
+    <%--Morris.Donut({--%>
+        <%--element: '<c:out value="${flight.name}" />',--%>
+        <%--data: [--%>
+            <%--<c:if test="${flight.t == 'NaN' }" >--%>
+                <%--{label: "空闲", value: 100},--%>
 
-            </c:if>
-            <c:if test="${flight.t != 'NaN'}">
-            {label: "满意", value: <c:out value="${flight.t}" />},
-            {label: "不满意", value: <c:out value="${flight.f}" />},
-            </c:if>
-        ],
-        formatter: function (y) { return y + "%" ;}
-    });
+            <%--</c:if>--%>
+            <%--<c:if test="${flight.t != 'NaN'}">--%>
+            <%--{label: "满意", value: <c:out value="${flight.t}" />},--%>
+            <%--{label: "不满意", value: <c:out value="${flight.f}" />},--%>
+            <%--</c:if>--%>
+        <%--],--%>
+        <%--formatter: function (y) { return y + "%" ;}--%>
+    <%--});--%>
+    <%--</c:forEach>--%>
+</script>
+
+<script src='<c:url value="/js/echarts.js"/>'></script>
+<script src='<c:url value="/js/echarts-liquidfill.js"/>'></script>
+
+<script>
+    var flightName=new Array();
+    var fnk=0;
+    var saT=new Array();
+    var saF=new Array();
+
+    <c:forEach items="${flight_name}" var="flight">
+    //基于准备好的DOM，初始化echarts实例
+    flightName[fnk]= "<c:out value="${flight.name}" />";
+    saT[fnk]="<c:out value="${flight.t}" />";
+    saF[fnk++]="<c:out value="${flight.f}" />";
     </c:forEach>
+
+    window.onload=function () {
+        for(let i=0;i<fnk;i++){
+            var myChart = echarts.init(document.getElementById(flightName[i]));
+            //指定图表的配置项和数据
+            var v=Math.round(parseInt(saT[i])/(parseInt(saT[i])+parseInt(saF[i]))*10000);
+            if(v>0){
+                var value =v/10000;
+            }else {
+                var value =0;
+            }
+
+            var data = []
+            data.push(value)
+            data.push(value)
+            data.push(value)
+            data.push(value)
+            data.push(value)
+            var option = {
+                backgroundColor: '#1b2735',
+                title: {
+                    text: flightName[i],
+                    textStyle: {
+                        fontWeight: 'normal',
+                        fontSize: 25,
+                        color: 'rgb(255, 255, 255)'
+                    }
+                },
+                series: [{
+                    type: 'liquidFill',
+                    radius: '80%',
+                    data: data,
+                    backgroundStyle: {
+                        borderWidth: 5,
+                        borderColor: 'rgb(255,0,255,0.9)',
+                        color: 'rgb(255,0,255,0.01)'
+                    },
+                    label: {
+                        normal: {
+                            formatter: (value * 100).toFixed(2) + '%',
+                            textStyle: {
+                                fontSize: 50
+                            }
+                        }
+                    }
+                }]
+            }
+
+            //使用刚指定的配置项和数据显示图表
+            myChart.setOption(option);
+        }
+
+    };
+
+
 </script>
 </body>
 </html>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-@WebServlet(name = "buyTicketOperationServlet",urlPatterns = "/buy_ticket_operation")
+@WebServlet(name = "buyTicketOperationServlet",urlPatterns = "/buy_ticket_operation",asyncSupported = true)
 //这个servlet，主要工作就是从前端传递参数过来，给用户安排座位的
 public class buyTicketOperationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

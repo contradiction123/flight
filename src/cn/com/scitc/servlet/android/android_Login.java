@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "android_Login",urlPatterns = "/android/android_login")
+@WebServlet(name = "android_Login",urlPatterns = "/android/android_login",asyncSupported = true)
 public class android_Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name=request.getParameter("name");

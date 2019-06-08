@@ -38,16 +38,17 @@
         <!-- 左侧栏列表-->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li  class="active"><a href="<c:url value="/admin" />"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="<c:url value="/admin_user" />"><i class="fa fa-bar-chart-o"></i> 用户管理</a></li>
                 <li><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -183,7 +184,9 @@
                     <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i>系统响应时间（单位：毫秒）</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="time"></div>
+                    <div id="time" style='width:100%;height:400px;'>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,8 +198,10 @@
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>系统运行情况</h3>
                     </div>
-                    <div class="panel-body">
-                        <div id="morris-chart-donut"></div>
+                    <div class="panel-body" style="overflow: hidden;height: 400px;">
+                        <div id="morris-chart-donut" style='width:600px;height:400px;margin-left: -64px;'>
+
+                        </div>
                         <div class="text-right">
                             <a href="#">查看详细信息 <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
@@ -342,37 +347,218 @@
 <script src="<c:url value="js/morris/chart-data-morris.js" />"></script>
 <script src="<c:url value="js/tablesorter/jquery.tablesorter.js" />"></script>
 <script src="<c:url value="js/tablesorter/tables.js" />"></script>
+<script src='<c:url value="/js/echarts.js"/>'></script>
+<script src='<c:url value="/js/echarts-liquidfill.js"/>'></script>
 <script>
-    Morris.Area({
-        // ID of the element in which to draw the chart.
-        element: 'time',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: [
-            <c:forEach var="times" items="${time}" begin="${time1 - 10}" end="${time1}">
-            { d: '<c:out value="${times.systemdate}" />', visits: <c:out value="${times.time}" /> },
-            </c:forEach>
+    var timess=new Array();
+    var systemdates=new Array();
+    var timk=0;
+    <c:forEach var="times" items="${time}" begin="${time1 - 10}" end="${time1}">
 
-        ],
-        // The name of the data record attribute that contains x-visitss.
-        xkey: 'd',
-        // A list of names of data record attributes that contain y-visitss.
-        ykeys: ['visits'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['Visits'],
-        // Disables line smoothing
-        smooth: false,
-    });
-    Morris.Donut({
-        element: 'morris-chart-donut',
-        data: [
-            {label: "良好", value: <c:out value="${good}" />},
-            {label: "正常", value: <c:out value="${well}" />},
-            {label: "缓慢", value: <c:out value="${bad}" />},
-        ],
-        formatter: function (y) { return y + "%" ;}
-    });
+    systemdates[timk]='<c:out value="${times.systemdate}" />';
+    timess[timk++]=<c:out value="${times.time}" />;
+
+    </c:forEach>
+    console.log(timess);
+    console.log(systemdates);
+
+    var good=<c:out value="${good}" />;
+    var well=<c:out value="${well}" />;
+    var bad=<c:out value="${bad}" />;
+    window.onload=function () {
+    //基于准备好的DOM，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('morris-chart-donut'));
+    //指定图表的配置项和数据
+    var option = {
+        backgroundColor: '#FFFFFF',
+        title: {
+            text: '系统运行情况',
+            left: 'left',
+            top: 0,
+            textStyle: {
+                color: 'rgba(0,0,0,0)'
+            }
+        },
+
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b} : {c} ({d}%)"
+        },
+
+        visualMap: {
+            show: false,
+            min: 500,
+            max: 600,
+            inRange: {
+                //colorLightness: [0, 1]
+            }
+        },
+        series: [{
+            name: '系统运行情况',
+            type: 'pie',
+            radius: '50%',
+            center: ['50%', '50%'],
+            color: ['#fe9590', '#39d6fe', '#337AB7'], //'#FBFE27','rgb(11,228,96)','#FE5050'
+            data: [{
+                value: parseInt(good),
+                name: '良好'
+            },{
+                value: parseInt(well),
+                name: '正常'
+            },
+                {
+                    value: parseInt(bad),
+                    name: '缓慢'
+                }
+            ].sort(function(a, b) {
+                return a.value - b.value
+            }),
+            roseType: 'radius',
+
+            label: {
+                normal: {
+                    formatter: ['{c|{c}次}', '{b|{b}}'].join('\n'),
+                    rich: {
+                        c: {
+                            color: '#000',
+                            fontSize: 30,
+                            fontWeight:'bold',
+                            lineHeight: 10
+                        },
+                        b: {
+                            color: 'rgb(98,137,169)',
+                            fontSize: 15,
+                            height: 40
+                        },
+                    },
+                }
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgb(98,137,169)',
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20,
+
+                }
+            },
+            itemStyle: {
+                normal: {
+                    shadowColor: 'rgba(0, 0, 0, 0.8)',
+                    shadowBlur: 50,
+                }
+            }
+        }]
+    };
+    //使用刚指定的配置项和数据显示图表
+    myChart.setOption(option);
+
+
+
+            //基于准备好的DOM，初始化echarts实例
+            var myChart1 = echarts.init(document.getElementById('time'));
+            //指定图表的配置项和数据
+            var option1 = {
+                backgroundColor: '#2c7fc8',
+
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        lineStyle: {
+                            color: '#57617B'
+                        }
+                    }
+                },
+                legend: {
+                    icon: 'rect',
+                    itemWidth: 14,
+                    itemHeight: 5,
+                    itemGap: 13,
+                    data: ['系统响应时间'],
+                    right: '4%',
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#F1F1F3'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: false,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#00c7ff'
+                        }
+                    },
+                    data: systemdates
+                }],
+                yAxis: [{
+                    type: 'value',
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#00c7ff'
+                        }
+                    },
+                    axisLabel: {
+                        margin: 10,
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    }
+                }],
+                series: [{
+                    name: '系统响应时间',
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'circle',
+                    symbolSize: 5,
+                    showSymbol: false,
+                    lineStyle: {
+                        normal: {
+                            width: 1
+                        }
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#5ff6e9'
+                            }, {
+                                offset: 0.8,
+                                color: '#7370fd'
+                            }], false),
+                            shadowColor: 'rgba(0, 0, 0, 0.1)',
+                            shadowBlur: 10
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(137,189,27)',
+                            borderColor: 'rgba(137,189,2,0.27)',
+                            borderWidth: 12
+
+                        }
+                    },
+                    data: timess
+                }]
+            };
+            //使用刚指定的配置项和数据显示图表
+            myChart1.setOption(option1);
+}
+
 </script>
 
 </body>

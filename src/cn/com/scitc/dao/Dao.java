@@ -237,30 +237,6 @@ public class Dao {
         return select_seat;
     }
 
-    //查看指定航班的用户对座位是否满意的
-    //返回的是一个字符串——31K zZz T ZzZ 32A zZz F
-    //ZzZ是座位之间的间隔
-    //zZz是座位号和满意之间的间隔
-    public String satisfaction(String flight_number){
-        String seat_satisfaction="";
-
-        String sql="select * from user_flight_seat where flight_number='"+flight_number+"'";
-
-        SqlHelper.getConnection();
-        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
-
-        try {
-            while (resultSet.next()){
-                seat_satisfaction+=resultSet.getString("seat_id")+"zZz";
-                seat_satisfaction+=resultSet.getString("satisfaction")+"ZzZ";
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-//        System.out.println(sql);
-        return seat_satisfaction;
-    }
-
 
     //重写分配所有人单人居多团体居少的方法
     public boolean allAllotuser(List<UserAttribute> userAttributeLists,String flight_number){
@@ -777,7 +753,7 @@ public class Dao {
             }
         }
 
-        sql+="END WHERE id IN (select a.id from (select id from "+userFlightSeatList.get(0).getFlight_number()+" where seat_id in("+wherein+"))a ) and flight_number='"+userFlightSeatList.get(0).getFlight_number()+"'";
+        sql+="END WHERE id IN (select a.id from (select id from flight_attribute where flight_number='"+userFlightSeatList.get(0).getFlight_number()+"' and seat_id in("+wherein+"))a ) and flight_number='"+userFlightSeatList.get(0).getFlight_number()+"'";
 
 
         try {
@@ -1254,5 +1230,98 @@ public class Dao {
     }
 
 
+    //存航班属性的
+    public boolean createFlight(FlightModel flightModel,List<FlightAttribute> flightAttributeList){
+
+        String sql="insert into flight_model(`name`,`seat`,`row`,`col`,`start_number`,`row_aisle`,`delete_seat`) values('"+
+                flightModel.getName()+"','"+flightModel.getSeat()+"','"+flightModel.getRow()+"','"+flightModel.getCol()+"','"+flightModel.getStart_number()+"','"+flightModel.getRow_aisle()+"','"+flightModel.getDelete_seat()+"')";
+
+
+        try {
+            SqlHelper.executeUpdate(sql,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        String value="";
+        sql="insert into flight_attribute values";
+        for(int i=0;i<flightAttributeList.size();i++){
+            value+=(i==0?"":",");
+            value+="("+flightAttributeList.get(i).getId()+",";
+            value+="'"+flightAttributeList.get(i).getSeat_id()+"',";
+            value+="'"+flightAttributeList.get(i).getUser_id()+"',";
+            value+="'"+flightAttributeList.get(i).getChild()+"',";
+            value+="'"+flightAttributeList.get(i).getVip()+"',";
+            value+="'"+flightAttributeList.get(i).getWindows()+"',";
+            value+="'"+flightAttributeList.get(i).getDoor()+"',";
+            value+="'"+flightAttributeList.get(i).getMiddle()+"',";
+            value+="'"+flightAttributeList.get(i).getAisle()+"',";
+            value+="'"+flightAttributeList.get(i).getFlight_number()+"')";
+        }
+
+        sql+=value;
+//        System.out.println(sql);
+        try {
+            SqlHelper.executeUpdate(sql,null);
+            sql="UPDATE flight_attribute SET user_id=null WHERE flight_number='"+flight_number+"'";
+            SqlHelper.executeUpdate(sql,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    //查询航班属性的
+    public FlightModel selectFloghtModel(String flight_number){
+        FlightModel flightModel=new FlightModel();
+
+        String sql="select * from flight_model where name='"+flight_number+"'";
+
+
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        try {
+            while (resultSet.next()){
+                flightModel.setName(resultSet.getString("name"));
+                flightModel.setSeat(resultSet.getString("seat"));
+                flightModel.setRow(resultSet.getString("row"));
+                flightModel.setCol(resultSet.getString("col"));
+                flightModel.setStart_number(resultSet.getString("start_number"));
+                flightModel.setRow_aisle(resultSet.getString("row_aisle"));
+                flightModel.setDelete_seat(resultSet.getString("delete_seat"));
+            }
+            return flightModel;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    //查看指定航班的用户对座位是否满意的
+    //返回的是一个字符串——31K zZz T ZzZ 32A zZz F
+    //ZzZ是座位之间的间隔
+    //zZz是座位号和满意之间的间隔
+    public String satisfaction(String flight_number){
+        String seat_satisfaction="";
+
+        String sql="select * from user_flight_seat where flight_number='"+flight_number+"'";
+
+        SqlHelper.getConnection();
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        try {
+            while (resultSet.next()){
+                seat_satisfaction+=resultSet.getString("seat_id")+"zZz";
+                seat_satisfaction+=resultSet.getString("satisfaction")+"ZzZ";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(sql);
+        return seat_satisfaction;
+    }
 
 }

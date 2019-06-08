@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
-@WebServlet(name = "BuyServlet",urlPatterns = "/buy")
+@WebServlet(name = "BuyServlet",urlPatterns = "/buy",asyncSupported = true)
 public class BuyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "AdminSatisfactionServlet",urlPatterns = "/admin_satisfaction")
+@WebServlet(name = "AdminSatisfactionServlet",urlPatterns = "/admin_satisfaction",asyncSupported = true)
 public class AdminSatisfactionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -31,7 +31,7 @@ public class AdminSatisfactionServlet extends HttpServlet {
             float f = (float) b/count;
             flightModelList.get(i).setT(t*100);
             flightModelList.get(i).setF(f*100);
-            System.out.println(flightModelList.get(i).getT());
+//            System.out.println(flightModelList.get(i).getT());
         }
 
 

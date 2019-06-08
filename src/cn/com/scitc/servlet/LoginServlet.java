@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-@WebServlet(name = "LoginServlet",urlPatterns = "/login")
+@WebServlet(name = "LoginServlet",urlPatterns = "/login",asyncSupported = true)
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

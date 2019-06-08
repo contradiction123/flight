@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "allAllotServlet",urlPatterns = "/allAllotservlet")
+@WebServlet(name = "allAllotServlet",urlPatterns = "/allAllotservlet",asyncSupported = true)
 public class allAllotServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

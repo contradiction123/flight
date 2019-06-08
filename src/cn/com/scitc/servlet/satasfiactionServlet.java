@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "satasfiactionServlet",urlPatterns = "/satisfaction")
+@WebServlet(name = "satasfiactionServlet",urlPatterns = "/satisfaction",asyncSupported = true)
 public class satasfiactionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        首先接收前段发送过来的航班号

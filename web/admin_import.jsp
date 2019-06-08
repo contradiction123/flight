@@ -68,6 +68,9 @@
             top: 0px;
             background: rgba(0,0,0,0.5);
         }
+        .table-box{
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -96,6 +99,7 @@
                 <li><a href="<c:url value="/admin_flight" /> "><i class="fa fa-table"></i> 机型管理</a></li>
                 <li><a href="<c:url value="/admin_satisfaction" /> "><i class="fa fa-edit"></i> 用户满意度</a></li>
                 <li class="active"><a href="<c:url value="/admin_import" />"><i class="fa fa-font"></i> 一键导入乘客</a></li>
+                <li><a href="<c:url value="/admin_create_flight.jsp" />"><i class="fa fa-font"></i> 创建新飞机</a></li>
             </ul>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
@@ -119,12 +123,12 @@
         </div><!-- /.row -->
         <!--用户列表-->
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 table-box">
                 <input type="file" id="xlf" class="select1">
                 <pre id="out" style="display: none;"></pre>
 
-                <form method="post" action="./skip" class="col-lg-3">
-                    <select id="flight_number" name="flight_number" class="form-control select1">
+                <form method="get" action="./display" class="col-lg-3">
+                    <select id="flight_number" name="flight" class="form-control select1">
                         <c:forEach items="${flight}" var="flight">
                             <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
                         </c:forEach>
@@ -334,7 +338,7 @@
             j["passenger_num"]=passenger_info.length;//人数
             j["passenger_info"]=passenger_info;//个人座位需求信息
             json1.push(j);
-            console.log(json1);
+            // console.log(json1);
             // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
             $.ajax({
                 type:"POST", //请求方式
