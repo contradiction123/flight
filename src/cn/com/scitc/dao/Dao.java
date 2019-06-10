@@ -1262,9 +1262,11 @@ public class Dao {
             while (resultSet.next()){
                 strings.add(resultSet.getString("seat_id")+",");
                 flight_number=resultSet.getString("flight_number");
+                break;
             }
             strings.add(flightSeatRow(flight_number));
             strings.add(flight_number);
+//            System.out.println(strings);
             return strings;
         } catch (SQLException e) {
 //            e.printStackTrace();
