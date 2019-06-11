@@ -42,6 +42,7 @@
             margin-top: 100px;
         }
     </style>
+
 </head>
 <body>
 
@@ -100,13 +101,13 @@
                                 <td class="col-lg-1 user_id"><c:out value="${user.user_id}" /></td>
                                 <td class="col-lg-1 user_name"><c:out value="${user.user_name}" /></td>
                                 <td class="col-lg-1 user_email"><c:out value="${user.user_email}" /></td>
-                                <td class="col-lg-1"><c:out value="${user.user_sex}" /></td>
+                                <td class="col-lg-1 user_sex"><c:out value="${user.user_sex}" /></td>
                                 <td class="col-lg-1">
                                     <c:if test="${user.permission == 1}" ><span style="color: red">管理员</span></c:if>
                                     <c:if test="${user.permission != 1}" ><span style="color: green">普通用户</span></c:if>
                                 </td>
                                 <td class="col-lg-1">
-                                    <a class=" glyphicon glyphicon-pencil btn btn-info" >修改</a>
+                                    <a class=" glyphicon glyphicon-pencil btn btn-info edit_us" data-toggle="modal" data-target="#edit_user_modal" >修改</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -117,9 +118,70 @@
     </div><!-- /#page-wrapper -->
 
 </div><!-- /#wrapper -->
+<div class="modal fade" id="edit_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    修改用户信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="edit_form" action="<c:url value="/userFormation" />" method="post" >
+                    <div class="form-group">
+                        <label>用户邮箱</label>
+                        <input id="edit_user_email" class="form-control" type="text" name="user_email" />
+                    </div>
+                    <div class="form-group">
+                        <label>用户姓名</label>
+                        <input id="edit_user_name" class="form-control" type="text" name="user_name" />
+                    </div>
+                    <div class="form-group">
+                        <label>用户性别</label>
+                        <select name="user_sex" id="edit_user_sex" class="form-control">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
 
+                    <div class="form-group">
+                        <label>用户ID</label>
+                        <input id="edit_user_id" class="form-control" type="text" name="user_id" />
+                    </div>
 
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="edit_user" type="button" class="btn btn-primary">
+                    确定
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+    var user_id = $(".user_id");
+    var user_name = $(".user_name");
+    var user_email = $(".user_email");
+    var user_sex = $(".user_sex");
+
+    $(".edit_us").click(function () {
+        var a = $(".edit_us").index(this);
+        $("#edit_user_id").val(user_id[a].innerHTML);
+        $("#edit_user_name").val(user_name[a].innerHTML);
+        $("#edit_user_email").val(user_email[a].innerHTML);
+        $("#edit_user_sex").val(user_sex[a].innerHTML);
+    });
+    $("#edit_user").click(function () {
+        $("#edit_form").submit();
+    });
+</script>
 </body>
+
 </html>
 
 
