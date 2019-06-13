@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "RegisterServlet",urlPatterns = "/register",asyncSupported = true)
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         User user = new User();
         String user_email = request.getParameter("user_email");
         String user_psw = request.getParameter("password");

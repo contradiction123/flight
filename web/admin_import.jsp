@@ -118,7 +118,7 @@
 
         <div class="row">
             <div class="col-lg-12" style="margin-bottom: 20px;">
-                <h1>整机迁移信息</h1>
+                <h1>导入乘客信息</h1>
             </div>
         </div><!-- /.row -->
         <!--用户列表-->
