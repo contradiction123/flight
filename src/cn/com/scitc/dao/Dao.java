@@ -977,6 +977,31 @@ public class Dao {
         return list;
     }
 
+    public List<FlightModel> findflightnullseat(){
+
+        List<FlightModel> flightModels=new ArrayList<>();
+
+        String sql="SELECT flight_number,COUNT(*) from flight_attribute where user_id is null GROUP BY flight_number";
+
+        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
+
+        try {
+            while (resultSet.next()){
+                FlightModel flightModel=new FlightModel();
+
+                flightModel.setName(resultSet.getString(1));//name
+                flightModel.setNull_seat(resultSet.getInt(2));//数量
+
+                flightModels.add(flightModel);
+            }
+        } catch (SQLException e) {
+//            e.printStackTrace();
+            return null;
+        }
+
+        return flightModels;
+    }
+
     //一键换机
     public boolean changePlanes(String flight_1,String flight_2){
         //首先要把用户从旧飞机里面拿出来

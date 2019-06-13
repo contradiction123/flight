@@ -11,6 +11,16 @@ public class FlightModel {
     private float t;
     private float f;
 
+    private int null_seat;
+
+    public int getNull_seat() {
+        return null_seat;
+    }
+
+    public void setNull_seat(int null_seat) {
+        this.null_seat = null_seat;
+    }
+
     public String getRow() {
         return row;
     }

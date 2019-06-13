@@ -189,7 +189,7 @@
             <div class="fySearch">
                 <div class="stopImg">
                     <p class="mt text-center">Enjoy Your Air Time</p>
-                    <p class="mc text-center">精准可靠的航班动态数据服务</p>
+                    <p class="mc text-center">基于互联网的座位分配系统</p>
                 </div>
                 <div class="stopMain clearfix" >
                     <div>

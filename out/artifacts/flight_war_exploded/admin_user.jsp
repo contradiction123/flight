@@ -277,7 +277,9 @@
     $("#edit_user").click(function () {
         $("#edit_form").submit();
     });
-
+    $("#add_user").click(function () {
+        $("#add_user_from").submit();
+    });
 </script>
 
 </body>

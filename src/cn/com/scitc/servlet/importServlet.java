@@ -22,7 +22,9 @@ public class importServlet extends HttpServlet {
 
         List<FlightModel> list = new ArrayList<>();
         Dao dao = new Dao();
-        list = dao.findAllFlightmodel();
+
+        list=dao.findflightnullseat();
+
         request.setAttribute("flight",list);
         request.getRequestDispatcher("/admin_import.jsp").forward(request,response);
     }

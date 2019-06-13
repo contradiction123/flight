@@ -71,6 +71,11 @@
         .table-box{
             width: 100%;
         }
+        .allpage{
+            font-size: 15px;
+            line-height: 40px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -118,7 +123,7 @@
 
         <div class="row">
             <div class="col-lg-12" style="margin-bottom: 20px;">
-                <h1>整机迁移信息</h1>
+                <h1>导入乘客信息</h1>
             </div>
         </div><!-- /.row -->
         <!--用户列表-->
@@ -130,11 +135,13 @@
                 <form method="get" action="./display" class="col-lg-3">
                     <select id="flight_number" name="flight" class="form-control select1">
                         <c:forEach items="${flight}" var="flight">
-                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/></option>
+                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>
                         </c:forEach>
                     </select>
                 </form>
-
+                <c:forEach items="${flight}" var="flight">
+                    <input type="hidden" class="nullseat" value="<c:out value="${flight.null_seat}"/>">
+                </c:forEach>
                 <button type="button" class="btn btn-primary" id="submitbtn">确认导入</button>
 
                 <div id="tablelist" style="position: relative;width: 100%">
@@ -249,8 +256,8 @@
         var passenger_info = new Array();
 
         var count=0;
-
-        var tabledate="<div class=\"tablepage\" style=\"position: absolute; width: 100%\"><table class=\"table table-striped\" ><thead><tr><th name=\"id\">ID</th><th name=\"type_one\">ONE</th><th name=\"type_two\">TWO</th><th name=\"team\">TEAM</th></tr></thead><tbody class=\"testTab\">";
+        var informationcount=0;
+        var tabledate="<div class=\"tablepage\" style=\"position: absolute; width: 100%;left: 0px;\"><table class=\"table table-striped\" ><thead><tr><th name=\"id\">ID</th><th name=\"id\">USER_ID</th><th name=\"type_one\">ONE</th><th name=\"type_two\">TWO</th><th name=\"team\">TEAM</th></tr></thead><tbody class=\"testTab\">";
         for (var n in vJson) {
             var str="";
             for (var k = 1; k < vJson[n].length; k++) {
@@ -264,11 +271,11 @@
                 }else {
                     str+="<tr>"
                 }
-
+                informationcount++;
+                str += "<td josnval='' class='number' value='" + informationcount + "'>"+informationcount+"</td>";
                 for (let c = 0; c < conCout; c++) {
                     var tm = vJson[n][k][c] == undefined ? "" : vJson[n][k][c];
                     // str += "<td><input type='text' id='lz" + n + "' value='" + tm + "'></td>";
-
                     str += "<td josnval='' class='" + string_name[c] + "' value='" + tm + "'>"+tm+"</td>";
 
                     if(string_name[c]=="id")jsonObj["Id"]=tm;
@@ -304,7 +311,8 @@
             str="<div class=\"page text-center\">"+i+"</div>"
             $("#pages").append(str);
         }
-
+        str="<div class=\"allpage text-center\">共"+count+"页，"+informationcount+"条记录</div>"
+        $("#pages").append(str);
         var page=$(".page");
 
         page[0].style.backgroundColor="#327AB7";
@@ -330,29 +338,35 @@
 
         //点击了确认导入
         $("#submitbtn").click(function () {
-            addsvg();
-            var flight_model = document.getElementById("flight_number");
-            var flight_name = flight_model.options[flight_model.selectedIndex].value;
+            var seat_null=document.getElementsByClassName("nullseat");
+            var numIndex=document.getElementById("flight_number").selectedIndex;
+            if(informationcount<=parseInt(seat_null[numIndex].value)){
+                addsvg();
+                var flight_model = document.getElementById("flight_number");
+                var flight_name = flight_model.options[flight_model.selectedIndex].value;
 
-            j["passenger_flight_number"]=flight_name//航班机型
-            j["passenger_num"]=passenger_info.length;//人数
-            j["passenger_info"]=passenger_info;//个人座位需求信息
-            json1.push(j);
-            // console.log(json1);
-            // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
-            $.ajax({
-                type:"POST", //请求方式
-                url:"./allAllotservlet", //请求路径
-                cache: true,
-                data:{//传参_传递刚才创建的json1数组
-                    "jsonArr":json1,
-                },
-                dataType: 'text',   //设置返回值类型
-                success:function(e){
-                    document.getElementsByTagName("form")[0].submit();
+                j["passenger_flight_number"]=flight_name//航班机型
+                j["passenger_num"]=passenger_info.length;//人数
+                j["passenger_info"]=passenger_info;//个人座位需求信息
+                json1.push(j);
+                // console.log(json1);
+                // 使用ajax用post的方式传到后台进行处理，为每一个人分配位置
+                $.ajax({
+                    type:"POST", //请求方式
+                    url:"./allAllotservlet", //请求路径
+                    cache: true,
+                    data:{//传参_传递刚才创建的json1数组
+                        "jsonArr":json1,
+                    },
+                    dataType: 'text',   //设置返回值类型
+                    success:function(e){
+                        document.getElementsByTagName("form")[0].submit();
 
-                }
-            });//ajax——的结束
+                    }
+                });//ajax——的结束
+            }else {
+                alert("导入的人数大于本航班的空余座位，请重新选择航班");
+            }
 
         })
 
