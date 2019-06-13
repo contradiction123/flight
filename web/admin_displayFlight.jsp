@@ -71,7 +71,7 @@
         }
         .button{
             height: 66px;
-            font-size: 35px;
+            font-size: 20px;
             border-radius: 15px;
             font-family: cursive;
             margin-top: 10px;

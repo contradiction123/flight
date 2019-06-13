@@ -129,8 +129,8 @@
                                 <i class="fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-6 text-right">
-                                <p class="announcement-heading">18</p>
-                                <p class="announcement-text">Crawl Errors</p>
+                                <p class="announcement-heading">7</p>
+                                <p class="announcement-text">用户满意图</p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         <div class="panel-footer announcement-bottom">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    Fix Issues
+                                    <a href="<c:url value="/admin_satisfaction" />"> 满意度管理</a>
                                 </div>
                                 <div class="col-xs-6 text-right">
                                     <i class="fa fa-arrow-circle-right"></i>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-xs-6 text-right">
                                 <p class="announcement-heading">56</p>
-                                <p class="announcement-text">New Orders!</p>
+                                <p class="announcement-text">访问次数</p>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                         <div class="panel-footer announcement-bottom">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    Complete Orders
+                                    访问
                                 </div>
                                 <div class="col-xs-6 text-right">
                                     <i class="fa fa-arrow-circle-right"></i>
@@ -213,120 +213,120 @@
             <div class="col-lg-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-clock-o"></i> Recent Activity</h3>
+                        <h3 class="panel-title"><i class="fa fa-clock-o"></i> 订单创建记录</h3>
                     </div>
                     <div class="panel-body">
                         <div class="list-group">
                             <a href="#" class="list-group-item">
                                 <span class="badge">just now</span>
-                                <i class="fa fa-calendar"></i> Calendar updated
+                                <i class="fa fa-calendar"></i> 853211
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">4 minutes ago</span>
-                                <i class="fa fa-comment"></i> Commented on a post
+                                <i class="fa fa-comment"></i> 853210
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">23 minutes ago</span>
-                                <i class="fa fa-truck"></i> Order 392 shipped
+                                <i class="fa fa-truck"></i> 853209
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">46 minutes ago</span>
-                                <i class="fa fa-money"></i> Invoice 653 has been paid
+                                <i class="fa fa-money"></i> 853208
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">1 hour ago</span>
-                                <i class="fa fa-user"></i> A new user has been added
+                                <i class="fa fa-user"></i> 853207
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">2 hours ago</span>
-                                <i class="fa fa-check"></i> Completed task: "pick up dry cleaning"
+                                <i class="fa fa-check"></i> 853206
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">yesterday</span>
-                                <i class="fa fa-globe"></i> Saved the world
+                                <i class="fa fa-globe"></i> 853205
                             </a>
                             <a href="#" class="list-group-item">
                                 <span class="badge">two days ago</span>
-                                <i class="fa fa-check"></i> Completed task: "fix error on sales page"
+                                <i class="fa fa-check"></i> 853204
                             </a>
                         </div>
-                        <div class="text-right">
-                            <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
+                        <%--<div class="text-right">--%>
+                            <%--<a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-money"></i> Recent Transactions</h3>
+                        <h3 class="panel-title"><i class="fa fa-money"></i> 乘客订单座位</h3>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped tablesorter">
                                 <thead>
                                 <tr>
-                                    <th>Order # <i class="fa fa-sort"></i></th>
-                                    <th>Order Date <i class="fa fa-sort"></i></th>
-                                    <th>Order Time <i class="fa fa-sort"></i></th>
-                                    <th>Amount (USD) <i class="fa fa-sort"></i></th>
+                                    <th>订单号 <i class="fa fa-sort"></i></th>
+                                    <th>用户id <i class="fa fa-sort"></i></th>
+                                    <th>座位第一属性 <i class="fa fa-sort"></i></th>
+                                    <th>座位第二属性 <i class="fa fa-sort"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>3326</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:29 PM</td>
-                                    <td>$321.33</td>
+                                    <td>853211</td>
+                                    <td>靠窗</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>3325</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:20 PM</td>
-                                    <td>$234.34</td>
+                                    <td>853210</td>
+                                    <td>vip</td>
+                                    <td>靠过道</td>
                                 </tr>
                                 <tr>
                                     <td>3324</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:03 PM</td>
-                                    <td>$724.17</td>
+                                    <td>853209</td>
+                                    <td>靠婴儿摇篮</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>3323</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:00 PM</td>
-                                    <td>$23.71</td>
+                                    <td>853208</td>
+                                    <td>vip</td>
+                                    <td>靠过道</td>
                                 </tr>
                                 <tr>
                                     <td>3322</td>
-                                    <td>10/21/2013</td>
-                                    <td>2:49 PM</td>
-                                    <td>$8345.23</td>
+                                    <td>853207</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>3321</td>
-                                    <td>10/21/2013</td>
-                                    <td>2:23 PM</td>
-                                    <td>$245.12</td>
+                                    <td>853206</td>
+                                    <td>vip</td>
+                                    <td>靠窗</td>
                                 </tr>
                                 <tr>
                                     <td>3320</td>
-                                    <td>10/21/2013</td>
-                                    <td>2:15 PM</td>
-                                    <td>$5663.54</td>
+                                    <td>853205</td>
+                                    <td>靠过道</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>3319</td>
-                                    <td>10/21/2013</td>
-                                    <td>2:13 PM</td>
-                                    <td>$943.45</td>
+                                    <td>853204</td>
+                                    <td>靠婴儿摇篮</td>
+                                    <td>靠过道</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="text-right">
-                            <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
+                        <%--<div class="text-right">--%>
+                            <%--<a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
             </div>
