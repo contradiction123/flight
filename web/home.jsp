@@ -228,8 +228,8 @@
                                 <div class="col-lg-2">
                                     <span>航班号:</span>
                                     <select class="form-control" name="flight_number">
-                                        <c:forEach items="${flightlist}" var="list">
-                                            <option value='<c:out value="${list.name}"/>'><c:out value="${list.name}"/></option>
+                                        <c:forEach items="${flight}" var="flight">
+                                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>
                                         </c:forEach>
                                     </select>
                                 </div>

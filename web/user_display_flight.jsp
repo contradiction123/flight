@@ -552,12 +552,12 @@
 </body>
 <script>
     var u_seat=document.getElementById("seatlist").value.split("TtT");
-    console.log(u_seat[0]);
-    console.log(u_seat[1]);
+    // console.log(u_seat[0]);
+    // console.log(u_seat[1]);
     var u_seat1=u_seat[0].split("zZz");
     var u_seat2=u_seat[1].split("zZz");
-    console.log(u_seat1);
-    console.log(u_seat2);
+    // console.log(u_seat1);
+    // console.log(u_seat2);
 
     for(let i=1;i<u_seat1.length-1;i++){
         $("#u-s-n").append(
@@ -679,6 +679,45 @@
     for(var i=1;i<u_seat1.length-1;i++){
         document.getElementsByClassName(u_seat1[i])[0].style.fill="#56a1ff";
     }
+</script>
+
+
+<script>
+    window.onload=function () {
+        $.ajax({
+            type:"GET", //请求方式
+            url:"./buy_ticket_operation", //请求路径
+            cache: false,
+            data:{f:"<%= request.getParameter("flight")%>"},
+            dataType: 'text',   //设置返回值类型
+            success:function(e){
+                if(e.length>3){
+                    //返回的是一个字符串——31K zZz 32A zZz
+                    //ZzZ是座位之间的间隔
+                    // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割
+                    //这样进行切割得到的是 31A zZz T
+                    var seat_satisfaction_list=e.split("zZz");
+                    for(let i=0;i<seat_satisfaction_list.length;i++){
+                        //得到每一个子 字符串，座位号
+                        //有人就是灰色
+                        // console.log(seat_satisfaction_list[i]);
+                        var judge=0;
+                        for(var j=1;j<u_seat1.length-1;j++){
+                            if(seat_satisfaction_list[i]==u_seat1[j]){
+                                judge=1;
+                                break;
+                            }
+                        }
+                        if(judge==0){
+                            document.getElementsByClassName(seat_satisfaction_list[i])[0].style.fill="#cccccc";
+                        }
+                    }
+                }
+
+            }
+        });//ajax——的结束
+    }
+
 </script>
 
 </html>

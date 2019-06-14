@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "HomeServlet",urlPatterns = "/home",asyncSupported = true)
@@ -18,9 +19,12 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<FlightModel> list = new ArrayList<>();
         Dao dao = new Dao();
-        List<FlightModel> flightModelList = dao.findAllFlightmodel();
-        request.getSession().setAttribute("flightlist",flightModelList);
+
+        list=dao.findflightnullseat();
+
+        request.getSession().setAttribute("flight",list);
         request.getRequestDispatcher("home.jsp").forward(request,response);
     }
 }

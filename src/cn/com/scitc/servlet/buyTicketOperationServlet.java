@@ -154,6 +154,13 @@ public class buyTicketOperationServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        if(request.getParameter("f")!=null){
+            List<String> seatlist=new Dao().flightselect_seat(request.getParameter("f"));
+            String seatstr="";
+            for(int i=0;i<seatlist.size();i++){
+                seatstr+=seatlist.get(i)+"zZz";
+            }
+            response.getWriter().print(seatstr);
+        }
     }
 }

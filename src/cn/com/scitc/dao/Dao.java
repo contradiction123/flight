@@ -763,7 +763,7 @@ public class Dao {
     }
 
     //更新多人的的update
-    private boolean updateAllot(List<UserFlightSeat> userFlightSeatList,Connection connection){
+    public boolean updateAllot(List<UserFlightSeat> userFlightSeatList,Connection connection){
 
         String sql="UPDATE flight_attribute SET user_id = CASE seat_id ";
         String wherein="";
@@ -977,6 +977,7 @@ public class Dao {
         return list;
     }
 
+    //获取飞机号和飞机剩余座位
     public List<FlightModel> findflightnullseat(){
 
         List<FlightModel> flightModels=new ArrayList<>();
@@ -1173,8 +1174,11 @@ public class Dao {
         stringss+=flightModel.getDelete_seat()+"zZz";
 
         try {
-            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeats);
-            allUserFlightSeatUpdate.start();
+//            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeats);
+//            allUserFlightSeatUpdate.start();
+            Connection connection=SqlHelper.getConnection();
+            updateAllot(userFlightSeats,connection);
+            connection.close();
             return stringss;
         } catch (Exception e) {
             e.printStackTrace();
@@ -1262,8 +1266,10 @@ public class Dao {
 
         try {
             //执行更新多人的update
-            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeatList);
-            allUserFlightSeatUpdate.start();
+//            AllUserFlightSeatUpdate allUserFlightSeatUpdate=new AllUserFlightSeatUpdate(userFlightSeatList);
+//            allUserFlightSeatUpdate.start();
+            updateAllot(userFlightSeatList,connection);
+            connection.close();
             return stringss;
         } catch (Exception e) {
             e.printStackTrace();
