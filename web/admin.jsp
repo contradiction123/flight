@@ -259,7 +259,7 @@
             <div class="col-lg-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-money"></i> 乘客订单座位</h3>
+                        <h3 class="panel-title"><i class="fa fa-money"></i> 乘客订单</h3>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -268,59 +268,21 @@
                                 <tr>
                                     <th>订单号 <i class="fa fa-sort"></i></th>
                                     <th>用户id <i class="fa fa-sort"></i></th>
-                                    <th>座位第一属性 <i class="fa fa-sort"></i></th>
-                                    <th>座位第二属性 <i class="fa fa-sort"></i></th>
+                                    <th>座位号 <i class="fa fa-sort"></i></th>
+                                    <th>飞机型号 <i class="fa fa-sort"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>3326</td>
-                                    <td>853211</td>
-                                    <td>靠窗</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3325</td>
-                                    <td>853210</td>
-                                    <td>vip</td>
-                                    <td>靠过道</td>
-                                </tr>
-                                <tr>
-                                    <td>3324</td>
-                                    <td>853209</td>
-                                    <td>靠婴儿摇篮</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3323</td>
-                                    <td>853208</td>
-                                    <td>vip</td>
-                                    <td>靠过道</td>
-                                </tr>
-                                <tr>
-                                    <td>3322</td>
-                                    <td>853207</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3321</td>
-                                    <td>853206</td>
-                                    <td>vip</td>
-                                    <td>靠窗</td>
-                                </tr>
-                                <tr>
-                                    <td>3320</td>
-                                    <td>853205</td>
-                                    <td>靠过道</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>3319</td>
-                                    <td>853204</td>
-                                    <td>靠婴儿摇篮</td>
-                                    <td>靠过道</td>
-                                </tr>
+                                <c:forEach var="order" items="${order_number}">
+                                    <tr>
+                                        <td><c:out value="${order.order_number}"/></td>
+                                        <td><c:out value="${order.user_id}"/></td>
+                                        <td><c:out value="${order.seat_id}"/></td>
+                                        <td><c:out value="${order.flight_number}"/></td>
+                                    </tr>
+                                </c:forEach>
+
+
                                 </tbody>
                             </table>
                         </div>

@@ -2,7 +2,7 @@ package cn.com.scitc.model;
 
 public class UserFlightSeat {
     private String user_id,flight_number,want_seat_attribute_one,want_seat_attribute_second,seat_id,satisfaction,team;
-    private Integer allot_course;
+    private Integer allot_course,order_number;
 
     public Integer getAllot_course() {
         return allot_course;
@@ -66,5 +66,13 @@ public class UserFlightSeat {
 
     public void setSatisfaction(String satisfaction) {
         this.satisfaction = satisfaction;
+    }
+
+    public Integer getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(Integer order_number) {
+        this.order_number = order_number;
     }
 }

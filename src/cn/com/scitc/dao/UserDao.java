@@ -161,4 +161,25 @@ public class UserDao {
 
         return false;
     }
+
+    //查询订单
+    public List<UserFlightSeat> findOrder_number(){
+        List<UserFlightSeat> list = new ArrayList<>();
+        String sql = "select * from user_flight_seat order by order_number desc limit 8";
+        ResultSet resultSet = SqlHelper.executeQuery(sql,null);
+        try {
+            while (resultSet.next()){
+                UserFlightSeat userFlightSeat = new UserFlightSeat();
+                userFlightSeat.setUser_id(resultSet.getString("user_id"));
+                userFlightSeat.setSeat_id(resultSet.getString("seat_id"));
+                userFlightSeat.setFlight_number(resultSet.getString("flight_number"));
+                userFlightSeat.setOrder_number(resultSet.getInt("order_number"));
+                list.add(userFlightSeat);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }

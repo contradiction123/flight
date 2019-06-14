@@ -3,9 +3,7 @@ package cn.com.scitc.servlet;
 import cn.com.scitc.dao.Dao;
 import cn.com.scitc.dao.SystemTiemDao;
 import cn.com.scitc.dao.UserDao;
-import cn.com.scitc.model.FlightModel;
-import cn.com.scitc.model.SystemTimeModel;
-import cn.com.scitc.model.User;
+import cn.com.scitc.model.*;
 import cn.com.scitc.thread.SystemTime;
 
 import javax.servlet.ServletException;
@@ -60,6 +58,8 @@ public class adminServlet extends HttpServlet {
         float wellf = (float)well/count;
         float badf = (float)bad/count;
 
+        List<UserFlightSeat> userFlightSeats = userDao.findOrder_number();
+
         request.setAttribute("user_size",users.size());
         request.setAttribute("flight_size",flightModels.size());
         request.setAttribute("time",systemTimeModelList);
@@ -67,6 +67,7 @@ public class adminServlet extends HttpServlet {
         request.setAttribute("good",goodf*100);
         request.setAttribute("well",wellf*100);
         request.setAttribute("bad",badf*100);
+        request.setAttribute("order_number",userFlightSeats);
         request.getRequestDispatcher("/admin.jsp").forward(request,response);
 
 
