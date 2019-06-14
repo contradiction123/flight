@@ -401,7 +401,7 @@
                         color: 'rgb(98,137,169)',
                     },
                     smooth: 0.2,
-                    length: 10,
+                    length: 20,
                     length2: 20,
 
                 }

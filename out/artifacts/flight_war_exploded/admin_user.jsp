@@ -141,6 +141,7 @@
                         <label>用户姓名</label>
                         <input class="form-control" type="text" name="user_name" id="user_name" placeholder="用户姓名"/>
                     </div>
+                    <input type="hidden" name="f" value="1"/>
                 </form>
             </div>
             <div class="modal-footer">

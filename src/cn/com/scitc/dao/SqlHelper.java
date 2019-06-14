@@ -164,7 +164,7 @@ public class SqlHelper {
         try {
             // 1.创建一个ps
             conn = getConnection();
-            String sql="insert into user_flight_seat values";
+            String sql="insert into user_flight_seat(`user_id`,`flight_number`,`want_seat_attribute_one`,`want_seat_attribute_second`,`seat_id`,`satisfaction`,`team`,`allot_course`) values";
             String value="";
             for(int i=0;i<flightSeatList.size();i++){
                 value+=(i==0?"":",");

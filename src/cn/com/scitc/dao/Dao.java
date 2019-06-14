@@ -920,28 +920,28 @@ public class Dao {
             while (resultSet.next()){
                 count++;
                 if(count==1){
-                    allotCourseString+=resultSet.getString(1)+"zZz";//第一个人的账号
-                    allotCourseString+=resultSet.getInt(8)+"zZz";//allot_course
-                    allotCourseString+=resultSet.getString(1)+"zZz";//user_id
-                    allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
-                    allotCourseString+=resultSet.getString(6)+"zZz";//satasfiaction
+                    allotCourseString+=resultSet.getString("user_id")+"zZz";//第一个人的账号
+                    allotCourseString+=resultSet.getInt("allot_course")+"zZz";//allot_course
+                    allotCourseString+=resultSet.getString("user_id")+"zZz";//user_id
+                    allotCourseString+=resultSet.getString("seat_id")+"zZz";//seat_id
+                    allotCourseString+=resultSet.getString("satisfaction")+"zZz";//satisfaction
 
-                    last_allot_course=resultSet.getInt(8);
+                    last_allot_course=resultSet.getInt("allot_course");
                 }else {
-                    if(resultSet.getInt(8)==last_allot_course){
-                        allotCourseString+=resultSet.getString(1)+"zZz";//user_id
-                        allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
-                        allotCourseString+=resultSet.getString(6)+"zZz";//satasfiaction
+                    if(resultSet.getInt("allot_course")==last_allot_course){
+                        allotCourseString+=resultSet.getString("user_id")+"zZz";//user_id
+                        allotCourseString+=resultSet.getString("seat_id")+"zZz";//seat_id
+                        allotCourseString+=resultSet.getString("satisfaction")+"zZz";//satisfaction
                     }else {
                         allotCourseString+="YyY";//结束上一队
 
-                        allotCourseString+=resultSet.getString(1)+"zZz";//第一个人的账号
-                        allotCourseString+=resultSet.getInt(8)+"zZz";//allot_course
-                        allotCourseString+=resultSet.getString(1)+"zZz";//user_id
-                        allotCourseString+=resultSet.getString(5)+"zZz";//seat_id
-                        allotCourseString+=resultSet.getString(6)+"zZz";//satasfiaction
+                        allotCourseString+=resultSet.getString("user_id")+"zZz";//第一个人的账号
+                        allotCourseString+=resultSet.getInt("allot_course")+"zZz";//allot_course
+                        allotCourseString+=resultSet.getString("user_id")+"zZz";//user_id
+                        allotCourseString+=resultSet.getString("seat_id")+"zZz";//seat_id
+                        allotCourseString+=resultSet.getString("satisfaction")+"zZz";//satisfaction
 
-                        last_allot_course=resultSet.getInt(8);
+                        last_allot_course=resultSet.getInt("allot_course");
                     }
                 }
             }
@@ -1351,7 +1351,7 @@ public class Dao {
         FlightModel flightModel=new FlightModel();
 
         String sql="select * from flight_model where name='"+flight_number+"'";
-
+//        System.out.println(sql);
 
         ResultSet resultSet=SqlHelper.executeQuery(sql,null);
 

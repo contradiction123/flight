@@ -20,7 +20,13 @@ public class RegisterServlet extends HttpServlet {
         String user_name = request.getParameter("user_name");
         UserDao dao = new UserDao();
         dao.register(user_email,user_psw,user_name);
-        request.getRequestDispatcher("/home.jsp").forward(request,response);
+
+        if(request.getParameter("f")!=null){
+            response.sendRedirect("admin_user");
+        }else {
+            request.getRequestDispatcher("/home.jsp").forward(request,response);
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

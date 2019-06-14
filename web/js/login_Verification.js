@@ -42,24 +42,26 @@ function createCode(e) {
 }
 
 function login() {
-    addsvg();
+
     var uid = document.getElementById("uid");
     var password = document.getElementById("pass");
     var ValidateNum = document.getElementById("code");
     var from = document.getElementById("login");
     if (uid.value != null && password.value != null && ValidateNum.value != null) {
         if (ValidateNum.value.toUpperCase() == CodeVal.toUpperCase()) {
-            from.submit();
             $('#myModal2').modal('hide');
+            addsvg();
+            from.submit();
+
         } else {
 
             alert("验证码输入错误");
-            clearsvg();
+
             Code();
         }
     } else {
         alert("用户名或者密码错误");
-        clearsvg();
+
     }
 }
 $(document).keypress(function(e) {
