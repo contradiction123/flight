@@ -6,6 +6,15 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="flight" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/css" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/js" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/images" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/bootstrap-3.3.7-dist" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/jquery" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/img" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/js" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/css" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/jstl-1.2.jar" />

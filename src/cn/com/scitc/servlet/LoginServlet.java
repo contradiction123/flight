@@ -20,6 +20,10 @@ public class LoginServlet extends HttpServlet {
 
         String user_email = request.getParameter("user_email");
         String user_psw = request.getParameter("password");
+
+        System.out.println(user_email+","+user_psw);
+
+
         UserDao dao = new UserDao();
         User user = dao.login(user_email);
 

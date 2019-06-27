@@ -46,12 +46,14 @@ function login() {
     var uid = document.getElementById("uid");
     var password = document.getElementById("pass");
     var ValidateNum = document.getElementById("code");
-    var from = document.getElementById("login");
+    var form1 = document.getElementsByTagName("form")[0];
     if (uid.value != null && password.value != null && ValidateNum.value != null) {
         if (ValidateNum.value.toUpperCase() == CodeVal.toUpperCase()) {
-            $('#myModal2').modal('hide');
-            addsvg();
-            from.submit();
+            // addsvg();
+
+            // alert(form1.className);
+
+            form1.submit();
 
         } else {
 

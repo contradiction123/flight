@@ -3,6 +3,19 @@
     <output-path>$PROJECT_DIR$/out/artifacts/flight_war</output-path>
     <root id="archive" name="flight_war.war">
       <element id="artifact" artifact-name="flight:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/css" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/js" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5/images" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/android_h5" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/bootstrap-3.3.7-dist" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/jquery" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/img" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/js" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/css" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
