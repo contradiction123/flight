@@ -42,37 +42,6 @@ public class Dao {
         return userAttributeList;
     }
 
-    //这是查询b737-700的表格的
-    public List<B737_700> b7377select(){
-        String sql="select * from flight_attribute where flight_number='b737_700' order by id";
-        List<B737_700> b737_700s=new ArrayList<>();
-
-        SqlHelper.getConnection();
-        ResultSet resultSet=SqlHelper.executeQuery(sql,null);
-
-        try {
-            while (resultSet.next()){
-                B737_700 b737_700=new B737_700();
-
-                b737_700.setId(resultSet.getInt("id"));
-                b737_700.setSeat_id(resultSet.getString("seat_id"));
-                b737_700.setUser_id(resultSet.getString("user_id"));
-                b737_700.setChild(resultSet.getString("child"));
-                b737_700.setVip(resultSet.getString("vip"));
-                b737_700.setWindows(resultSet.getString("windows"));
-                b737_700.setDoor(resultSet.getString("door"));
-                b737_700.setMiddle(resultSet.getString("middle"));
-                b737_700.setAisle(resultSet.getString("aisle"));
-
-                b737_700s.add(b737_700);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return b737_700s;
-    }
-
     //查询飞机座位属性
     private String flightSeatRow(String flight_number){
         String sql="select seat from flight_model where name='"+flight_number+"'";
