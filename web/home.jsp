@@ -33,14 +33,14 @@
             width: 100%;
             display: table;
             margin: 0 auto;
-            background-color: black;
+            background-color: #304f89;
             margin-bottom: -10px;
         }
         .topMenu{
             padding: 20px 0;
             height: 80px;
             margin-left: 10%;
-            color: #ffffff;
+            color: #FFFFFF;
         }
 
         .fySearch{
@@ -49,7 +49,8 @@
         }
 
         .stopImg{
-            padding-top: 115px;
+            padding-top: 80px;
+            padding-right: 50px;
             color: #fff;
             font-size: 26px;
         }
@@ -86,7 +87,7 @@
             padding: 15px;
         }
         #uid,#pass,#user_email,#user_name,#user_passw{
-            width: 100%;
+            width: 80%;
             height: 40px;
             border-bottom: 1px #000 solid;
             margin-bottom: 20px;
@@ -106,7 +107,7 @@
             -webkit-transform: skewX(-45deg);
         }
         #code,#register-code{
-            width: 70%;
+            width: 80%;
             height: 40px;
             border-bottom: 1px #000 solid;
             margin-bottom: 20px;
@@ -153,10 +154,13 @@
 <div class="video-box" style="position: absolute;top: 80px; z-index: -5;">
     <!-- 嵌入视频 -->
     <div class="vedioiframe">
-        <video autoplay="autoplay" loop="loop" muted="muted" width="100%">
-            <source src="<c:url value="/video/video.mp4"/> " type="video/mp4">
+        <div >
+            <img src="<c:url value="/photo/airplane.jpg"/> "style="width: 1536px;height: 800px;">
+        </div>
+        <%--<video autoplay="autoplay" loop="loop" muted="muted" width="100%">--%>
+            <%--<source src="<c:url value="/video/video.mp4"/> " type="video/mp4">--%>
 
-        </video>
+        <%--</video>--%>
     </div>
 </div>
 <div class="header_wrap">
@@ -166,18 +170,18 @@
                 <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
                 <h1 style="float: right; line-height: 10px; margin-left: 20px;">Eyat</h1>
             </div>
-            <div style="margin-right: 10%">
-                <ul class="nav navbar-right ">
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-gear"></i> 个人信息</a></li>
-                            <li class="divider"></li>
-                            <li><a href="<c:url value="/out"/> "><i class="fa fa-power-off"></i> 退出登录</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <%--<div style="margin-right: 10%">--%>
+                <%--<ul class="nav navbar-right ">--%>
+                    <%--<li>--%>
+                        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><c:out value="${msg.user_name}" />  用户你好 <b class="caret"></b></a>--%>
+                        <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#"><i class="fa fa-gear"></i> 个人信息</a></li>--%>
+                            <%--<li class="divider"></li>--%>
+                            <%--<li><a href="<c:url value="/out"/> "><i class="fa fa-power-off"></i> 退出登录</a></li>--%>
+                        <%--</ul>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
         </div>
 
     </div>
@@ -188,65 +192,87 @@
         <div class="big">
             <div class="fySearch">
                 <div class="stopImg">
-                    <p class="mt text-center">Enjoy Your Air Time</p>
-                    <p class="mc text-center">基于互联网的座位分配系统</p>
+                    <p class="mt text-right">Enjoy Your Air Time</p>
+                    <p class="mc text-right">基于互联网的座位分配系统</p>
                 </div>
-                <div class="stopMain clearfix" >
-                    <div>
-                        <div style="margin-top: 10px;">
-                            <div class="col-lg-2" style="width:160px;">
-                                <span>出发城市：</span>
-                                <select class="form-control" name="cfcity">
-
-                                    <option value="上海">上海</option>
-                                    <option value="广州">广州</option>
-                                    <option value="成都">成都</option>
-                                    <option value="深圳">深圳</option>
-                                </select>
-                            </div>
+            </div>
+            <div class="front pull-right">
+                <div class="front">
+                    <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
+                        <input type="text" id="uid" name="user_email" placeholder="用户名" />
+                        <input type="password" id="pass" name="password" placeholder="密码"/>
+                        <div >
+                            <input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >
+                            <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
                         </div>
-                        <div style="margin-top: 10px;">
-                            <div class="col-lg-2" style="width:160px;">
-                                <span>到达城市：</span>
-                                <select class="form-control" name="ddcity">
-
-                                    <option value="北京">北京</option>
-                                    <option value="湖南">湖南</option>
-                                    <option value="湖北">湖北</option>
-                                    <option value="越南">越南</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="col-lg-2">
-                            <span>选择出行时间:</span>
-                            <input type="text" class="form-control lot-time" id="time"  name="time">
-                        </div>
-                        <div>
-                            <div style="margin-top: 10px;">
-                                <div class="col-lg-2">
-                                    <span>航班号:</span>
-                                    <select class="form-control" name="flight_number">
-                                        <c:forEach items="${flight}" var="flight">
-                                            <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 text-center" style="margin-top: 18px;">
-                            <c:if test="${msg.user_name == null}"><button class="btn btn-primary col-lg-4"  type="button"  data-toggle="modal" data-target="#myModal2">登录订购</button></c:if>
-                            <c:if test="${msg.user_name != null}"><button class="btn btn-primary col-lg-4" type="submit" >订购</button></c:if>
-                        </div>
-
-                    </div>
-
+                        <p style="color: red;position: absolute;font-size: 12px;right: 40%; bottom:0px"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
+                    </form>
                 </div>
-
+                <div class="modal-footer" style="padding-top: 100px;padding-right: 70px;">
+                    <div>
+                        <div><button type="button" class="btn btn-secondary" btn="primary" id="subbtn" onclick="login();" style="background-color:#4cd964;color: #fff9ec;">登录</button></div>
+                        <div><button type="button" class="btn btn-secondary" btn="trans submit" id="register" data-dismiss="modal" data-toggle="modal" data-target="#myModal3">注册</button></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+                <%--<div class="stopMain clearfix" >--%>
+                    <%--<div>--%>
+                        <%--<div style="margin-top: 10px;">--%>
+                            <%--<div class="col-lg-2" style="width:160px;">--%>
+                                <%--<span>出发城市：</span>--%>
+                                <%--<select class="form-control" name="cfcity">--%>
+
+                                    <%--<option value="上海">上海</option>--%>
+                                    <%--<option value="广州">广州</option>--%>
+                                    <%--<option value="成都">成都</option>--%>
+                                    <%--<option value="深圳">深圳</option>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div style="margin-top: 10px;">--%>
+                            <%--<div class="col-lg-2" style="width:160px;">--%>
+                                <%--<span>到达城市：</span>--%>
+                                <%--<select class="form-control" name="ddcity">--%>
+
+                                    <%--<option value="北京">北京</option>--%>
+                                    <%--<option value="湖南">湖南</option>--%>
+                                    <%--<option value="湖北">湖北</option>--%>
+                                    <%--<option value="越南">越南</option>--%>
+                                <%--</select>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div>--%>
+                        <%--<div class="col-lg-2">--%>
+                            <%--<span>选择出行时间:</span>--%>
+                            <%--<input type="text" class="form-control lot-time" id="time"  name="time">--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div style="margin-top: 10px;">--%>
+                                <%--<div class="col-lg-2">--%>
+                                    <%--<span>航班号:</span>--%>
+                                    <%--<select class="form-control" name="flight_number">--%>
+                                        <%--<c:forEach items="${flight}" var="flight">--%>
+                                            <%--<option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-4 text-center" style="margin-top: 18px;">--%>
+                            <%--<c:if test="${msg.user_name == null}"><button class="btn btn-primary col-lg-4"  type="button"  data-toggle="modal" data-target="#myModal2">登录订购</button></c:if>--%>
+                            <%--<c:if test="${msg.user_name != null}"><button class="btn btn-primary col-lg-4" type="submit" >订购</button></c:if>--%>
+                        <%--</div>--%>
+
+                    <%--</div>--%>
+
+                <%--</div>--%>
+
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+
 </form>
 
 
@@ -263,29 +289,29 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <div class="front">
 
-                    <form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">
-                        <input type="text" id="uid" name="user_email" placeholder="请输入邮箱地址"/>
-                        <input type="password" id="pass" name="password" placeholder="请输入密码"/>
-                        <div >
-                            <input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >
-                            <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
-                        </div>
-                        <p style="color: red;position: absolute;font-size: 12px;right: 40%; bottom:0px"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>
-                    </form>
+
+                    <%--<form id="login" action="<c:url value="/login" />" method="post" class="grid xl-1">--%>
+                        <%--<input type="text" id="uid" name="user_email" placeholder="请输入邮箱地址"/>--%>
+                        <%--<input type="password" id="pass" name="password" placeholder="请输入密码"/>--%>
+                        <%--<div >--%>
+                            <%--<input id="code" placeholder='验证码' maxlength="4" type='text' class="col-lg-5" >--%>
+                            <%--<canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>--%>
+                        <%--</div>--%>
+                        <%--<p style="color: red;position: absolute;font-size: 12px;right: 40%; bottom:0px"><c:if test="${error != ''}"><c:out value="${error}" /></c:if></p>--%>
+                    <%--</form>--%>
 
                 </div>
             </div>
 
             <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <div>
-                    <div><button type="button" class="btn btn-secondary" btn="trans submit" id="register" data-dismiss="modal" data-toggle="modal" data-target="#myModal3">注册</button></div>
-                    <div><button type="button" class="btn btn-secondary" btn="primary" id="subbtn" onclick="login();">登录</button></div>
-                    <div><button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button></div>
-                </div>
-            </div>
+            <%--<div class="modal-footer">--%>
+                <%--<div>--%>
+                    <%--<div><button type="button" class="btn btn-secondary" btn="trans submit" id="register" data-dismiss="modal" data-toggle="modal" data-target="#myModal3">注册</button></div>--%>
+                    <%--<div><button type="button" class="btn btn-secondary" btn="primary" id="subbtn" onclick="login();">登录</button></div>--%>
+                    <%--<div><button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button></div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
         </div>
     </div>

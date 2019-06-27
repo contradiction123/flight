@@ -17,7 +17,7 @@ function showCheck(a) {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 1000, 1000);
     ctx.font = "80px 'Hiragino Sans GB'";
-    ctx.fillStyle = "rgb(255, 255, 200)";
+    ctx.fillStyle = "rgb(115,115,90)";
     ctx.fillText(a, 0, 100);
 }
 

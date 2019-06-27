@@ -19,6 +19,8 @@
     <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
     <link rel="stylesheet" href="<c:url value="/layui-v2.4.5/layui/css/layui.css" />"  media="all">
     <script src="<c:url value="/layui-v2.4.5/layui/layui.all.js" />" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="js/jquery.step.css" />
+    <script src="js/jquery.step.min.js"></script>
     <style>
         .header_wrap{
             border-bottom: 1px solid #e5e5e5;
@@ -430,6 +432,20 @@
             position: fixed;
             right: 0px;
         }
+        .topMenu{
+            padding: 20px 0;
+            height: 80px;
+            margin-left: 10%;
+
+        }
+        .head_color{
+            background-color: #304f89;
+
+        }
+        .head_bar{
+            position: relative;
+            margin-top: 80px;
+        }
     </style>
 </head>
 <body>
@@ -438,26 +454,32 @@
 <div id="wrapper">
 
     <!-- 侧边栏 -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <img style="width: 88px;" src="<c:url value="/img/logo.png"/> " />
-            <h1 style="    float: right;margin-left: 26px;line-height: 240%;color: #fff;">Eyat</h1>
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <div class="navbar-header topMenu">
+            <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
+            <h1 style=" float: right; line-height: 10px; margin-left: 20px;margin-top:20px;">Eyat</h1>
         </div>
 
         <!-- 左侧栏列表-->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active"><a href="<c:url value="/buy"/> "><i class="fa fa-dashboard"></i>首页</a></li>
-                <li><a href="<c:url value="/userFormation"/>?name=<c:out value="${msg.user_name}" />"><i class="fa fa-bar-chart-o"></i>个人信息</a></li>
-                <li><a href="#"><i class="fa fa-table"></i></a></li>
-                <li><a href="#"><i class="fa fa-edit"></i></a></li>
-                <li><a href="#"><i class="fa fa-font"></i></a></li>
-            </ul>
+        <div class="collapse navbar-collapse navbar-ex1-collapse head_color">
+            <%--<ul class="nav navbar-nav side-nav">--%>
+                <%--<li class="active"><a href="<c:url value="/buy"/> "><i class="fa fa-dashboard"></i>首页</a></li>--%>
+                <%--<li><a href="<c:url value="/userFormation"/>?name=<c:out value="${msg.user_name}" />"><i class="fa fa-bar-chart-o"></i>个人信息</a></li>--%>
+                <%--<li><a href="#"><i class="fa fa-table"></i></a></li>--%>
+                <%--<li><a href="#"><i class="fa fa-edit"></i></a></li>--%>
+                <%--<li><a href="#"><i class="fa fa-font"></i></a></li>--%>
+            <%--</ul>--%>
 
+                <%--添加一个用户图标到用户名旁边 还没弄好--%>
+                <div style="float: right;">
+                    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;fill-color:red; transform:scale(1.5);" viewBox="0 0 1024 1024" version="1.1"><path d="M511.997 597.333c125.778 0 241.87-109.881 254.883-270.586C780.487 158.596 668.816 0 511.997 0 355.184 0 243.506 158.596 257.124 326.747 270.131 487.452 386.225 597.333 511.997 597.333zM509.719 684.073C228.208 684.073 0 796.019 0 934.112c0 47.221 43.411 65.423 171.081 79.221C269.777 1024 387.61 1024 512 1024c127.414 0 253.777 0 342.675-10.667 125.756-15.09 169.325-32 169.325-79.221C1024 796.019 791.22 684.073 509.719 684.073z" p-id="1301"></path></svg>
+                </div>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
-                <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff;font-size: 36px;line-height: 200%;"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+
+                <li class="dropdown user-dropdown" style="height: 80px;">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff;font-size: 36px;line-height: 200%;height: 80px;"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -468,7 +490,9 @@
         </div><!-- /.navbar-collapse -->
     </nav>
     <div id="page-wrapper">
-
+        <div class="head_bar">
+            <div id="step"></div>
+        </div>
         <div class="fly-middle">
             <div class="main">
                 <div class="box-message">
@@ -1024,5 +1048,36 @@
         my.parentNode.removeChild(my);
     }
 </script>
+<script type="text/javascript">
+    var $step = $("#step");
+    var $index = $("#index");
 
+    $step.step({
+        index: 0,
+        time: 500,
+        title: ["选择航班", "选择座位", "查看座位"]
+    });
+
+    $index.text($step.getIndex());
+
+    $("#prevBtn").on("click", function() {
+        $step.prevStep();
+        $index.text($step.getIndex());
+    });
+
+    $("#nextBtn").on("click", function() {
+        $step.nextStep();
+        $index.text($step.getIndex());
+    });
+
+    $("#btn1").on("click", function() {
+        $step.toStep(1);
+        $index.text($step.getIndex());
+    });
+
+    $("#btn2").on("click", function() {
+        $step.toStep(2);
+        $index.text($step.getIndex());
+    });
+</script>
 </html>
