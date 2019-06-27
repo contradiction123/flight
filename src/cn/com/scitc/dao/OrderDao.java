@@ -47,6 +47,10 @@ public class OrderDao {
             value+="'"+userOrderModelList.get(i).getEnd_time()+"')";
         }
 
+        sql+=value;
+
+//        System.out.println(sql);
+
         try {
             SqlHelper.executeUpdate(sql,null);
             return true;

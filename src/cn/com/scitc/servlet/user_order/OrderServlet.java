@@ -20,7 +20,8 @@ import java.util.regex.Pattern;
 
 @WebServlet(name = "OrderServlet",urlPatterns = "/user_order/userorder")
 public class OrderServlet extends HttpServlet {
-
+    //post 存储历史订单
+    //get 打开测试界面
     //接收传过来的历史订单信息并存储
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -64,11 +65,11 @@ public class OrderServlet extends HttpServlet {
 //            System.out.println( userOrderModelList.get(i).getEnd_time());
 //        }
 
-//        if(userOrderModelList.size()==1){
-//            response.getWriter().print(new OrderDao().insert_a(userOrderModelList.get(0)));
-//        }else {
-//            response.getWriter().print(new OrderDao().insert_a(userOrderModelList));
-//        }
+        if(userOrderModelList.size()==1){
+            response.getWriter().print(new OrderDao().insert_a(userOrderModelList.get(0)));
+        }else {
+            response.getWriter().print(new OrderDao().insert_a(userOrderModelList));
+        }
 
     }
 
