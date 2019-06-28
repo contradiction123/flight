@@ -21,6 +21,10 @@
     <script src="<c:url value="/layui-v2.4.5/layui/layui.all.js" />" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="js/jquery.step.css" />
     <script src="js/jquery.step.min.js"></script>
+    <link href="<c:url value="/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" />" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="<c:url value="/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js" />" charset="UTF-8"></script>
+    <script type="text/javascript" src="<c:url value="/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js" />" charset="UTF-8"></script>
+
     <style>
         .header_wrap{
             border-bottom: 1px solid #e5e5e5;
@@ -115,7 +119,7 @@
             color: black;
         }
         .fly-middle{
-            width: 980px;
+            width: 1280px;
             padding-left:0;
             position: relative;
             margin: 10px auto;
@@ -123,7 +127,7 @@
         .main{
             position: relative;
             float: left;
-            width: 700px;
+            width: 1200px;
             margin-left: -10px;
             padding-right: 0;
             padding-top: 10px;
@@ -420,7 +424,7 @@
             left:0px
         }
         .main{
-            padding-top: 88px;
+            padding-top: 15px;
         }
         .side-nav{
             top: 98px;
@@ -444,14 +448,18 @@
         }
         .head_bar{
             position: relative;
-            margin-top: 80px;
+            margin-top: 90px;
+            margin-right:90px;
+        }
+        #wrappera{
+            padding-left: 125px;
         }
     </style>
 </head>
 <body>
 
 
-<div id="wrapper">
+<div id="wrappera">
 
     <!-- 侧边栏 -->
     <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
@@ -489,251 +497,319 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
+    <div class="head_bar">
+        <div id="step"></div>
+    </div>
     <div id="page-wrapper">
-        <div class="head_bar">
-            <div id="step"></div>
-        </div>
+
         <div class="fly-middle">
             <div class="main">
-                <div class="box-message">
-                    <div class="box-tit">
-                        <h2>乘客</h2>
-                        <div class="box-tips">
-                            <div>一次最多为8位乘客添加购票信息
-                                <button type="button" class="btn btn-info" style="margin-left: 330px;" id="add">+添加乘客</button>
-                            </div>
+                <div class="p-message" id="ss">
+                    <div class="p-card">
+                        <div  style="display: inline;"class="form-inline">
+                        <span>出发城市：</span>
+                        <select class="form-control" name="cfcity">
+                        <option value="上海">上海</option>
+                        <option value="广州">广州</option>
+                        <option value="成都">成都</option>
+                        <option value="深圳">深圳</option>
+                        </select>
                         </div>
-
-
+                        <div  style="padding-left: 20px;  display: inline;" class="form-inline">
+                        <span>到达城市：</span>
+                        <select class="form-control" name="ddcity">
+                        <option value="北京">北京</option>
+                        <option value="湖南">湖南</option>
+                        <option value="湖北">湖北</option>
+                        <option value="越南">越南</option>
+                        </select>
+                        </div>
+                        <div style="padding-left: 20px;  display: inline;" class="form-inline">
+                        <span>选择出行时间:</span>
+                        <input type="text" class="form-control lot-time" id="time"  name="time">
+                        </div>
+                        <div style="padding-left: 20px;  display: inline;" class="form-inline">
+                        <span>航班号:</span>
+                        <select class="form-control" name="flight_number">
+                        <c:forEach items="${flight}" var="flight">
+                        <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>
+                        </c:forEach>
+                        </select>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="p-message" id="cc">
                     <div class="p-card">
-                        <div class="p-num">
-                            <i class="num-1"></i>
+                            <div style="margin-left: 60px;margin-top: 150px;display: inline;" class="form-inline">
+                                <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;transform:scale(1.5);fill: red;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1879"><path d="M714.94656 957.18912a20.21888 20.21888 0 0 1-19.33312-14.27968l-114.24256-371.76832-136.41216 115.58912 1.65376 201.04192a20.21888 20.21888 0 0 1-5.79584 14.336l-33.77152 34.37568a20.21376 20.21376 0 0 1-33.28-6.87616L300.672 740.6592l-196.17792-84.27008a20.22912 20.22912 0 0 1-6.5024-32.6912l33.6384-34.49344a20.25472 20.25472 0 0 1 15.46752-6.08256l205.76768 10.07616 115.89632-142.19264-374.35904-118.90176a20.21376 20.21376 0 0 1-8.33024-33.41824l64.26112-65.63328a20.2752 20.2752 0 0 1 16.47616-5.97504l461.64992 46.47936 130.82112-131.1232c52.10112-52.71552 102.05184-60.98944 127.18592-60.98944h0.36864c23.34208 0 43.96544 6.90176 55.23968 18.18112 27.22304 27.22304 25.87648 104.88832-47.46752 179.71712-0.05632 0.0512-0.10752 0.1536-0.1536 0.2048l-131.97312 131.75808 36.92544 458.3936a20.23936 20.23936 0 0 1-5.7088 15.78496l-64.3072 65.62816a20.22912 20.22912 0 0 1-14.44352 6.07744z m-123.24352-441.5232a20.21888 20.21888 0 0 1 19.31776 14.27968l113.25952 368.5888 34.06336-34.75968L721.408 405.248a20.20352 20.20352 0 0 1 5.86752-15.93344l138.52672-138.27072c33.99168-34.70336 45.952-65.15712 50.00704-84.59264 4.99712-23.9616-0.67584-36.28032-2.34496-38.05184-7.43936-7.33184-63.90784-19.62496-125.48096 42.71104a1.3568 1.3568 0 0 1-0.08704 0.08192l-137.61536 137.73824a20.21376 20.21376 0 0 1-16.32768 5.82656L172.43136 268.288l-34.47296 35.21024 371.38432 117.9392a20.21376 20.21376 0 0 1 9.55392 32.04608l-141.13792 173.16352c-4.06016 4.98688-10.24 7.72608-16.6656 7.424l-206.86848-10.12736-6.72256 6.89152 176.94208 76.0064a20.23936 20.23936 0 0 1 10.88 11.28448l64.84992 167.64928 5.93408-6.04672-1.65888-202.1376a20.18816 20.18816 0 0 1 7.14752-15.5904l167.03488-141.54752a20.23936 20.23936 0 0 1 13.07136-4.7872z" p-id="1880"></path></svg>
+                                <label>中国航联</label>
+                                <div style="margin-left: 60px;">
+                                    <label style="font-size: 10px;">波音737</label>
+                                </div>
+                                <div  style="text-align:center;font-size: 25px;margin-bottom: 20px;"  class="form-inline">
+                                    <label>8:00</label>
+                                    &nbsp;
+                                    &nbsp;
+                                    <span>---------------></span>
+                                    &nbsp;
+                                    &nbsp;
+                                    <label>21:00</label>
+                                    <div style="display: inline;float: right;" class="form-inline;">
+                                        <button type="button" class="btn btn-secondary" btn="primary" id="subbtn" onclick="login();" style="background-color:#4cd964;color: #fff9ec;">订票▽ </button>
+
+                                    </div>
+                                </div>
+                                <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=3>
                         </div>
-                        <div class="input-group" style="margin-left: 15px;">
-                            <span class="input-group-addon">姓名</span>
-                            <input type="text" class="form-control " value='<c:out value="${msg.user_name}" />'  aria-label="..." style="width:360px;">
-                        </div>
-                        <div>
-                            <div style="margin-top: 10px;">
-                                <div class="input-group" style="margin-left: 15px;">
-                                    <span class="input-group-addon">账号</span>
-                                    <input type="text" class="form-control  user-id" value=''  placeholder="账号" aria-label="..." style="width:360px;">
+                            <div style="padding-left: 140px;">
+                                <div style="padding: 5px 0;display: inline;">
+                                    <span style="color: #4cd964;margin-right: 25px;">行程单</span>
+                                    <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
+                                    <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
+                                    <span style="float: right;margin-right: 30px;height: 40px;"><button type="button" class="btn btn-secondary" btn="primary"onclick="login();" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
+                                   </span>
+                                    <span style="color: #df8505;float: right;margin-right: 30px;">￥680</span>
+                                    <span style="color: #9d9d9d;float:right;margin-right: 30px;">明珠经济舱7.8折</span>
+
+
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div style="margin-top: 10px;">
-                                <div class="col-lg-2" style="width:160px;">
-                                    <select class="form-control" onchange="selectOnchang(this)">
-                                        <option>身份证</option>
-                                        <option>护照</option>
-                                        <option>军人证</option>
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control" placeholder="证件号码" style="width:270px;">
+                        <div style="padding-left: 140px;padding-top: 40px;">
+                            <div style="padding: 5px 0;display: inline;">
+                                <span style="color: #4cd964;margin-right: 25px;">行程单</span>
+                                <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
+                                <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
+                                <span style="float: right;margin-right: 30px;height: 40px;"><button type="button" class="btn btn-secondary" btn="primary"onclick="login();" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
+                                   </span>
+                                <span style="color: #df8505;float: right;margin-right: 30px;">￥480</span>
+                                <span style="color: #9d9d9d;float:right;margin-right: 30px;">经济舱5.7折</span>
+
+
                             </div>
                         </div>
+                        <%--<div class="input-group" style="margin-left: 15px;">--%>
+                            <%--<span class="input-group-addon">姓名</span>--%>
+                            <%--<input type="text" class="form-control " value='<c:out value="${msg.user_name}" />'  aria-label="..." style="width:360px;">--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div style="margin-top: 10px;">--%>
+                                <%--<div class="input-group" style="margin-left: 15px;">--%>
+                                    <%--<span class="input-group-addon">账号</span>--%>
+                                    <%--<input type="text" class="form-control  user-id" value=''  placeholder="账号" aria-label="..." style="width:360px;">--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div style="margin-top: 10px;">--%>
+                                <%--<div class="col-lg-2" style="width:160px;">--%>
+                                    <%--<select class="form-control" onchange="selectOnchang(this)">--%>
+                                        <%--<option>身份证</option>--%>
+                                        <%--<option>护照</option>--%>
+                                        <%--<option>军人证</option>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                                <%--<input type="text" class="form-control" placeholder="证件号码" style="width:270px;">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
 
 
-                        <div class="form-group modal-body-div child_vip_type">
-                            <div style="margin-top: 20px;">
-                                <label class="wenzi-5ex modal-body-label">类型（可不选）:</label>
-                            </div>
-                            <div class="RadioStyle">
-                                <div class="Block PaddingL">
-                                    <div id="a1">
-                                        <div>
-                                            <input type="checkbox" id="love1" name="Storage" class="Storage"/>
-                                            <label for="love1" class="child_vip">child</label>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="love2" name="Storage" class="Storage" />
-                                            <label for="love2" class="child_vip">vip</label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="love3" name="Storage" class="Storage"/>
-                                        <label for="love3" class="child_vip threechild_vip">不选</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group modal-body-div attribute">
-                            <div>
-                                <label class="modal-body-label">第一属性：</label>
-                            </div>
-                            <div class="RadioStyle">
-                                <div class="Block PaddingL" id="a2">
-                                    <div>
-                                        <input type="radio" name="Storage1" id="model7" class="Storage1" />
-                                        <label for="model7" class="one">windows</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage1" id="model4" class="Storage1" />
-                                        <label for="model4" class="one">door</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage1" id="model5" class="Storage1"/>
-                                        <label for="model5" class="one">middle</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage1" id="model6" class="Storage1"/>
-                                        <label for="model6" class="one">aisle</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%--<div class="form-group modal-body-div child_vip_type">--%>
+                            <%--<div style="margin-top: 20px;">--%>
+                                <%--<label class="wenzi-5ex modal-body-label">类型（可不选）:</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="RadioStyle">--%>
+                                <%--<div class="Block PaddingL">--%>
+                                    <%--<div id="a1">--%>
+                                        <%--<div>--%>
+                                            <%--<input type="checkbox" id="love1" name="Storage" class="Storage"/>--%>
+                                            <%--<label for="love1" class="child_vip">child</label>--%>
+                                        <%--</div>--%>
+                                        <%--<div>--%>
+                                            <%--<input type="checkbox" id="love2" name="Storage" class="Storage" />--%>
+                                            <%--<label for="love2" class="child_vip">vip</label>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="checkbox" id="love3" name="Storage" class="Storage"/>--%>
+                                        <%--<label for="love3" class="child_vip threechild_vip">不选</label>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group modal-body-div attribute">--%>
+                            <%--<div>--%>
+                                <%--<label class="modal-body-label">第一属性：</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="RadioStyle">--%>
+                                <%--<div class="Block PaddingL" id="a2">--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage1" id="model7" class="Storage1" />--%>
+                                        <%--<label for="model7" class="one">windows</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage1" id="model4" class="Storage1" />--%>
+                                        <%--<label for="model4" class="one">door</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage1" id="model5" class="Storage1"/>--%>
+                                        <%--<label for="model5" class="one">middle</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage1" id="model6" class="Storage1"/>--%>
+                                        <%--<label for="model6" class="one">aisle</label>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="form-group modal-body-div attribute">
-                            <div>
-                                <label class="wenzi-5ex modal-body-label">第二属性:</label>
-                            </div>
-                            <div class="RadioStyle">
-                                <div class="Block PaddingL" id="a3">
-                                    <div>
-                                        <input type="radio" name="Storage2" id="model11" class="Storage2"/>
-                                        <label for="model11" class="second">windows</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage2" id="model8" class="Storage2"/>
-                                        <label for="model8" class="second">door</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage2" id="model9" class="Storage2"/>
-                                        <label for="model9" class="second">middle</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="Storage2" id="model10" class="Storage2"/>
-                                        <label for="model10" class="second">aisle</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%--<div class="form-group modal-body-div attribute">--%>
+                            <%--<div>--%>
+                                <%--<label class="wenzi-5ex modal-body-label">第二属性:</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="RadioStyle">--%>
+                                <%--<div class="Block PaddingL" id="a3">--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage2" id="model11" class="Storage2"/>--%>
+                                        <%--<label for="model11" class="second">windows</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage2" id="model8" class="Storage2"/>--%>
+                                        <%--<label for="model8" class="second">door</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage2" id="model9" class="Storage2"/>--%>
+                                        <%--<label for="model9" class="second">middle</label>--%>
+                                    <%--</div>--%>
+                                    <%--<div>--%>
+                                        <%--<input type="radio" name="Storage2" id="model10" class="Storage2"/>--%>
+                                        <%--<label for="model10" class="second">aisle</label>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
                     </div>
 
 
                 </div>
-                <div style="margin-bottom:30px;">
-                    <div class="box-tit">
-                        <h2>联系人</h2>
-                    </div>
-                    <div class="p-card">
-                        <div>
-                            <div style="margin-top: 10px;">
-                                <div class="col-lg-2" style="width:160px;">
-                                    <select class="form-control" onchange="selectOnchang(this)">
-                                        <option>中国大陆区号86</option>
-                                        <option>中国香港区号852</option>
-                                        <option>中国澳门区号853</option>
-                                        <option>中国台湾区号886</option>
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control" placeholder="乘机人手机号码" style="width:270px;">
-                            </div>
-                        </div>
-                        <div style="margin-top: 10px;margin-left:15px;">
-                            <input type="text" class="form-control" placeholder="Email(选填，接收航变信息）" style="width:415px;">
+                <%--<div style="margin-bottom:30px;">--%>
+                    <%--<div class="box-tit">--%>
+                        <%--<h2>联系人</h2>--%>
+                    <%--</div>--%>
+                    <%--<div class="p-card">--%>
+                        <%--<div>--%>
+                            <%--<div style="margin-top: 10px;">--%>
+                                <%--<div class="col-lg-2" style="width:160px;">--%>
+                                    <%--<select class="form-control" onchange="selectOnchang(this)">--%>
+                                        <%--<option>中国大陆区号86</option>--%>
+                                        <%--<option>中国香港区号852</option>--%>
+                                        <%--<option>中国澳门区号853</option>--%>
+                                        <%--<option>中国台湾区号886</option>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                                <%--<input type="text" class="form-control" placeholder="乘机人手机号码" style="width:270px;">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div style="margin-top: 10px;margin-left:15px;">--%>
+                            <%--<input type="text" class="form-control" placeholder="Email(选填，接收航变信息）" style="width:415px;">--%>
 
-                        </div>
-                    </div>
-                </div>
-                <div style="width:700px;text-align: center;">
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <div style="width:auto;text-align: center;">
                     <a href="javascript:;" class="b-go" id="go">提交</a>
                 </div>
             </div>
 
         </div>
-        <div class="sidebar">
-            <div class="sidebar-cont">
-                <div>
-                    <div class="flight-info" style="border-bottom: none;padding-bottom: 0">
-                        <div class="flight-city">
-                            <div class="flt-date">
-                                <c:out value="${time}" />
-                                <span class="week">周二</span>
-                                <div class="flt-depart"><c:out value="${cfcity}" /></div>
-                                <div class="flt-depart">--></div>
-                                <div class="flt-depart"><c:out value="${ddcity}" /></div>
-                            </div>
-                        </div>
-                        <div class="flight-tit">
-                            <div class="plane-type">
-                                <c:out value="${flight_number}" />
-                            </div>
-                            <form method="post" action="user_display_flight.jsp" id="formflight">
-                                <input type="hidden" name="flight" value="<c:out value="${flight_number}" />">
-                                <input type="hidden" name="seat" id="user-seat">
-                            </form>
-                            <div class="plane-type">
-                                经济舱
-                            </div>
-                        </div>
-                        <div class="flight-detail">
-                            <div class="flt-arrow">
-                                <!-- 您的座位:31K -->
-                            </div>
-                        </div>
-                        <div class="">
-                            <span style="position:absolute;left:300px;top:10px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="flight-cost">
-                    <div class="cost-detail">
-                        <div class="cost-row">
-                            <div class="cost-tit">
-                                <span>成人</span>
-                                <span class="abb">
-                                        退改
-                                        <dfn style="padding-left:3px;">￥</dfn>
-                                        15起
-                                    </span>
-                                <span class="abb">行李额</span>
-                                <div class="corner">
-                                            <span class="price">
-                                                <dfn>￥</dfn>
-                                                150
-                                            </span>
-                                </div>
-                            </div>
-                        </div>
+        <%--<div class="sidebar">--%>
+            <%--<div class="sidebar-cont">--%>
+                <%--<div>--%>
+                    <%--<div class="flight-info" style="border-bottom: none;padding-bottom: 0">--%>
+                        <%--<div class="flight-city">--%>
+                            <%--<div class="flt-date">--%>
+                                <%--<c:out value="${time}" />--%>
+                                <%--<span class="week">周二</span>--%>
+                                <%--<div class="flt-depart"><c:out value="${cfcity}" /></div>--%>
+                                <%--<div class="flt-depart">--></div>--%>
+                                <%--<div class="flt-depart"><c:out value="${ddcity}" /></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="flight-tit">--%>
+                            <%--<div class="plane-type">--%>
+                                <%--<c:out value="${flight_number}" />--%>
+                            <%--</div>--%>
+                            <%--<form method="post" action="user_display_flight.jsp" id="formflight">--%>
+                                <%--<input type="hidden" name="flight" value="<c:out value="${flight_number}" />">--%>
+                                <%--<input type="hidden" name="seat" id="user-seat">--%>
+                            <%--</form>--%>
+                            <%--<div class="plane-type">--%>
+                                <%--经济舱--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="flight-detail">--%>
+                            <%--<div class="flt-arrow">--%>
+                                <%--<!-- 您的座位:31K -->--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="">--%>
+                            <%--<span style="position:absolute;left:300px;top:10px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="flight-cost">--%>
+                    <%--<div class="cost-detail">--%>
+                        <%--<div class="cost-row">--%>
+                            <%--<div class="cost-tit">--%>
+                                <%--<span>成人</span>--%>
+                                <%--<span class="abb">--%>
+                                        <%--退改--%>
+                                        <%--<dfn style="padding-left:3px;">￥</dfn>--%>
+                                        <%--15起--%>
+                                    <%--</span>--%>
+                                <%--<span class="abb">行李额</span>--%>
+                                <%--<div class="corner">--%>
+                                            <%--<span class="price">--%>
+                                                <%--<dfn>￥</dfn>--%>
+                                                <%--150--%>
+                                            <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="cost-row">
-                            <div class="cost-tit">
-                                <span>机建</span>
-                                <div class="corner">
-                                                <span class="price">
-                                                    <dfn>￥</dfn>
-                                                    50
-                                                </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cost-row">
-                            <div class="cost-tit">
-                                <span>燃油费</span>
-                                <div class="corner">免费</div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="total-price">
-                        <span>
-                            <dfn style="font-size: 18px;">￥</dfn>
-                            200
-                        </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <%--<div class="cost-row">--%>
+                            <%--<div class="cost-tit">--%>
+                                <%--<span>机建</span>--%>
+                                <%--<div class="corner">--%>
+                                                <%--<span class="price">--%>
+                                                    <%--<dfn>￥</dfn>--%>
+                                                    <%--50--%>
+                                                <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="cost-row">--%>
+                            <%--<div class="cost-tit">--%>
+                                <%--<span>燃油费</span>--%>
+                                <%--<div class="corner">免费</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div class="total-price">--%>
+                        <%--<span>--%>
+                            <%--<dfn style="font-size: 18px;">￥</dfn>--%>
+                            <%--200--%>
+                        <%--</span>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
-        </div>
+        <%--</div>--%>
 
 
     </div><!-- /#page-wrapper -->
@@ -1079,5 +1155,23 @@
         $step.toStep(2);
         $index.text($step.getIndex());
     });
+</script>
+
+<script type="text/javascript">
+    //时间控件
+    $(function () {
+        $('.lot-time').datetimepicker({
+            format: "yyyy-mm-dd",
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            pickerPosition:'right'
+        });
+    })
 </script>
 </html>

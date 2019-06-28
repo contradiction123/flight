@@ -12,7 +12,6 @@ body {
 
 .ui-step-wrap {
 	position: relative;
-	float: left;
 }
 
 .ui-step-wrap .ui-step-bg,
@@ -21,7 +20,6 @@ body {
 	position: absolute;
 	top: 50px;
 	left: 0;
-	width:200px;
 }
 
 .ui-step-wrap .ui-step-bg {
@@ -45,9 +43,7 @@ body {
 	display: table;
 	clear: both;
 }
-.ui-step-item{
-	width: 200px;
-}
+
 .ui-step-wrap .ui-step .ui-step-item {
 	float: left;
 }
