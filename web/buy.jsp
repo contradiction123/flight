@@ -479,9 +479,7 @@
             <%--</ul>--%>
 
                 <%--添加一个用户图标到用户名旁边 还没弄好--%>
-                <div style="float: right;">
-                    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;fill-color:red; transform:scale(1.5);" viewBox="0 0 1024 1024" version="1.1"><path d="M511.997 597.333c125.778 0 241.87-109.881 254.883-270.586C780.487 158.596 668.816 0 511.997 0 355.184 0 243.506 158.596 257.124 326.747 270.131 487.452 386.225 597.333 511.997 597.333zM509.719 684.073C228.208 684.073 0 796.019 0 934.112c0 47.221 43.411 65.423 171.081 79.221C269.777 1024 387.61 1024 512 1024c127.414 0 253.777 0 342.675-10.667 125.756-15.09 169.325-32 169.325-79.221C1024 796.019 791.22 684.073 509.719 684.073z" p-id="1301"></path></svg>
-                </div>
+
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
 
@@ -528,72 +526,31 @@
                         <span>选择出行时间:</span>
                         <input type="text" class="form-control lot-time" id="time"  name="time">
                         </div>
-                        <div style="padding-left: 20px;  display: inline;" class="form-inline">
-                        <span>航班号:</span>
-                        <select class="form-control" name="flight_number">
-                        <c:forEach items="${flight}" var="flight">
-                        <option value="<c:out value="${flight.name}"/>"><c:out value="${flight.name}"/>&nbsp;&nbsp;有<c:out value="${flight.null_seat}"/>个空座位</option>
-                        </c:forEach>
-                        </select>
-                        </div>
                     </div>
                 </div>
 
-
-                <div class="p-message p-card" id="cc">
-                        <div style="margin-left: 60px;margin-top: 150px;display: inline;" class="form-inline">
-                            <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;transform:scale(1.5);fill: red;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1879"><path d="M714.94656 957.18912a20.21888 20.21888 0 0 1-19.33312-14.27968l-114.24256-371.76832-136.41216 115.58912 1.65376 201.04192a20.21888 20.21888 0 0 1-5.79584 14.336l-33.77152 34.37568a20.21376 20.21376 0 0 1-33.28-6.87616L300.672 740.6592l-196.17792-84.27008a20.22912 20.22912 0 0 1-6.5024-32.6912l33.6384-34.49344a20.25472 20.25472 0 0 1 15.46752-6.08256l205.76768 10.07616 115.89632-142.19264-374.35904-118.90176a20.21376 20.21376 0 0 1-8.33024-33.41824l64.26112-65.63328a20.2752 20.2752 0 0 1 16.47616-5.97504l461.64992 46.47936 130.82112-131.1232c52.10112-52.71552 102.05184-60.98944 127.18592-60.98944h0.36864c23.34208 0 43.96544 6.90176 55.23968 18.18112 27.22304 27.22304 25.87648 104.88832-47.46752 179.71712-0.05632 0.0512-0.10752 0.1536-0.1536 0.2048l-131.97312 131.75808 36.92544 458.3936a20.23936 20.23936 0 0 1-5.7088 15.78496l-64.3072 65.62816a20.22912 20.22912 0 0 1-14.44352 6.07744z m-123.24352-441.5232a20.21888 20.21888 0 0 1 19.31776 14.27968l113.25952 368.5888 34.06336-34.75968L721.408 405.248a20.20352 20.20352 0 0 1 5.86752-15.93344l138.52672-138.27072c33.99168-34.70336 45.952-65.15712 50.00704-84.59264 4.99712-23.9616-0.67584-36.28032-2.34496-38.05184-7.43936-7.33184-63.90784-19.62496-125.48096 42.71104a1.3568 1.3568 0 0 1-0.08704 0.08192l-137.61536 137.73824a20.21376 20.21376 0 0 1-16.32768 5.82656L172.43136 268.288l-34.47296 35.21024 371.38432 117.9392a20.21376 20.21376 0 0 1 9.55392 32.04608l-141.13792 173.16352c-4.06016 4.98688-10.24 7.72608-16.6656 7.424l-206.86848-10.12736-6.72256 6.89152 176.94208 76.0064a20.23936 20.23936 0 0 1 10.88 11.28448l64.84992 167.64928 5.93408-6.04672-1.65888-202.1376a20.18816 20.18816 0 0 1 7.14752-15.5904l167.03488-141.54752a20.23936 20.23936 0 0 1 13.07136-4.7872z" p-id="1880"></path></svg>
-                            <label>中国航联</label>
-                            <div style="margin-left: 60px;">
-                                <label style="font-size: 10px;">波音737</label>
-                            </div>
-                            <div  style="text-align:center;font-size: 25px;margin-bottom: 20px;"  class="form-inline">
-                                <label>8:00</label>
-                                &nbsp;
-                                &nbsp;
-                                <span>---------------></span>
-                                &nbsp;
-                                &nbsp;
-                                <label>21:00</label>
-                                <div style="display: inline;float: right;" class="form-inline;">
-                                    <button type="button" class="btn btn-secondary" btn="primary" id="order" style="background-color:#4cd964;color: #fff9ec;">订票▽ </button>
+            <c:forEach items="${flight}" var="flight">
+                <div style="height: 120px;" class="p-message p-card" id="cc">
+                            <div style="float: left;width: 20%;">
+                                <div style="float: left;line-height: 100px;">
+                                    <svg class="icon" style="width: 2em; height: 2em;vertical-align: middle;transform:scale(1.5);fill: red;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1879"><path d="M714.94656 957.18912a20.21888 20.21888 0 0 1-19.33312-14.27968l-114.24256-371.76832-136.41216 115.58912 1.65376 201.04192a20.21888 20.21888 0 0 1-5.79584 14.336l-33.77152 34.37568a20.21376 20.21376 0 0 1-33.28-6.87616L300.672 740.6592l-196.17792-84.27008a20.22912 20.22912 0 0 1-6.5024-32.6912l33.6384-34.49344a20.25472 20.25472 0 0 1 15.46752-6.08256l205.76768 10.07616 115.89632-142.19264-374.35904-118.90176a20.21376 20.21376 0 0 1-8.33024-33.41824l64.26112-65.63328a20.2752 20.2752 0 0 1 16.47616-5.97504l461.64992 46.47936 130.82112-131.1232c52.10112-52.71552 102.05184-60.98944 127.18592-60.98944h0.36864c23.34208 0 43.96544 6.90176 55.23968 18.18112 27.22304 27.22304 25.87648 104.88832-47.46752 179.71712-0.05632 0.0512-0.10752 0.1536-0.1536 0.2048l-131.97312 131.75808 36.92544 458.3936a20.23936 20.23936 0 0 1-5.7088 15.78496l-64.3072 65.62816a20.22912 20.22912 0 0 1-14.44352 6.07744z m-123.24352-441.5232a20.21888 20.21888 0 0 1 19.31776 14.27968l113.25952 368.5888 34.06336-34.75968L721.408 405.248a20.20352 20.20352 0 0 1 5.86752-15.93344l138.52672-138.27072c33.99168-34.70336 45.952-65.15712 50.00704-84.59264 4.99712-23.9616-0.67584-36.28032-2.34496-38.05184-7.43936-7.33184-63.90784-19.62496-125.48096 42.71104a1.3568 1.3568 0 0 1-0.08704 0.08192l-137.61536 137.73824a20.21376 20.21376 0 0 1-16.32768 5.82656L172.43136 268.288l-34.47296 35.21024 371.38432 117.9392a20.21376 20.21376 0 0 1 9.55392 32.04608l-141.13792 173.16352c-4.06016 4.98688-10.24 7.72608-16.6656 7.424l-206.86848-10.12736-6.72256 6.89152 176.94208 76.0064a20.23936 20.23936 0 0 1 10.88 11.28448l64.84992 167.64928 5.93408-6.04672-1.65888-202.1376a20.18816 20.18816 0 0 1 7.14752-15.5904l167.03488-141.54752a20.23936 20.23936 0 0 1 13.07136-4.7872z" p-id="1880"></path></svg>
+                                </div>
+                                <div style="float: left; margin-left: 20px;margin-top: 25px;">
+                                    <h2>中国航联</h2>
+                                    <h3><c:out value="${flight.name}"/></h3>
                                 </div>
                             </div>
-                        </div>
-
-                        <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=3>
-
-                        <div id="order-information">
-                            <div style="padding-left: 140px;">
-                                <div style="padding: 5px 0;display: inline;">
-                                    <span style="color: #4cd964;margin-right: 25px;">行程单</span>
-                                    <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
-                                    <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
-                                    <span style="float: right;margin-right: 30px;height: 40px;"><button type="button" class="btn btn-secondary" btn="primary"onclick="login();" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
-                               </span>
-                                    <span style="color: #df8505;float: right;margin-right: 30px;">￥680</span>
-                                    <span style="color: #9d9d9d;float:right;margin-right: 30px;">明珠经济舱7.8折</span>
-
-
-                                </div>
+                            <div  style="height: 100%;margin-top: 35px; float: left;">
+                                <h3>8:00 ---------------> 12:00</h3>
                             </div>
-                            <div style="padding-left: 140px;padding-top: 40px;">
-                                <div style="padding: 5px 0;display: inline;">
-                                    <span style="color: #4cd964;margin-right: 25px;">行程单</span>
-                                    <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
-                                    <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
-                                    <span style="float: right;margin-right: 30px;height: 40px;"><button type="button" class="btn btn-secondary" btn="primary"onclick="login();" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
-                                   </span>
-                                    <span style="color: #df8505;float: right;margin-right: 30px;">￥480</span>
-                                    <span style="color: #9d9d9d;float:right;margin-right: 30px;">经济舱5.7折</span>
-                                </div>
+                            <span style="margin-left:40%; color: #df8505; font-size: 26px;line-height: 100px;">￥480</span>
+                            还剩<c:out value="${flight.null_seat}"/>个座位
+                            <div style="float: right;line-height: 100px;">
+                                <button type="button" class="btn btn-secondary" btn="primary" id="order" style="background-color:#4cd964;color: #fff9ec;">订票 </button>
                             </div>
-                        </div>
                 </div>
+            </c:forEach>
 
-                <div style="width:auto;text-align: center;">
-                    <a href="javascript:;" class="b-go" id="go">提交</a>
-                </div>
             </div>
 
         </div>
