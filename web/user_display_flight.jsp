@@ -290,6 +290,9 @@
     <div class="head_bar">
         <div id="step"></div>
     </div>
+    <div class="main" >
+        <div style="font-size: 2em; text-align: center">您的座位是：<span id="display_seat"></span></div>
+    </div>
     <div id="page-wrapper">
         <div class="row col-lg-10" style="margin-left: 10%;">
             <div id="flight-box">
@@ -301,13 +304,11 @@
 
     </div><!-- /#page-wrapper -->
 
-    <div class="row" style="display: none;">
-        <div class="col-lg-5" style="margin-top: 35%;">
-            <div id="piechart" style="height: 300px;"></div>
-        </div>
-    </div>
 
 </div><!-- /#wrapper -->
+
+<input id="user-seat" type="hidden" value="<c:out value="${seat}"/>"/>
+</body>
 
 
 <!-- JavaScript -->
@@ -424,7 +425,7 @@
     )
 
     for(var i=0;i<sellk;i++){
-        document.getElementsByClassName(sellSeat[i])[0].style.fill="#56a1ff";
+        document.getElementsByClassName(sellSeat[i])[0].style.fill="#cccccc";
     }
 </script>
 <script type="text/javascript">
@@ -459,7 +460,19 @@
         $index.text($step.getIndex());
     });
 </script>
-</body>
+<script>
+
+    var user_seat=($("#user-seat").val().split("TtT"))[0].split("zZz");
+    // $("#user-seat").val(user_seat);
+    var seat="";
+    for(let i=1;i<user_seat.length-1;i++){
+        $("."+user_seat[i]+":eq(0)").css('fill','#56a1ff');
+        seat+=user_seat[i]+" ";
+    }
+    // alert(seat);
+    document.getElementById("display_seat").innerText=seat;
+
+</script>
 </html>
 
 

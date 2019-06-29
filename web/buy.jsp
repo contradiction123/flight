@@ -619,11 +619,13 @@
         var b = $('.ddcity option:selected').val();//选中的值
         var time = $(".lot-time").val();
 
+        // alert(a+","+b+","+c+","+buy[a].value);
+
         $("#flight_number").val(buy[a].value);
         $("#ccity").val(c);
         $("#dcity").val(b);
         $("#time1").val(time);
-        $("#form1").submit;
+        $("#form1").submit();
     })
 
 </script>
@@ -639,12 +641,38 @@
     })
 
 
-    window.onload=function () {
-        document.getElementsByClassName("ui-step-progress")[0].style.width="33%";
-        $(".ui-step:eq(0)").css('width','90%');
-        $(".ui-step-item:eq(0)").css('width','33%');
-        $(".ui-step-item:eq(1)").css('width','33%');
-        $(".ui-step-item:eq(2)").css('width','33%');
-    }
+</script>
+
+<script type="text/javascript">
+    var $step = $("#step");
+    var $index = $("#index");
+
+    $step.step({
+        index: 0,
+        time: 500,
+        title: ["选择航班", "选择座位", "查看座位"]
+    });
+
+    $index.text($step.getIndex());
+
+    $("#prevBtn").on("click", function() {
+        $step.prevStep();
+        $index.text($step.getIndex());
+    });
+
+    $("#nextBtn").on("click", function() {
+        $step.nextStep();
+        $index.text($step.getIndex());
+    });
+
+    $("#btn1").on("click", function() {
+        $step.toStep(1);
+        $index.text($step.getIndex());
+    });
+
+    $("#btn2").on("click", function() {
+        $step.toStep(2);
+        $index.text($step.getIndex());
+    });
 </script>
 </html>
