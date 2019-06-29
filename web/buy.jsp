@@ -506,7 +506,7 @@
                     <div class="p-card">
                         <div  style="display: inline;"class="form-inline">
                         <span>出发城市：</span>
-                        <select class="form-control" name="cfcity">
+                        <select class="form-control cfcity" name="cfcity">
                         <option value="上海">上海</option>
                         <option value="广州">广州</option>
                         <option value="成都">成都</option>
@@ -515,7 +515,7 @@
                         </div>
                         <div  style="padding-left: 20px;  display: inline;" class="form-inline">
                         <span>到达城市：</span>
-                        <select class="form-control" name="ddcity">
+                        <select class="form-control ddcity" name="ddcity">
                         <option value="北京">北京</option>
                         <option value="湖南">湖南</option>
                         <option value="湖北">湖北</option>
@@ -546,10 +546,37 @@
                             <span style="margin-left:40%; color: #df8505; font-size: 26px;line-height: 100px;">￥480</span>
                             还剩<c:out value="${flight.null_seat}"/>个座位
                             <div style="float: right;line-height: 100px;">
-                                <button type="button" class="btn btn-secondary" btn="primary" id="order" style="background-color:#4cd964;color: #fff9ec;">订票 </button>
+                                <button type="button" class="btn btn-secondary order" btn="primary" id="order" style="background-color:#4cd964;color: #fff9ec;">订票 </button>
                             </div>
                 </div>
+                <div class="order-information" style="clear: both;">
+                    <div style="padding-left: 20px;">
+                        <div style="padding: 5px 0;">
+                            <span style="color: #4cd964;margin-right: 25px;">行程单</span>
+                            <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
+                            <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
+                            <span style="float: right;margin-right: 30px;height: 40px;">
+                                <button type="button" class="btn btn-secondary buy" btn="primary" value="<c:out value='${flight.name}' />" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
+                            </span>
+                            <span style="color: #df8505;float: right;margin-right: 30px;">￥680</span>
+                            <span style="color: #9d9d9d;float:right;margin-right: 30px;">明珠经济舱7.8折</span>
+                        </div>
+                    </div>
+                    <div style="padding-left: 20px;padding-top: 40px;">
+                        <div style="padding: 5px 0;">
+                            <span style="color: #4cd964;margin-right: 25px;">行程单</span>
+                            <span style="color: #0a6ebd;margin-right: 25px;">退改￥42起</span>
+                            <span style="background-color: #df8505;color:#fff;margin-right: 25px;">赠￥70接送机卷</span>
+                            <span style="float: right;margin-right: 30px;height: 40px;">
+                                <button type="button" class="btn btn-secondary buy" btn="primary"value="<c:out value='${flight.name}' />" style="background-color:#4cd964;color: #fff9ec;">订购 </button>
+                            </span>
+                            <span style="color: #df8505;float: right;margin-right: 30px;">￥480</span>
+                            <span style="color: #9d9d9d;float:right;margin-right: 30px;">经济舱5.7折</span>
+                        </div>
+                    </div>
+                </div>
             </c:forEach>
+
 
             </div>
 
@@ -559,346 +586,15 @@
 
 </div><!-- /#wrapper -->
 
-<i id="mysvg"></i>
-
-
+<form id="form1" style="display: none;" method="post" action="<c:url value="/userdisplay" /> ">
+    <input name="flight_number" id="flight_number" type="text" value="">
+    <input name="ccity" id="ccity" type="text" value="">
+    <input name="dcity" id="dcity" type="text" value="">
+    <input name="time" id="time1" type="text" value="">
+</form>
 </body>
-<script src='<c:url value="/js/TweenMax.min.js"/>'></script>
-<script src='<c:url value="/js/MorphSVGPlugin.min.js"/>'></script>
-<script type="text/javascript">
-    var add = document.getElementById('add');
-    var container =document.getElementById('cc');
-    var node=container.nextSibling;
-    add.onclick = function(){
-        oDiv = document.createElement('div');
-        oDiv.innerHTML = "<div class='p-message'><div class='p-card'><div class='p-num' id='num'><i class='num-1'></i>    </div>    <div class='input-group' style='margin-left: 15px;'>        <span class='input-group-addon'>账号</span>        <input type='text' class='form-control user-id' placeholder='账号' aria-label='...' style='width:360px;'>    </div>        <div>        <div style='margin-top: 10px;'>            <div class='col-lg-2' style='width:160px;'>            <select class='form-control' onchange='selectOnchang(this)'>            <option>身份证</option>            <option>护照</option>            <option>军人证</option>            </select>            </div>            <input type='text' class='form-control' placeholder='登机证件号码' style='width:270px;'>        </div>    </div>          <div>            <div style='margin-top: 10px;'>                <div class='col-lg-2' style='width:160px;'>                <select class='form-control' onchange='selectOnchang(this)'>                <option>中国大陆区号86</option>                <option>中国香港区号852</option>                <option>中国澳门区号853</option>                <option>中国台湾区号886</option>                </select>                </div>                <input type='text' class='form-control' placeholder='乘机人手机号码' style='width:270px;'>            </div>         </div>                   <button class='layui-btn layui-btn-sm p-del' style='background: red; position: absolute;right: 15px;top: 10px;'  onclick='dell(0)'>          <i class='layui-icon'>&#xe640;</i>            </button>                             </div>        </div>              </div></div>";
-        container.parentNode.insertBefore(oDiv, node)
-        node=oDiv.nextSibling;
-        layui.use('form', function(){
-            var form = layui.form;
-            form.render();
-            //各种基于事件的操作，下面会有进一步介绍
-        });
-    }
-    function dell(e){
-        // var delse=document.getElementsByClassName('p-del')[e].parentNode;
-        // delse.parentNode.removeChild(delse);
-        $(".p-del").click(function(){
-            var a=$(".p-del").index(this);
-            var delse=document.getElementsByClassName('p-del')[a].parentNode;
-            delse.parentNode.removeChild(delse);
-        })
-    }
-
-</script>
-<script>
-    layui.use('form', function(){
-        var form = layui.form;
-        form.render();
-        //各种基于事件的操作，下面会有进一步介绍
-    });
-    $("#go").on('click',function(){
-
-        // layer.open({
-        //     type: 1 //Page层类型
-        //     ,area: ['500px', '300px'],
-        //     title: '你好，layer。',
-        //     shade: 0.6 ,//遮罩透明度
-        //     maxmin: true ,//允许全屏最小化
-        //     content: '<div style="padding:50px;">这是一个非常普通的页面层，传入了自定义的html</div>',
-        //     end:function(){
-        //         location.href='main.jsp'
-        //     }
-        // });
-        var user_id=$(".user-id");
-        var judge=0;
-        for(let i=0;i<$(".user-id").length;i++){
-
-            if(user_id[i].value.length<2){
-                judge=1;
-                document.getElementsByClassName("user-id")[i].style.border="2px solid #red";
-                break;
-            }
-        }
-
-        if(judge==0){
-            addsvg();
-            //首先定义passenger_info的数组拿来存放每一个人选择位置的信息
-            var passenger_info = new Array();
-            var user_name="";
-            var json1=new Array();
-            if($(".user-id").length==1){
-
-                var attribute=new Array(2);
-                var arbk=0;
-                var user_attribute=$(".attribute-user");
-                if(storage[0].checked )attribute[arbk++]="vip";
-                if(storage[1].checked )attribute[arbk++]="child";
-                if(storage1[0].checked)attribute[arbk++]="windows";
-                if(storage1[1].checked)attribute[arbk++]="door";
-                if(storage1[2].checked)attribute[arbk++]="middle";
-                if(storage1[3].checked)attribute[arbk++]="aisle";
-                if(storage2[0].checked)attribute[arbk++]="windows";
-                if(storage2[1].checked)attribute[arbk++]="door";
-                if(storage2[2].checked)attribute[arbk++]="middle";
-                if(storage2[3].checked)attribute[arbk++]="aisle";
-
-                // console.log(attribute[0]+","+attribute[1]);
-
-                var jsonObj = {};
-                user_name+=$(".user-id:eq(0)").val()+",";
-                jsonObj["Id"]=$(".user-id:eq(0)").val();
-                jsonObj["type_one"]=attribute[0];
-                jsonObj["type_second"]=attribute[1];
-
-                passenger_info.push(jsonObj);
-
-                //新建一个json数组并存进航班号和有多少个人和每一个人的选座信息
-                //这里位置顺序不能弄乱因为在后台是按照顺序读取的
-
-                var j={};
-                j["passenger_flight_number"]="<c:out value="${flight_number}" />";//航班号
-                j["passenger_num"]=$(".user-id").length;//人数
-                j["passenger_info"]=passenger_info;//个人座位需求信息
-                json1.push(j);
 
 
-            }else {
-                for(let i=0;i<$(".user-id").length;i++){
-                    user_name+=document.getElementsByClassName("user-id")[i].value+",";
-                    var jsonObj = {};
-                    jsonObj["Id"]=document.getElementsByClassName("user-id")[i].value;
-                    jsonObj["type_one"]="null";
-                    jsonObj["type_second"]="null";
-                    passenger_info.push(jsonObj);
-                }
-
-                //新建一个json数组并存进航班号和有多少个人和每一个人的选座信息
-                //这里位置顺序不能弄乱因为在后台是按照顺序读取的
-                var json1=new Array();
-                var j={};
-                j["passenger_flight_number"]="<c:out value="${flight_number}" />";//航班号
-                j["passenger_num"]=$(".user-id").length;//人数
-                j["passenger_info"]=passenger_info;//个人座位需求信息
-                json1.push(j);
-            }
-
-            //使用ajax用post的方式传到后台进行处理，为每一个人分配位置
-            $.ajax({
-                type:"POST", //请求方式
-                url:"./buy_ticket_operation", //请求路径
-                cache: false,
-                data:{//传参_传递刚才创建的json1数组
-                    "jsonArr":json1,
-                },
-                dataType: 'text',   //设置返回值类型
-                success:function(e){
-
-                    document.getElementById("user-seat").value=e;
-                    <%--document.getElementById("formflight").action="user_info_<c:out value="${flight_number}" />.jsp";--%>
-                    document.getElementById("formflight").submit();
-                    // console.log(e);
-                }
-            });//ajax——的结束
-        }
-    });
-</script>
-
-<script>
-    var child_vip=$(".child_vip");
-    var storage=$(".Storage");
-    var attribute=$(".attribute");
-    var storage1=$(".Storage1");
-    var storage2=$(".Storage2");
-    var isselect=0;
-    var one=$(".one");
-    var second=$(".second");
-    var onek=0;
-    var secondk=0;
-
-    var userconut=0;
-
-    var user=$(".user");
-
-    var list_item=$(".list-item");
-
-    var user_name="";
-
-    $(".add:eq(0)").click(function () {
-        clearadduser();
-    });
-
-    function clearadduser() {
-        $(".child_vip_type:eq(0)").css('display','inline');
-        $(".child_vip:eq(2)").css('display','inline');
-
-        $("#love1").attr("disabled",false);
-        $("#love2").attr("disabled",false);
-        $("#love3").attr("disabled",false);
-        storage[0].checked=false;
-        storage[1].checked=false;
-        storage[2].checked=false;
-
-        for(let i=0;i<storage1.length;i++){
-            storage1[i].checked=false;
-            storage2[i].checked=false;
-        };
-
-        attribute[0].style.display="none";
-        attribute[1].style.display="none";
-
-        document.getElementById("name").style.border="2px solid #ced4da";
-
-        document.getElementById("name").value="";
-
-        document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
-
-        isselect=0;
-        onek=0;
-        secondk=0;
-    }
-
-    child_vip[0].onclick=function () {
-        if(!storage[0].checked||storage[1].checked){
-            storage[0].style.border="1px solid #CCC";
-            storage[1].style.border="1px solid #CCC";
-            child_vip[2].innerHTML="确定";
-            isselect++;
-            document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
-        }else {
-            child_vip[2].innerHTML="不选";
-            isselect--;
-        };
-    };
-    child_vip[1].onclick=function () {
-        if(!storage[1].checked||storage[0].checked){
-            isselect++;
-            document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
-            storage[0].style.border="1px solid #CCC";
-            storage[1].style.border="1px solid #CCC";
-            child_vip[2].innerHTML="确定";
-        }else {
-            child_vip[2].innerHTML="不选";
-            isselect--;
-        }
-
-    };
-    child_vip[2].onclick=function () {
-        if(storage[1].checked&&storage[0].checked){
-            storage[0].style.border="1px solid #CCC";
-            storage[1].style.border="1px solid #CCC";
-            sureClick();
-        }else {
-            attribute[0].style.display="inline";
-            if(!storage[1].checked&&!storage[0].checked){
-                attribute[1].style.display="inline";
-            };
-            child_vip[2].style.display="none";
-
-            $("#love1").attr("disabled",true);
-            $("#love2").attr("disabled",true);
-            $("#love3").attr("disabled",true);
-        }
-    };
-
-    for(let i=0;i<storage1.length;i++){
-        one[i].onclick=function () {
-            onek++;
-            if(!storage1[i].checked){
-                if(onek==1){
-                    isselect++;
-                }
-                document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
-            }
-        }
-        second[i].onclick=function () {
-            secondk++
-            if(!storage2[i].checked){
-                if(secondk==1)isselect++;
-                document.getElementsByClassName("modal-body")[0].style.border="0px solid red";
-            }
-        }
-    }
-</script>
-<script>
-    function  addsvg() {
-        $("#mysvg").append(
-            '<svg id="mainSVG" viewBox="0 0 800 600">'+
-            '<defs>'+
-            '<circle id="dot" cx="0" cy="0" r="5" fill="#fff" />'+
-            '</defs>'+
-            '<circle id="mainCircle" fill="none" stroke="none" stroke-width="2" stroke-miterlimit="10" cx="400" cy="300" r="70" />'+
-            '<circle id="circlePath" fill="none" stroke="none" stroke-width="2" stroke-miterlimit="10" cx="400" cy="300" r="80" />'+
-            '<g id="mainContainer">'+
-            '<path id="plane" fill="#FFF" d="M38.1,19.6c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.6-0.3-0.7c-1.2-1-2.8-1.6-4.4-1.6l-8.7,0L12.2,0L8.2,0l6.3,16.5	l-5.9,0c-0.5,0-1.1,0.1-1.6,0.4L3.1,11L0,11l3.1,7.9L0,26.7l3.1,0l3.9-5.9c0.5,0.3,1,0.4,1.6,0.4l5.9,0L8.2,37.7h3.9l13-16.5l8.7,0	C35.4,21.2,36.9,20.6,38.1,19.6"'+
-            '/>'+
-            '</g>'+
-            '</svg>'
-        )
-
-        var script = document.createElement("script");
-        script.id="mainsvgsrc1";
-        script.src = "js/TweenMax.min.js";
-        document.body.appendChild(script);
-        var script = document.createElement("script");
-        script.id="mainsvgsrc2";
-        script.src = "js/MorphSVGPlugin.min.js";
-        document.body.appendChild(script);
-        var script = document.createElement("script");
-        script.id="mainsvgsrc3";
-        script.src = "jquery/jquery.min.js";
-        document.body.appendChild(script);
-        var script = document.createElement("script");
-        script.id="mainsvgsrc4";
-        script.src = "js/mysvg.js";
-        document.body.appendChild(script);
-    }
-    function clearsvg() {
-
-        var my=document.getElementById("mainsvgsrc1");
-        my.parentNode.removeChild(my);
-        var my=document.getElementById("mainsvgsrc2");
-        my.parentNode.removeChild(my);
-        var my=document.getElementById("mainsvgsrc3");
-        my.parentNode.removeChild(my);
-        var my=document.getElementById("mainsvgsrc4");
-        my.parentNode.removeChild(my);
-        var my=document.getElementById("mainSVG");
-        my.parentNode.removeChild(my);
-    }
-</script>
-<script type="text/javascript">
-    var $step = $("#step");
-    var $index = $("#index");
-
-    $step.step({
-        index: 0,
-        time: 500,
-        title: ["选择航班", "选择座位", "查看座位"]
-    });
-
-    $index.text($step.getIndex());
-
-    $("#prevBtn").on("click", function() {
-        $step.prevStep();
-        $index.text($step.getIndex());
-    });
-
-    $("#nextBtn").on("click", function() {
-        $step.nextStep();
-        $index.text($step.getIndex());
-    });
-
-    $("#btn1").on("click", function() {
-        $step.toStep(1);
-        $index.text($step.getIndex());
-    });
-
-    $("#btn2").on("click", function() {
-        $step.toStep(2);
-        $index.text($step.getIndex());
-    });
-</script>
 
 <script type="text/javascript">
     //时间控件
@@ -916,16 +612,29 @@
             pickerPosition:'right'
         });
     })
+    var buy = $(".buy");
+    buy.click(function () {
+        var a = $(".buy").index(this);
+        var c = $('.cfcity option:selected').val();//选中的值
+        var b = $('.ddcity option:selected').val();//选中的值
+        var time = $(".lot-time").val();
+
+        $("#flight_number").val(buy[a].value);
+        $("#ccity").val(c);
+        $("#dcity").val(b);
+        $("#time1").val(time);
+        $("#form1").submit;
+    })
+
 </script>
 
+
 <script>
-    $("#order-information").css('display','none');
-    $("#order").click(function () {
-        if(document.getElementById("order-information").style.display=="none"){
-            $("#order-information").css('display','inline');
-        }else {
-            $("#order-information").css('display','none');
-        }
+    $(".order-information").css('display','none');
+
+    $(".order").click(function () {
+        var a = $(".order").index(this);
+        $(".order-information:eq("+a+")").toggle();
 
     })
 
