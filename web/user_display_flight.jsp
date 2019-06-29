@@ -1,289 +1,89 @@
 <%--
   Created by IntelliJ IDEA.
   User: s8534
-  Date: 2019/6/8
-  Time: 13:32
+  Date: 2019/4/18
+  Time: 10:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ page import="java.io.*,java.util.*" %>
+<%--b737_700--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>购买机票</title>
-    <link rel="stylesheet" href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.min.css" />"/>
-    <script src="<c:url value="/jquery/jquery.min.js" />"></script>
-    <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
-    <link rel="stylesheet" href="<c:url value="/layui-v2.4.5/layui/css/layui.css" />"  media="all">
-    <script src="<c:url value="/layui-v2.4.5/layui/layui.all.js" />" type="text/javascript"></script>
-    <style>
-        .header_wrap{
-            border-bottom: 1px solid #e5e5e5;
-            width: 100%;
-        }
-        .header{
-            width: 100%;
-            display: table;
-            margin: 0 auto;
-            background-color: black;
-            margin-bottom: -10px;
-        }
-        .topMenu{
-            padding: 20px 0;
-            height: 80px;
-            margin-left: 10%;
-            color: #ffffff;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        .fySearch{
-            margin: 0 auto;
-            width: 100%;
-        }
+    <title>航班分配系统后台管理</title>
 
-        .stopImg{
-            padding-top: 115px;
-            color: #fff;
-            font-size: 26px;
-        }
-        .mt{
-            font-size: 54px;
-            line-height: 60px;
-            font-weight: 700;
-        }
-        .mc{
-            font-size: 24px;
-            margin-top: 20px;
-        }
-        .stopMain{
-            margin-top: 5%;
-            margin-left: 25%;
-        }
+    <!-- Bootstrap core CSS -->
+    <link href="<c:url value="/bootstrap-3.3.7-dist/css/bootstrap.min.css" />" rel="stylesheet">
 
-        .f_content{
-            width: 100%;
-        }
-        a {
-            color: #ffffff;
-        }
-        a:hover {
-            color: white;
-            border-bottom: 1px solid red;
-        }
-        .tu{
-            transform:scale(1.5) rotate(90deg);
-        }
-
-        div{
-            display:block;
-        }
-        .headfly{
-            width: 980px;
-            position:relative;
-            padding-left:50px;
-        }
-        .flylogo{
-            width: 120px;
-            float: left;
-        }
-        .headorder{
-            width:800px;
-            float:left;
-            margin-left: 280px;
-            color: #abb4c3;
-            font-size: 14px;
-        }
-        .hstep{
-            float: left;
-            position: relative;
-            width: 180px;
-            margin-left:20px;
-        }
-        .hstepcols{
-            color: #ff7d13;
-        }
-        .hlogin{
-            position: absolute;
-            padding-left: 50px;
-            font-size: 14px;
-            left:1300px;
-            top:30px;
-            color: black;
-        }
-        .fly-middle{
-            width: 980px;
-            padding-left:0;
-            position: relative;
-            margin: 10px auto;
-        }
-        .main{
-            position: relative;
-            float: left;
-            width: 700px;
-            margin-left: -10px;
-            padding-right: 0;
-            padding-top: 10px;
-            background: #eaf0f3;
-        }
-        .box-message{
-            position: relative;
-            margin:20px 0;
-        }
-        .box-tit{
-            position: relative;
-            color: #849bab;
-            margin-left:10px;
-            margin-bottom: 10px;
-        }
-        h2{
-            font-size: 18px;
-            margin-right: 10px;
-            color: #234;
-            display: inline-block;
-        }
-        .box-tips{
-            display: inline-block;
-            color: #849bab;
-        }
-        .p-message{
-            position: relative;
-            margin: 20px 10px;
-        }
-        .p-card{
-            padding: 15px 15px 15px 20px;
-            position: relative;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.527);
-        }
-        .p-card-set{
-            padding:5px 0;
-        }
-        .p-card-s{
-            display: table-cell;
-        }
-        .sidebar{
-            width:340px;
-            float:right;
-            margin-right: 170px;
-        }
-        .sidebar-cont{
-            width: 340px;
-            border:solid #d6dde2;
-            border-width: 0 1px;
-            background: #f5f8f9;
-        }
-        .flight-info{
-            position: relative;
-            padding: 26px 0 3px;
-            text-align: center;
-        }
-        .flight-city{
-            font-size: 15px;
-            padding-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .flt-date{
-            padding-right: 14px;
-            text-align: center;
-        }
-        .week{
-            padding-left: 9px;
-            text-align: center;
-        }
-        .flt-depart{
-            text-align: left;
-            display: inline-block;
-            vertical-align: middle;
-            margin-bottom:5px;
-        }
-        .flight-tit{
-            padding-bottom: 10px;
-            color: #849bab;
-        }
-        .plane-type{
-            margin-right: 6px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .flight-detail{
-            padding-top:10px;
-            text-align: center;
-        }
-        .flt-arrow{
-            width: 320px;
-        }
-        .total-price{
-            margin: 0 -20px;
-            padding: 13px 30px 0;
-            color: #ff7d13;
-            font-size: 35px;
-            font-weight: 700;
-            border-top: 1px solid #e0e5e7;
-            text-align: right;
-        }
-        .flight-cost{
-            padding:20px 20px;
-        }
-        .total-price{
-            border: none;
-            padding: 12px 0;
-        }
-        .cost-row{
-            position: relative;
-            line-height: 27px;
-            padding-right: 80px;
-        }
-        .cost-tit{
-            line-height: 27px;
-        }
-        .abb{
-            padding-bottom: 1px;
-            color: #849bab;
-            margin-left: 15px;
-        }
-        .corner{
-            position: absolute;
-            right: 0;
-            top: 0;
-            text-align: right;
-        }
-        .p-num{
-            position: absolute;
-            left:10px;
-            top: 15px;
-            width: 16px;
-            height: 20px;
-            color: #ccc;
-            font-size: 20px;
-            font-weight: 700;
-        }
-        .num-1{
-            background-position: 0 -301px;
-            width: 8px;
-            height: 20px;
-        }
-        .b-go{
-            width: 100%;
-            height: 50px;
-            line-height: 50px;
-            padding: 0;
-            margin-bottom: 10px;
-            font-size: 18px;
-            display: inline-block;
-            color: #fff;
-            background: #27e;
-            border: 1px solid #27e;
-            border-radius: 3px;
-        }
-    </style>
     <!-- Add custom CSS here -->
     <link href="<c:url value="css/admin.css" />" rel="stylesheet">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="<c:url value="/css/morris-0.4.3.min.css" />">
 
+    <script src="<c:url value="/jquery/jquery.min.js" />"></script>
+    <script src="<c:url value="/bootstrap-3.3.7-dist/js/bootstrap.min.js" />"></script>
+    <link rel="stylesheet" type="text/css" href="js/jquery.step.css" />
+    <script src="js/jquery.step.min.js"></script>
+    <style>
+        #flight-information{
+            width: 100%;
+            height: 300px;
+            margin-bottom: 10%;
+        }
+        .table-flight{
+            transform-origin:0 0;
+            font-size: 22px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: rotate(-90deg) translateX(-100%) translate(-50%,-50%);
+            text-align: center;
+        }
+        td{
+            margin: 0px;
+            height: 25px;
+            width: 35px;
+        }
+        .seat-id:hover{
+            background: rgba(255,0,0,0.5);
+        }
+        #flight-information{
+            display: flex;
+            width: 100%;
+        }
+        #flight-information>div{
+            width: 20%;
+            height: 100%;
+        }
+        #flight-information>div:nth-child(2){
+            width: 20%;
+            font-style: italic;
+            font-family: -webkit-body;
+            font-size: 17px;
+        }
+        #flight-information>div:nth-child(2)>div{
+            margin-top: 10px;
+        }
+        #flight-information>div:nth-child(4){
+            width: 50%;
+        }
+        .button{
+            height: 66px;
+            font-size: 20px;
+            border-radius: 15px;
+            font-family: cursive;
+            margin-top: 10px;
+        }
+        .hoverBig:hover{
+            transform: scale(1.2);
+        }
+    </style>
     <style>
         .clear {
             clear: both
@@ -418,7 +218,7 @@
             left:0px
         }
         .main{
-            padding-top: 88px;
+            padding-top: 15px;
         }
         .side-nav{
             top: 98px;
@@ -430,61 +230,54 @@
             position: fixed;
             right: 0px;
         }
-        .button{
-            height: 66px;
-            font-size: 35px;
-            border-radius: 15px;
-            font-family: cursive;
-            margin-top: 10px;
+        .topMenu{
+            padding: 20px 0;
+            height: 80px;
+            margin-left: 10%;
+
         }
-        .hoverBig:hover{
-            transform: scale(1.2);
+        .head_color{
+            background-color: #304f89;
+
         }
-        .table-flight{
-            transform-origin:0 0;
-            font-size: 22px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: rotate(-90deg) translateX(-100%) translate(-50%,-50%);
-            text-align: center;
+        .head_bar{
+            position: relative;
+            margin-top: 90px;
+            margin-right:90px;
         }
-        td{
-            margin: 0px;
-            height: 25px;
-            width: 35px;
-        }
-        .seat-id:hover{
-            background: rgba(255,0,0,0.5);
+        #wrappera{
+            padding-left: 125px;
         }
     </style>
 </head>
+
+
 <body>
 
 
-<div id="wrapper">
+
+<div class="wrapper" id="wrappera">
 
     <!-- 侧边栏 -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <img style="width: 88px;" src="<c:url value="/img/logo.png"/> " />
-            <h1 style="    float: right;margin-left: 26px;line-height: 240%;color: #fff;">Eyat</h1>
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <div class="navbar-header topMenu">
+            <img style="width: 50px;" src="<c:url value="/img/logo.png"/> " />
+            <h1 style=" float: right; line-height: 10px; margin-left: 20px;margin-top:20px;">Eyat</h1>
         </div>
 
         <!-- 左侧栏列表-->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li><a href="<c:url value="/buy"/> "><i class="fa fa-dashboard"></i>首页</a></li>
-                <li><a href="<c:url value="/userFormation"/>?name=<c:out value="${msg.user_name}" />"><i class="fa fa-bar-chart-o"></i>个人信息</a></li>
-                <li><a href="#"><i class="fa fa-table"></i></a></li>
-                <li><a href="#"><i class="fa fa-edit"></i></a></li>
-                <li><a href="#"><i class="fa fa-font"></i></a></li>
-            </ul>
+        <div class="collapse navbar-collapse navbar-ex1-collapse head_color">
 
+            <%--添加一个用户图标到用户名旁边 还没弄好--%>
+            <div style="float: right;">
+                <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;fill-color:red; transform:scale(1.5);" viewBox="0 0 1024 1024" version="1.1"><path d="M511.997 597.333c125.778 0 241.87-109.881 254.883-270.586C780.487 158.596 668.816 0 511.997 0 355.184 0 243.506 158.596 257.124 326.747 270.131 487.452 386.225 597.333 511.997 597.333zM509.719 684.073C228.208 684.073 0 796.019 0 934.112c0 47.221 43.411 65.423 171.081 79.221C269.777 1024 387.61 1024 512 1024c127.414 0 253.777 0 342.675-10.667 125.756-15.09 169.325-32 169.325-79.221C1024 796.019 791.22 684.073 509.719 684.073z" p-id="1301"></path></svg>
+            </div>
             <!--管理员选项-->
             <ul class="nav navbar-nav navbar-right navbar-user">
-                <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff;font-size: 36px;line-height: 200%;"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
+
+                <li class="dropdown user-dropdown" style="height: 80px;">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff;font-size: 36px;line-height: 200%;height: 80px;"><i class="fa fa-user"></i><c:out value="${msg.user_name}" /> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-gear"></i> 设置</a></li>
                         <li class="divider"></li>
@@ -494,98 +287,52 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
+    <div class="head_bar">
+        <div id="step"></div>
+    </div>
     <div id="page-wrapper">
-
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="sidebar">
-                    <div class="sidebar-cont">
-                        <div>
-                            <div class="flight-info" style="border-bottom: none;padding-bottom: 0">
-                                <div class="flight-city">
-                                    <div class="flt-date">
-                                        05-27
-                                        <span class="week">周二</span>
-                                        <div class="flt-depart">上海</div>
-                                        <div class="flt-depart">--&gt;</div>
-                                        <div class="flt-depart">上海</div>
-                                    </div>
-                                </div>
-                                <div class="flight-tit">
-                                    <div class="plane-type">
-                                        <%= request.getParameter("flight")%>
-                                    </div>
-                                    <input type="hidden" id="seatlist" value="<%= request.getParameter("seat")%>">
-                                    <div class="plane-type">
-                                        经济舱
-                                    </div>
-                                </div>
-                                <div class="flight-detail">
-                                    <div class="flt-arrow" id="u-s-n">
-                                        您的座位:
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <span style="position:absolute;left:300px;top:10px;"><svg class="icon tu" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2738"><path d="M326.637 955.266c0-2.658-2.896-3.678-6.446-2.258-5.19 2.074-6.392-1.566-6.173-18.609l0.273-21.197 64.224-57.977 64.205-57.979v-95.779c0-61.619-1.548-95.78-4.334-95.78-2.403 0-72.709 23.235-156.234 51.642-83.543 28.37-154.14 51.604-156.89 51.604-3.387 0-4.989-11.981-4.989-37.473v-37.475l161.223-131.27L442.72 371.427V245.966c0-140.428 1.056-146.71 28.151-168.288 13.475-10.744 20.267-12.874 41.079-12.874 27.933 0 42.173 8.122 58.707 33.487 9.468 14.531 9.65 17.462 9.65 143.706v128.884l161.224 131.415 161.26 131.434v37.583c0 24.984-1.676 37.619-4.88 37.619-2.66 0-74.221-23.597-159.003-52.477-84.781-28.844-154.996-51.569-156.016-50.477s-0.801 45.596 0.547 98.949l2.439 96.981 61.547 55.647 61.584 55.645 0.146 21.197c0.109 17.043-1.13 20.684-6.302 18.609-3.567-1.42-6.481-0.547-6.481 1.894 0 2.476-39.077-7.393-86.857-21.961-47.78-14.566-92.01-26.439-98.293-26.439-8.686 0-146.546 39.695-179.213 51.641-2.95 1.057-5.372-0.217-5.372-2.875z" fill="#006FC2" p-id="2739"></path></svg></span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+        <div class="row col-lg-10" style="margin-left: 10%;">
+            <div id="flight-box">
+                <div id="flight-table">
 
                 </div>
             </div>
-        </div>
-
-        <div class="row col-lg-10" style="padding-left: 20%;">
-            <div id="flight-table"></div>
         </div><!-- /.row -->
-
 
     </div><!-- /#page-wrapper -->
 
+    <div class="row" style="display: none;">
+        <div class="col-lg-5" style="margin-top: 35%;">
+            <div id="piechart" style="height: 300px;"></div>
+        </div>
+    </div>
+
 </div><!-- /#wrapper -->
 
-<i id="mysvg"></i>
 
-
-</body>
-<script>
-    var u_seat=document.getElementById("seatlist").value.split("TtT");
-    // console.log(u_seat[0]);
-    // console.log(u_seat[1]);
-    var u_seat1=u_seat[0].split("zZz");
-    var u_seat2=u_seat[1].split("zZz");
-    // console.log(u_seat1);
-    // console.log(u_seat2);
-
-    for(let i=1;i<u_seat1.length-1;i++){
-        $("#u-s-n").append(
-            '<span class="user-seat" style="margin-left:6px">'+u_seat1[i]+'</span>'
-        );
-        // document.getElementsByClassName(u_seat[i])[0].style.fill="blue";
-    }
-
-    // function back() {
-    //     window.history.back(-1);
-    // }
-
-</script>
+<!-- JavaScript -->
 
 <script>
-    var flight_number=u_seat2[0];
+    var flight_number="<c:out value="${flightmodel.getName()}"/>";
+    var sellSeat=new Array();
+    var sellk=0;
+    <c:forEach items="${seatlist}" var="seat">
+    sellSeat[sellk++]="${seat}";
+    </c:forEach>
 
-    var delete_seat=u_seat2[6];
+
+
+
+    var delete_seat="<c:out value="${flightmodel.getDelete_seat()}"/>";
     var dseat=delete_seat.split(",");
-
-    var x=parseInt(u_seat2[2]);
-    var y=parseInt(u_seat2[3]);
+    var x=parseInt(<c:out value="${flightmodel.getRow()}"/>);
+    var y=parseInt(<c:out value="${flightmodel.getCol()}"/>);
     var count=0;
     var str="";
-    var sr=u_seat2[5];
+    var sr="<c:out value="${flightmodel.getRow_aisle()}"/>";
     var start_aisle_row=sr.split(",");
-    var strat_number=parseInt(u_seat2[4]);
-    var sc=u_seat2[1];
+    var strat_number=<c:out value="${flightmodel.getStart_number()}"/>
+    var sc="<c:out value="${flightmodel.getSeat()}"/>";
     var start_aisle_col=sc.split(",");
     var col_aisle_count=0;
     var col_aisle_list=new Array();
@@ -676,49 +423,43 @@
         '</table>'
     )
 
-    for(var i=1;i<u_seat1.length-1;i++){
-        document.getElementsByClassName(u_seat1[i])[0].style.fill="#56a1ff";
+    for(var i=0;i<sellk;i++){
+        document.getElementsByClassName(sellSeat[i])[0].style.fill="#56a1ff";
     }
 </script>
+<script type="text/javascript">
+    var $step = $("#step");
+    var $index = $("#index");
 
+    $step.step({
+        index: 2,
+        time: 500,
+        title: ["选择航班", "选择座位", "查看座位"]
+    });
 
-<script>
-    window.onload=function () {
-        $.ajax({
-            type:"GET", //请求方式
-            url:"./buy_ticket_operation", //请求路径
-            cache: false,
-            data:{f:"<%= request.getParameter("flight")%>"},
-            dataType: 'text',   //设置返回值类型
-            success:function(e){
-                if(e.length>3){
-                    //返回的是一个字符串——31K zZz 32A zZz
-                    //ZzZ是座位之间的间隔
-                    // alert(e);    //弹出返回过来的座位号我的写法是以zZz分割
-                    //这样进行切割得到的是 31A zZz T
-                    var seat_satisfaction_list=e.split("zZz");
-                    for(let i=0;i<seat_satisfaction_list.length;i++){
-                        //得到每一个子 字符串，座位号
-                        //有人就是灰色
-                        // console.log(seat_satisfaction_list[i]);
-                        var judge=0;
-                        for(var j=1;j<u_seat1.length-1;j++){
-                            if(seat_satisfaction_list[i]==u_seat1[j]){
-                                judge=1;
-                                break;
-                            }
-                        }
-                        if(judge==0){
-                            document.getElementsByClassName(seat_satisfaction_list[i])[0].style.fill="#cccccc";
-                        }
-                    }
-                }
+    $index.text($step.getIndex());
 
-            }
-        });//ajax——的结束
-    }
+    $("#prevBtn").on("click", function() {
+        $step.prevStep();
+        $index.text($step.getIndex());
+    });
 
+    $("#nextBtn").on("click", function() {
+        $step.nextStep();
+        $index.text($step.getIndex());
+    });
+
+    $("#btn1").on("click", function() {
+        $step.toStep(1);
+        $index.text($step.getIndex());
+    });
+
+    $("#btn2").on("click", function() {
+        $step.toStep(2);
+        $index.text($step.getIndex());
+    });
 </script>
-
+</body>
 </html>
+
 

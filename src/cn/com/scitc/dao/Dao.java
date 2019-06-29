@@ -79,7 +79,6 @@ public class Dao {
         return seat_satisfaction;
     }
 
-
     //给指定人数的用户分配座位，人数不超过航班的列数,参数是用户的数量和座位列数,航班号
     //简单一点说这个方法是给用户分配连坐的
     private List<String> allotnumberseat(Integer usernumber,Integer seatcolumn,String flight_number){
